@@ -3,11 +3,12 @@ package com.example.maquiz;
 import java.util.ArrayList;
 
 public class Home {
+    //Establishes the attribute of the Home class
     private String name;
     private String zID;
     private int XP;
 
-
+    //Establishes the constructor of the Home class
     public Home(String name, String zID, int XP) {
         this.name = name;
         this.zID = zID;
@@ -39,7 +40,7 @@ public class Home {
     }
 
 
-
+    //Test data to test the functionality of the Home Acitivty/Fragment
     public static ArrayList<Home> testDetails(){
         ArrayList<Home> list = new ArrayList<>();
         list.add(new Home("John", "z5164310", 1200));
