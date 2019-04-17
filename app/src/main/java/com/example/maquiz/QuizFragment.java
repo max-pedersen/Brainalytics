@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class QuizFragment extends Fragment implements ContentAdapter.OnNoteListener {
+public class QuizFragment extends Fragment implements QuizAdapter.OnNoteListener {
     private RecyclerView mRecyclerView;
-    private ContentAdapter mAdapter;
+    private QuizAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutMaanger;
     @Nullable
     @Override
@@ -31,13 +31,14 @@ public class QuizFragment extends Fragment implements ContentAdapter.OnNoteListe
         mRecyclerView = rootView.findViewById(R.id.contentRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutMaanger = new LinearLayoutManager(getContext());
-        mAdapter = new ContentAdapter(list,this);
+        mAdapter = new QuizAdapter(list,this);
         mRecyclerView.setLayoutManager(mLayoutMaanger);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     public void extract(int index){
-        Intent intent = new Intent(getContext(), ContentDetailed.class);
+        //Extract the week from the database and pass into the quiz
+        Intent intent = new Intent(getContext(), QuizActivity.class);
         intent.putExtra("arrayIdx", index);
         startActivity(intent);
     }
