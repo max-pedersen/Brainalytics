@@ -110,5 +110,6 @@
     <string name="forumTitle">Forum Topic</string>
     <string name="Date">28/02/2019</string>
     <string name="replies">54 Replies</string>
+    <string name="QuizTopic">Select a topic to be quizzed on!</string>
 
 </resources>

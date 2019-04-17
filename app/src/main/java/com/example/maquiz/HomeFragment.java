@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void getUserDetails(){
+
         ArrayList<Home> list = Home.testDetails();
         Object test = list.get(0);
         String name = ((Home) test).getName();
