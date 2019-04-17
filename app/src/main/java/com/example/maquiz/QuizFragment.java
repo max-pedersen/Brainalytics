@@ -21,7 +21,7 @@ public class QuizFragment extends Fragment implements ContentAdapter.OnNoteListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_content,container, false);
+        View rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
         ArrayList<Content> list = Content.getTestContent();
         buildRecyclerAdapter(rootView, list);
         return rootView;
