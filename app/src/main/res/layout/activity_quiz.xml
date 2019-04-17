@@ -7,7 +7,7 @@
     tools:context=".QuizActivity">
 
     <TextView
-        android:id="@+id/Counter"
+        android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
