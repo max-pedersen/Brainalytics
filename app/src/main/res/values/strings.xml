@@ -111,5 +111,12 @@
     <string name="Date">28/02/2019</string>
     <string name="replies">54 Replies</string>
     <string name="QuizTopic">Select a topic to be quizzed on!</string>
+    <string name="Counter">0/10 Answered</string>
+    <string name="Question">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vestibulum quam sit amet varius mattis. Sed et arcu est. Aliquam tristique vestibulum condimentum.</string>
+    <string name="option1">A. Answer</string>
+    <string name="option2">B. Answer</string>
+    <string name="option3">C. Answer</string>
+    <string name="option4">D. Answer</string>
+    <string name="Next">Next ></string>
 
 </resources>

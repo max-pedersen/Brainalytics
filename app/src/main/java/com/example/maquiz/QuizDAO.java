@@ -10,10 +10,10 @@ import java.util.List;
 @Dao
 public interface QuizDAO {
     @Query("SELECT * FROM Quiz")
-    ArrayList<Quiz> getAllQuiz();
+    List<Quiz> getAllQuiz();
 
     @Query("SELECT * FROM Quiz " + " WHERE week LIKE :week ORDER BY RANDOM() LIMIT 10")
-    ArrayList<Quiz> getSelectedQuiz(String week);
+    List<Quiz> getSelectedQuiz(String week);
 
 
 }

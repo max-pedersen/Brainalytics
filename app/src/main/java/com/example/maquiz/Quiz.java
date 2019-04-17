@@ -16,25 +16,23 @@ public class Quiz {
     private String option_2;
     private String option_3;
     private String option_4;
-    private String option_5;
     private String correct_option;
     private String question_type;
-    private Blob visual_cue;
+    //private Blob visual_cue;
     private String feedback;
     private String week;
     private String youtube_info;
     private String content_title;
 
-    public Quiz(String question, String option_1, String option_2, String option_3, String option_4, String option_5, String correct_option, String question_type, Blob visual_cue, String feedback, String week, String youtube_info, String content_title) {
+    public Quiz(String question, String option_1, String option_2, String option_3, String option_4, String correct_option, String question_type, String feedback, String week, String youtube_info, String content_title) {
         this.question = question;
         this.option_1 = option_1;
         this.option_2 = option_2;
         this.option_3 = option_3;
         this.option_4 = option_4;
-        this.option_5 = option_5;
         this.correct_option = correct_option;
         this.question_type = question_type;
-        this.visual_cue = visual_cue;
+        //this.visual_cue = visual_cue;
         this.feedback = feedback;
         this.week = week;
         this.youtube_info = youtube_info;
@@ -89,14 +87,6 @@ public class Quiz {
         this.option_4 = option_4;
     }
 
-    public String getOption_5() {
-        return option_5;
-    }
-
-    public void setOption_5(String option_5) {
-        this.option_5 = option_5;
-    }
-
     public String getCorrect_option() {
         return correct_option;
     }
@@ -113,13 +103,13 @@ public class Quiz {
         this.question_type = question_type;
     }
 
-    public Blob getVisual_cue() {
-        return visual_cue;
-    }
-
-    public void setVisual_cue(Blob visual_cue) {
-        this.visual_cue = visual_cue;
-    }
+//    public Blob getVisual_cue() {
+//        return visual_cue;
+//    }
+//
+//    public void setVisual_cue(Blob visual_cue) {
+//        this.visual_cue = visual_cue;
+//    }
 
     public String getFeedback() {
         return feedback;
