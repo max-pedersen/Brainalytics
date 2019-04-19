@@ -8,15 +8,28 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.maquiz.R;
+import com.vansuita.pickimage.bean.PickResult;
+import com.vansuita.pickimage.bundle.PickSetup;
+import com.vansuita.pickimage.dialog.PickImageDialog;
+import com.vansuita.pickimage.listeners.IPickResult;
 
 import java.util.ArrayList;
 
-public class UserDetail extends AppCompatActivity {
+public class UserDetail extends AppCompatActivity implements IPickResult {
     private TextInputLayout textInputName;
     private TextInputLayout textInputzID;
+    private ImageView imageView;
+
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,9 +38,35 @@ public class UserDetail extends AppCompatActivity {
 
         textInputName = findViewById(R.id.text_input_name);
         textInputzID = findViewById(R.id.text_input_zID);
+        imageView = findViewById(R.id.imageView);
 
 
+
+        PickImageDialog.build(new PickSetup()).show(this);
     }
+
+    @Override
+    public void onPickResult(PickResult r) {
+        if (r.getError() == null) {
+            //If you want the Uri.
+            //Mandatory to refresh image from Uri.
+            //getImageView().setImageURI(null);
+
+            //Setting the real returned image.
+            //getImageView().setImageURI(r.getUri());
+
+            //If you want the Bitmap.
+            getImageView().setImageBitmap(r.getBitmap());
+
+            //Image path
+            //r.getPath();
+        } else {
+            //Handle possible errors
+            //TODO: do what you have to do with r.getError();
+            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
+        }}
+
+
     private Boolean validateName(){
         String enameInput = textInputName.getEditText().getText().toString().trim();
 
@@ -62,6 +101,11 @@ public class UserDetail extends AppCompatActivity {
             return true;
         }
     }
+
+
+
+
+
 
     public void confirmInput(View v){
         if(!validatezID() | !validateName()){
