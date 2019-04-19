@@ -1,4 +1,4 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.example.maquiz.R;
 
 public class MainActivity extends AppCompatActivity {
 

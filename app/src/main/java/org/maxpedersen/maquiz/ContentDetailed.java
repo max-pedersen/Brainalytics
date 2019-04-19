@@ -1,11 +1,12 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.maquiz.R;
 
 import java.util.ArrayList;
 

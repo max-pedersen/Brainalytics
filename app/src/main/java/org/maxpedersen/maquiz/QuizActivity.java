@@ -1,4 +1,4 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.maquiz.R;
+
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
@@ -22,11 +24,13 @@ public class QuizActivity extends AppCompatActivity {
     RadioButton radioButton3;
     RadioButton radioButton4;
     TextView questionTV;
-    List<Quiz> questionList;
+    List<Question> questionList;
 
     static int counter=0;
 
-    final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Quiz Database").build();
+    final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
+    .allowMainThreadQueries().build();
+    // this throws an error and causes the app to crash completely, as need to set up database as per Room properly
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class QuizActivity extends AppCompatActivity {
                 buttonApply.setVisibility(View.GONE);
                 counter++;
                 if(counter == 10){
-                    buttonApply.setText("Finish Quiz");
+                    buttonApply.setText("Finish Question");
                     questionList = getQuizList();
                     generateQ(questionList);
                     //Insert data into the database for the quiz result including the session id
@@ -75,13 +79,13 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
-    private void generateQ(List<Quiz> list){
-        Object Quiz = list.get(counter);
-        String question = ((Quiz) Quiz).getQuestion();
-        String optionA = ((Quiz) Quiz).getOption_1();
-        String optionB = ((Quiz) Quiz).getOption_2();
-        String optionC = ((Quiz) Quiz).getOption_3();
-        String optionD = ((Quiz) Quiz).getOption_4();
+    private void generateQ(List<Question> list){
+        Question Quiz = list.get(counter);
+        String question = ((Question) Quiz).getInfo();
+        String optionA = ((Question) Quiz).getOption_1();
+        String optionB = ((Question) Quiz).getOption_2();
+        String optionC = ((Question) Quiz).getOption_3();
+        String optionD = ((Question) Quiz).getOption_4();
         String counterTV = counter + "/10 Answered";
 
         radioButton1 = findViewById(R.id.radioButton1);
@@ -110,8 +114,8 @@ public class QuizActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public List<Quiz> getQuizList(){
-        List<Quiz> questionList = db.quizDao().getSelectedQuiz("Week 5");
+    public List<Question> getQuizList(){
+        List<Question> questionList = db.questionDAO().getSelectedQuiz("Week 5");
         return questionList;
     }
 }

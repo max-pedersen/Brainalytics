@@ -1,15 +1,16 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.maquiz.R;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class UserDetail extends AppCompatActivity {
 
         textInputName = findViewById(R.id.text_input_name);
         textInputzID = findViewById(R.id.text_input_zID);
+
 
     }
     private Boolean validateName(){
@@ -64,19 +66,29 @@ public class UserDetail extends AppCompatActivity {
     public void confirmInput(View v){
         if(!validatezID() | !validateName()){
             return;
+            //alex- why do you have a blank return here, wouldn't it make more sense to include the below code as part of if statement
+            //TODO add String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         }
-        String input = "successful";
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
+                .allowMainThreadQueries().build();
+
         String name = textInputName.getEditText().getText().toString();
-        String zID = textInputzID.getEditText().getText().toString();
-        int XP = 0;
+        int zID = Integer.parseInt(textInputzID.getEditText().getText().toString());
+
+        User signedInUser = new User(zID, name);
+        //this inserts the user details into our database
+        db.userDAO().insertUser(signedInUser);
+        String test = signedInUser.getFirst_name();
+
+
+
+        int XP = 1200;
+        String input = "successful";
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
-        ArrayList<Home> list = Home.testDetails();
-        Home object  = list.get(0);
-        object.setName(name);
-        object.setzID(zID);
-        object.setXP(XP);
-        Log.d("UserDetail", object.getName() + " " +object.getzID()+ " " + object.getXP());
-        Intent intent = new Intent(this,MainActivity.class);
+        // need to create an instance of User and pass it over
+        Log.d("UserDetail", signedInUser.getZ_id() + " " +signedInUser.getFirst_name()+ " " + XP);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("some_key", 3);
         startActivity(intent);
     }
 

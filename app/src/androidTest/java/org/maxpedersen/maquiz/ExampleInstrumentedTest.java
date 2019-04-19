@@ -1,4 +1,4 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,17 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.maquiz.R;
+
 import java.util.ArrayList;
 
-public class ContentFragment extends Fragment implements ContentAdapter.OnNoteListener {
+public class QuizFragment extends Fragment implements QuizAdapter.OnNoteListener {
     private RecyclerView mRecyclerView;
-    private ContentAdapter mAdapter;
+    private QuizAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutMaanger;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_content,container, false);
+        View rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
         ArrayList<Content> list = Content.getTestContent();
         buildRecyclerAdapter(rootView, list);
         return rootView;
@@ -32,13 +33,14 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
         mRecyclerView = rootView.findViewById(R.id.contentRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutMaanger = new LinearLayoutManager(getContext());
-        mAdapter = new ContentAdapter(list,this);
+        mAdapter = new QuizAdapter(list,this);
         mRecyclerView.setLayoutManager(mLayoutMaanger);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     public void extract(int index){
-        Intent intent = new Intent(getContext(), ContentDetailed.class);
+        //Extract the week from the database and pass into the quiz
+        Intent intent = new Intent(getContext(), QuizActivity.class);
         intent.putExtra("arrayIdx", index);
         startActivity(intent);
     }

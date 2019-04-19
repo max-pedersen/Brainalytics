@@ -1,7 +1,9 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.maquiz.R;
 
 public class QuizFinishedActivity extends AppCompatActivity {
 
