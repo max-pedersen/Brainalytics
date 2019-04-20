@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getUserDetails();
+
     }
 
     public void getUserDetails(){

@@ -31,8 +31,6 @@ public class UserDetail extends AppCompatActivity
         return imageView;
     }
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,10 +68,13 @@ public class UserDetail extends AppCompatActivity
 
     }
 
-    private Boolean validateName(){
-        String enameInput = textInputName.getEditText().getText().toString().trim();
+    public String firstNameInput = textInputName.getEditText().getText().toString().trim();
+    public String zIDInput = textInputzID.getEditText().getText().toString().trim();
 
-        if(enameInput.isEmpty()){
+
+    private Boolean validateName(){
+
+        if(firstNameInput.isEmpty()){
             textInputName.setError("Field cannot be empty");
             return false;
         } else {
@@ -84,7 +85,6 @@ public class UserDetail extends AppCompatActivity
     }
 
     private Boolean validatezID(){
-        String zIDInput = textInputzID.getEditText().getText().toString().trim();
 
         if(zIDInput.isEmpty()){
             textInputzID.setError("Field cannot be empty");
@@ -105,8 +105,11 @@ public class UserDetail extends AppCompatActivity
         }
     }
 
+    int zID = Integer.parseInt(textInputzID.getEditText().getText().toString().trim());
 
-    public void confirmInput(View v){
+
+
+            public void confirmInput(View v){
         if(!validatezID() | !validateName()){
             return;
             //TODO add String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
@@ -114,26 +117,23 @@ public class UserDetail extends AppCompatActivity
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
                 "Overall Database").allowMainThreadQueries().build();
 
-        String name = textInputName.getEditText().getText().toString();
-        int zID = Integer.parseInt(textInputzID.getEditText().getText().toString());
+
 
 
         int evaluator = db.userDAO().checkExists(zID);
 
-
-
         if (evaluator > 0) {
             // User thus exists in the database
-            String input = "Welcome back " + name;
+            String input = "Welcome back " + firstNameInput;
             Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
             // show toast
-            // then store the zID so that you can query across other things xD
+            // then store the zID so that you can query across other things
         }
 
         else if (evaluator == 0) {
-            User signedInUser = new User(zID, name);
+            User signedInUser = new User(zID, firstNameInput);
             db.userDAO().insertUser(signedInUser);
-            String input = "Welcome " + name;
+            String input = "Welcome " + firstNameInput;
             Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
         }
 
