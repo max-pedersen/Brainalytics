@@ -21,11 +21,25 @@ public class HomeFragment extends Fragment {
 
 
 
+    private static final String zIDPS = "zID";
+    private static final String namePS = "name";
+
+    public static HomeFragment newInstance (int zID, String name){
+
+    HomeFragment fragment = new HomeFragment();
+    Bundle args = new Bundle();
+    args.putInt(zIDPS, zID);
+    args.putString(namePS, name);
+
+    fragment.setArguments(args);
+
+    return fragment;
+}
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home,container, false);
-
         return rootView;
 
     }
@@ -33,11 +47,15 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getUserDetails();
+        String namePS = this.getArguments().getString("name");
+        int zIDPS = this.getArguments().getInt("zID");
+        String zIDString = Integer.toString(zIDPS);
+        Log.d("Home Fragment", zIDString);
+        getUserDetails(namePS, zIDPS);
 
     }
 
-    public void getUserDetails(){
+    public void getUserDetails(String namePS, int zIDPS){
 
         //TODO get info from the UserDetail fragment that has been passed
 
@@ -52,8 +70,9 @@ public class HomeFragment extends Fragment {
         }*/
 
 
-        String name = "Max";
-        int zID = 5164270;
+        String name = namePS;
+        int zID = zIDPS;
+        //Int is still a constant
         int i = 1200;
         String xp = String.valueOf(i);
         String show = "Welcome Back " + name + " !";

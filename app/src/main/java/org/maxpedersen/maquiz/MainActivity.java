@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        User user = extract();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        HomeFragment fragment = HomeFragment.newInstance(user.getZ_id(), user.getFirst_name());
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -61,5 +61,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuizActivity.class);
         //intent.putExtra("arrayIdx", index);
         startActivity(intent);
+    }
+
+    public User extract(){
+        Intent intent = getIntent();
+        int zID = intent.getIntExtra("zID",0);
+        String name = intent.getStringExtra("name");
+        User user = new User(zID,name);
+        return user;
     }
 }
