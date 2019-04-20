@@ -23,6 +23,31 @@ public class Session {
 
     private int z_id;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getMetadata_start_time() {
+        return metadata_start_time;
+    }
+
+    public void setMetadata_start_time(Date metadata_start_time) {
+        this.metadata_start_time = metadata_start_time;
+    }
+
+    public int getZ_id() {
+        return z_id;
+    }
+
+    public void setZ_id(int z_id) {
+        this.z_id = z_id;
+    }
 }
+
 
 

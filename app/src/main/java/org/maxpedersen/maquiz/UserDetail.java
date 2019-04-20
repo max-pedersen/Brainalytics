@@ -68,11 +68,11 @@ public class UserDetail extends AppCompatActivity
 
     }
 
-    public String firstNameInput = textInputName.getEditText().getText().toString().trim();
-    public String zIDInput = textInputzID.getEditText().getText().toString().trim();
 
 
     private Boolean validateName(){
+         String firstNameInput = textInputName.getEditText().getText().toString().trim();
+
 
         if(firstNameInput.isEmpty()){
             textInputName.setError("Field cannot be empty");
@@ -85,6 +85,8 @@ public class UserDetail extends AppCompatActivity
     }
 
     private Boolean validatezID(){
+         String zIDInput = textInputzID.getEditText().getText().toString().trim();
+
 
         if(zIDInput.isEmpty()){
             textInputzID.setError("Field cannot be empty");
@@ -105,12 +107,17 @@ public class UserDetail extends AppCompatActivity
         }
     }
 
-    int zID = Integer.parseInt(textInputzID.getEditText().getText().toString().trim());
 
 
 
             public void confirmInput(View v){
-        if(!validatezID() | !validateName()){
+                String zIDInput = textInputzID.getEditText().getText().toString().trim();
+                String firstNameInput = textInputName.getEditText().getText().toString().trim();
+                int zID = Integer.parseInt(textInputzID.getEditText().getText().toString().trim());
+
+
+
+                if(!validatezID() | !validateName()){
             return;
             //TODO add String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         }
