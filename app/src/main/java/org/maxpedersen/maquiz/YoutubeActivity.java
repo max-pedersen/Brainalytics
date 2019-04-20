@@ -16,7 +16,7 @@ public class YoutubeActivity extends YouTubeBaseActivity
         implements YouTubePlayer.OnInitializedListener {
     private static final String TAG = "YoutubeActivity";
     static final String API_KEY = "AIzaSyBka9Qp1HYeNOCMHcBV9Em3C_CIaMAh7rk";
-    static final String YT_VIDEO_ID = "5Zg-C8AAIGg";
+    public String YT_VIDEO_ID = "5Zg-C8AAIGg";
     //static final String YOUTUBE_PLAYLIST = "TODO";
 
 

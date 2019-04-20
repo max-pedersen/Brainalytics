@@ -8,9 +8,8 @@ import java.sql.Blob;
 import java.util.Date;
 @Entity
 public class User {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
 
+    @PrimaryKey
     @ColumnInfo(name = "z_id")
     private int z_id;
 
@@ -32,13 +31,6 @@ public class User {
         //TODO work out how on earth to construct with a Blob, don't think it's possible
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getZ_id() {
         return z_id;
