@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.maquiz.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
@@ -28,12 +30,15 @@ public class QuizActivity extends AppCompatActivity {
 
     static int counter=0;
 
-    final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
-    .allowMainThreadQueries().build();
+    //final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
+    //.allowMainThreadQueries().build();
     // this throws an error and causes the app to crash completely, as need to set up database as per Room properly
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         radioGroup = findViewById(R.id.radioGroup);
@@ -41,6 +46,19 @@ public class QuizActivity extends AppCompatActivity {
         Button buttonApply = findViewById(R.id.nextQ);
         buttonApply.setVisibility(View.GONE);
         onClick(buttonApply);
+
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
+                "Overall Database").allowMainThreadQueries().build();
+
+        Question testQuestion = new Question(300, 1, "Which of the following is not a part of the simple approach to build a good chart?",
+                "Understand and Create",
+                "Refine", "Present and Practice",
+                "Re-design", "option_4", "multiple_choice",
+                "https://www.youtube.com/watch?v=IGXVaVWD_3I",
+                        "Good Charts Ch1-4");
+
+        db.questionDAO().insertQuestion(testQuestion);
+
         //Use the extra in the intent to select which weeks quiz to use
         questionList = getQuizList();
         generateQ(questionList);
@@ -115,7 +133,14 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public List<Question> getQuizList(){
-        List<Question> questionList = db.questionDAO().getSelectedQuiz("Week 5");
-        return questionList;
+        //List<Question> questionList = db.questionDAO().getSelectedQuiz("Week 5");
+        //return questionList;
+        List<Question> questionlist = new ArrayList<>();
+        questionlist.add(new Question(3333, 3, "What is a chart?",
+                "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
+                        "youtube", "chart"));
+
+        return questionlist;
+
     }
 }
