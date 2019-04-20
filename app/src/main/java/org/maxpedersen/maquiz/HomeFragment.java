@@ -19,23 +19,6 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-
-
-    private static final String zIDPS = "zID";
-    private static final String namePS = "name";
-
-    public static HomeFragment newInstance (int zID, String name){
-
-    HomeFragment fragment = new HomeFragment();
-    Bundle args = new Bundle();
-    args.putInt(zIDPS, zID);
-    args.putString(namePS, name);
-
-    fragment.setArguments(args);
-
-    return fragment;
-}
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,8 +30,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String namePS = this.getArguments().getString("name");
-        int zIDPS = this.getArguments().getInt("zID");
+        String namePS = "Test Name";
+        int zIDPS = UserValueCapture.zIDGlobal;
         String zIDString = Integer.toString(zIDPS);
         Log.d("Home Fragment", zIDString);
         getUserDetails(namePS, zIDPS);

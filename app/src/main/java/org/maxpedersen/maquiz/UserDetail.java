@@ -146,12 +146,10 @@ public class UserDetail extends AppCompatActivity
 
 
         int XP = 1200;
+        UserValueCapture.setzIDGlobal(zID);
 
         // need to create an instance of User and pass it over
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("name", firstNameInput);
-        intent.putExtra("zID", zID);
-        //intent.putExtra("some_key", 3);
         startActivity(intent);
     }
 
