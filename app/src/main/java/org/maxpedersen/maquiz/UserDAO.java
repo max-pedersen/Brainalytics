@@ -18,5 +18,9 @@ public interface UserDAO {
     //@Query("SELECT MAX(created_at) FROM User GROUP BY z_id")
     //String getMostRecent();
 
+    @Query("SELECT COUNT(z_id) from User WHERE z_id LIKE :mZ_id")
+    int checkExists(int mZ_id);
+
+
 
 }

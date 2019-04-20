@@ -19,7 +19,9 @@ import com.vansuita.pickimage.listeners.IPickResult;
 
 import java.util.ArrayList;
 
-public class UserDetail extends AppCompatActivity implements IPickResult {
+public class UserDetail extends AppCompatActivity
+        //implements IPickResult
+        {
     private TextInputLayout textInputName;
     private TextInputLayout textInputzID;
     private ImageView imageView;
@@ -42,7 +44,7 @@ public class UserDetail extends AppCompatActivity implements IPickResult {
 
 
 
-        PickImageDialog.build(new PickSetup()).show(this);
+/*        PickImageDialog.build(new PickSetup()).show(this);
     }
 
     @Override
@@ -64,8 +66,9 @@ public class UserDetail extends AppCompatActivity implements IPickResult {
             //Handle possible errors
             //TODO: do what you have to do with r.getError();
             Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
-        }}
+        }}*/
 
+    }
 
     private Boolean validateName(){
         String enameInput = textInputName.getEditText().getText().toString().trim();
@@ -103,36 +106,44 @@ public class UserDetail extends AppCompatActivity implements IPickResult {
     }
 
 
-
-
-
-
     public void confirmInput(View v){
         if(!validatezID() | !validateName()){
             return;
-            //alex- why do you have a blank return here, wouldn't it make more sense to include the below code as part of if statement
             //TODO add String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         }
-        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
-                .allowMainThreadQueries().build();
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
+                "Overall Database").allowMainThreadQueries().build();
 
         String name = textInputName.getEditText().getText().toString();
         int zID = Integer.parseInt(textInputzID.getEditText().getText().toString());
 
-        User signedInUser = new User(zID, name);
-        //this inserts the user details into our database
-        db.userDAO().insertUser(signedInUser);
-        String test = signedInUser.getFirst_name();
+
+        int evaluator = db.userDAO().checkExists(zID);
+
+
+
+        if (evaluator > 0) {
+            // User thus exists in the database
+            String input = "Welcome back " + name;
+            Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+            // show toast
+            // then store the zID so that you can query across other things xD
+        }
+
+        else if (evaluator == 0) {
+            User signedInUser = new User(zID, name);
+            db.userDAO().insertUser(signedInUser);
+            String input = "Welcome " + name;
+            Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+        }
 
 
 
         int XP = 1200;
-        String input = "successful";
-        Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+
         // need to create an instance of User and pass it over
-        Log.d("UserDetail", signedInUser.getZ_id() + " " +signedInUser.getFirst_name()+ " " + XP);
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("some_key", 3);
+        //intent.putExtra("some_key", 3);
         startActivity(intent);
     }
 
