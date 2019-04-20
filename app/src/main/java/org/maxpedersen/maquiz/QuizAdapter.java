@@ -1,4 +1,4 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,26 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.maquiz.R;
 
 import java.util.ArrayList;
-
-public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHolder>  {
+//Need to change this to quiz adapter once we have the database
+public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     private ArrayList<Content> mList;
-    private OnItemClickListener mListener;
-    private OnNoteListener mOnNoteListener;
+    private QuizAdapter.OnItemClickListener mListener;
+    private QuizAdapter.OnNoteListener mOnNoteListener;
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(QuizAdapter.OnItemClickListener listener){
         mListener = listener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView mTextView;
-        OnNoteListener OnNoteListener;
+        QuizAdapter.OnNoteListener OnNoteListener;
 
-        public ViewHolder(@NonNull View itemView, OnNoteListener listener) {
+        public ViewHolder(@NonNull View itemView, QuizAdapter.OnNoteListener listener) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.textView);
             itemView.setOnClickListener(this);
@@ -39,21 +40,21 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
 
-    public ContentAdapter(ArrayList<Content> contentList, OnNoteListener OnNoteListener){
+    public QuizAdapter(ArrayList<Content> contentList, QuizAdapter.OnNoteListener OnNoteListener){
         mList = contentList;
         this.mOnNoteListener = OnNoteListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_select_topic_cardview, parent, false);
-        ViewHolder vh = new ViewHolder(v, mOnNoteListener);
+    public QuizAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_select_quiztopic_cardview, parent, false);
+        QuizAdapter.ViewHolder vh = new ViewHolder(v, mOnNoteListener);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull QuizAdapter.ViewHolder holder, int i) {
         Content contentItem = mList.get(i);
         String cardText = contentItem.getTopic() + ": " + contentItem.getTopicTitle();
         holder.mTextView.setText(cardText);
@@ -69,4 +70,5 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
 }
+
 

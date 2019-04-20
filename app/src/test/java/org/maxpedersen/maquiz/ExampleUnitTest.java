@@ -1,4 +1,4 @@
-package com.example.maquiz;
+package org.maxpedersen.maquiz;
 
 import org.junit.Test;
 

@@ -110,5 +110,26 @@
     <string name="forumTitle">Forum Topic</string>
     <string name="Date">28/02/2019</string>
     <string name="replies">54 Replies</string>
+    <string name="QuizTopic">Select a topic to be quizzed on!</string>
+    <string name="Counter">0/10 Answered</string>
+    <string name="Question">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vestibulum quam sit amet varius mattis. Sed et arcu est. Aliquam tristique vestibulum condimentum.</string>
+    <string name="option1">A. Answer</string>
+    <string name="option2">B. Answer</string>
+    <string name="option3">C. Answer</string>
+    <string name="option4">D. Answer</string>
+    <string name="Next">Next ></string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 
 </resources>
