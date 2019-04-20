@@ -38,7 +38,7 @@ public class UserDetail extends AppCompatActivity
 
         textInputName = findViewById(R.id.text_input_name);
         textInputzID = findViewById(R.id.text_input_zID);
-        imageView = findViewById(R.id.imageView);
+        //imageView=findViewById(R.id.te)
 
 
 
@@ -147,6 +147,7 @@ public class UserDetail extends AppCompatActivity
 
         int XP = 1200;
         UserValueCapture.setzIDGlobal(zID);
+        UserValueCapture.setNameGlobal(firstNameInput);
 
         // need to create an instance of User and pass it over
         Intent intent = new Intent(this, MainActivity.class);

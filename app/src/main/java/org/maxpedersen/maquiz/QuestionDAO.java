@@ -12,7 +12,7 @@ public interface QuestionDAO {
     List<Question> getAllQuiz();
 
     @Query("SELECT * FROM Question " + " WHERE week LIKE :week ORDER BY RANDOM() LIMIT 10")
-    List<Question> getSelectedQuiz(String week);
+    List<Question> getSelectedQuiz(int week);
 
 
     @Insert
