@@ -3,6 +3,7 @@ package org.maxpedersen.maquiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,10 +12,35 @@ import com.example.maquiz.R;
 import java.util.ArrayList;
 
 public class ContentDetailed extends AppCompatActivity {
+    TextView tvContentParagraph;
+    TextView tvTopicTitle;
+    Button btnYoutube;
+
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Attaching the Class to the correct layout
         setContentView(R.layout.detailed_content);
+         tvContentParagraph = findViewById(R.id.contentParagraph);
+         tvTopicTitle = findViewById(R.id.topicForDetailedContent);
+         btnYoutube = findViewById(R.id.youtubeBtn);
+
+
+        btnYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                //Youtube info page is navigated to
+                Intent intent = new Intent(ContentDetailed.this,YoutubeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
         //Getting the Extra data that was passed into the activity from the prior fragment, in this scenario it was the position of the Recycler View which is helpful in deciding which object in the array should inflate this activity
         Intent intent = getIntent();
         int i = intent.getIntExtra("arrayIdx", 0);
@@ -32,11 +58,8 @@ public class ContentDetailed extends AppCompatActivity {
         //for YouTube API implementaion later
         String youtubeURL = ((Content) test).getYoutubeLink();
         //Sets the strings extracts from the object to the Activity
-        TextView tvContentParagraph = findViewById(R.id.contentParagraph);
-        TextView tvTopicTitle = findViewById(R.id.topicForDetailedContent);
+
         //YouTube API Button
-        Button btnYoutube = findViewById(R.id.youtubeBtn);
-        tvContentParagraph.setText(contentParagraph);
         //Sets the strings extracts from the object to the Activity
         tvTopicTitle.setText(topicTitle);
     }
@@ -49,5 +72,10 @@ public class ContentDetailed extends AppCompatActivity {
     public void forum (int i){
 
     }
+
+    //Selecting the Youtube Button
+
+
+
 
 }
