@@ -46,13 +46,7 @@ public class QuizActivity extends AppCompatActivity {
     List<Question> questionList;
     static int counter=0;
     static int score=0;
-
-
-    //final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
-    //.allowMainThreadQueries().build();
-    // this throws an error and causes the app to crash completely, as need to set up database as per Room properly
-
-
+    List<Question> randomQuestionsFromWeek;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -73,9 +67,9 @@ public class QuizActivity extends AppCompatActivity {
         onClick(buttonApply);
 
 
-        List<Question> testreturn = null;
+        List<Question> questionsFromCSV = null;
         try {
-            testreturn = readCSV();
+            questionsFromCSV = readCSV();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,36 +77,12 @@ public class QuizActivity extends AppCompatActivity {
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
                 "Overall Database").allowMainThreadQueries().build();
 
-        Question exa = testreturn.get(3);
-        db.questionDAO().insertQuestion(exa);
+        db.questionDAO().insertQuestionBatch(questionsFromCSV);
 
-        db.questionDAO().insertQuestionBatch(questionList);
+        List<Question> randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(1);
 
+        generateQ(randomQuestionsFromWeek);
 
-
-
-/*                Question testQuestion = new Question(300, 1, "Which of the following is not a part of the simple approach to build a good chart?",
-                "Understand and Create",
-                "Refine", "Present and Practice",
-                "Re-design", "option_4", "multiple_choice",
-                "https://www.youtube.com/watch?v=IGXVaVWD_3I",
-                        "Good Charts Ch1-4");
-
-        Question testQuestion = new Question(300, 1, "Which of the following is not a part of the simple approach to build a good chart?",
-                "Understand and Create",
-                "Refine", "Present and Practice",
-                "Re-design", "option_4", "multiple_choice",
-                "https://www.youtube.com/watch?v=IGXVaVWD_3I",
-                "Good Charts Ch1-4");
-
-
-        //db.questionDAO().insertQuestion(testQuestion);
-
-        //Use the extra in the intent to select which weeks quiz to use
-
-        questionList = getQuizList();
-
-        generateQ(questionList);*/
 
     }
 
@@ -125,7 +95,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (UserValueCapture.quizActivityState == 0) {
                     counter++;
-                    questionList = getQuizList();
+                    questionList = randomQuestionsFromWeek;
                     checkAnswer(questionList);
                     String text = counter + "/10 finished";
                     counterTV.setText(text);
@@ -146,7 +116,7 @@ public class QuizActivity extends AppCompatActivity {
                     //counter++;
                     if (counter == 10) {
                         buttonApply.setText("Finish Question");
-                        questionList = getQuizList();
+                        questionList = randomQuestionsFromWeek;
                         generateQ(questionList);
                         reivewTV.setVisibility(View.GONE);
                         //Insert data into the database for the quiz result including the session id
@@ -155,7 +125,7 @@ public class QuizActivity extends AppCompatActivity {
                         goToFinished();
                     } else {
                         buttonApply.setText("Review Question");
-                        questionList = getQuizList();
+                        questionList = randomQuestionsFromWeek;
                         generateQ(questionList);
                         reivewTV.setVisibility(View.GONE);
                         //Insert data into the database for the quiz result including the session id
@@ -170,7 +140,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-
+// Null pointer exception stems from here, questionList being returned is apparently blank
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Question> readCSV() throws IOException {
         List<Question> questionList = new ArrayList<>();
@@ -183,35 +153,19 @@ public class QuizActivity extends AppCompatActivity {
         reader.readLine();
         String line;
         while ((line = reader.readLine()) != null) {
-            int i = 1;
+            int i = 20;
             String[] qAttrs = line.split(",");
             Log.d("hello", line);
-            Question q = new Question(i, Integer.parseInt(qAttrs[0]), qAttrs[1],
+            Question q = new Question(0, Integer.parseInt(qAttrs[0]), qAttrs[1],
                     qAttrs[2], qAttrs[3], qAttrs[4], qAttrs[5], qAttrs[6], qAttrs[7],
                     qAttrs[8], qAttrs[9]);
             Log.d("hello", q.toString());
+            i = i + 1;
             questionList.add(q);
-
-
         }
 
         return questionList;
-
-        /*CsvToBean<Question> csvToBean = new CsvToBeanBuilder(reader)
-                .withType(Question.class)
-                .withIgnoreLeadingWhiteSpace(true)
-                .build();
-
-        Iterator<Question> csvUserIterator = csvToBean.iterator();
-
-        while (csvUserIterator.hasNext()) {
-            Question csvUser = csvUserIterator.next();
-            Log.d("readcsv","Name : " + csvUser.getContent_title());
-            Log.d("readcsv","Question : " + csvUser.getInfo()); */
-
-        }
-
-
+    }
 
 
 
@@ -252,35 +206,7 @@ public class QuizActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public List<Question> getQuizList(){
-        //List<Question> questionList = db.questionDAO().getSelectedQuiz(1);
-        //return questionList;
 
-
-        List<Question> questionlist = new ArrayList<>();
-        questionlist.add(new Question(3333, 3, "What is a chart?",
-                "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
-                "youtube", "chart"));
-
-        questionlist.add(new Question(3334, 3, "What is a chart?2",
-                "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
-                "youtube", "chart"));
-
-        questionlist.add(new Question(3335, 3, "What is a chart?3",
-                "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
-                "youtube", "chart"));
-
-        questionlist.add(new Question(3336, 3, "What is a chart?4",
-                "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
-                "youtube", "chart"));
-
-        questionlist.add(new Question(3337, 3, "What is a chart?5",
-                "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
-                "youtube", "chart"));
-
-        return questionlist;
-
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void checkAnswer(List<Question> list){
