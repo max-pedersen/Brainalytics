@@ -81,7 +81,7 @@ public class QuizActivity extends AppCompatActivity {
                     String text = counter + "/10 finished";
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
-                    buttonApply.setText("Next Question");
+                    buttonApply.setText("Review Question");
                         //Insert data into the database for the quiz result including the session id
                     }
                     //Ideally we should send the data of the radioButton selected to a DB along with the session id and the question id
@@ -221,7 +221,7 @@ public class QuizActivity extends AppCompatActivity {
             radioButton = findViewById(radioID);
             radioButton.setBackgroundColor(getColor(R.color.Green));
             score++;
-            String text = score+"/10";
+            String text = "Score: "+score+"/10";
             scoreTV.setText(text);
 
         }
