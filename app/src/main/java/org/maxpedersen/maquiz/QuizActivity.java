@@ -2,6 +2,8 @@ package org.maxpedersen.maquiz;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +15,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.maquiz.R;
+import com.opencsv.CSVReader;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
@@ -33,12 +47,14 @@ public class QuizActivity extends AppCompatActivity {
     static int counter=0;
     static int score=0;
 
+
     //final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Overall Database")
     //.allowMainThreadQueries().build();
     // this throws an error and causes the app to crash completely, as need to set up database as per Room properly
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,26 +68,59 @@ public class QuizActivity extends AppCompatActivity {
         reivewTV.setVisibility(View.GONE);
         Button buttonApply = findViewById(R.id.nextQ);
         buttonApply.setVisibility(View.GONE);
+        buttonApply.setText("Review Question");
         UserValueCapture.setQuizActivityState(0);
         onClick(buttonApply);
+
+
+        List<Question> testreturn = null;
+        try {
+            testreturn = readCSV();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
                 "Overall Database").allowMainThreadQueries().build();
 
-        Question testQuestion = new Question(300, 1, "Which of the following is not a part of the simple approach to build a good chart?",
+        Question exa = testreturn.get(3);
+        db.questionDAO().insertQuestion(exa);
+
+        db.questionDAO().insertQuestionBatch(questionList);
+
+
+
+
+/*                Question testQuestion = new Question(300, 1, "Which of the following is not a part of the simple approach to build a good chart?",
                 "Understand and Create",
                 "Refine", "Present and Practice",
                 "Re-design", "option_4", "multiple_choice",
                 "https://www.youtube.com/watch?v=IGXVaVWD_3I",
                         "Good Charts Ch1-4");
 
+        Question testQuestion = new Question(300, 1, "Which of the following is not a part of the simple approach to build a good chart?",
+                "Understand and Create",
+                "Refine", "Present and Practice",
+                "Re-design", "option_4", "multiple_choice",
+                "https://www.youtube.com/watch?v=IGXVaVWD_3I",
+                "Good Charts Ch1-4");
+
+
+        //db.questionDAO().insertQuestion(testQuestion);
+
         //Use the extra in the intent to select which weeks quiz to use
 
         questionList = getQuizList();
-        generateQ(questionList);
+
+        generateQ(questionList);*/
+
     }
+
+
 
     private void onClick(Button buttonApply){
         buttonApply.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
                 if (UserValueCapture.quizActivityState == 0) {
@@ -81,7 +130,7 @@ public class QuizActivity extends AppCompatActivity {
                     String text = counter + "/10 finished";
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
-                    buttonApply.setText("Review Question");
+                    buttonApply.setText("Next Question > ");
                         //Insert data into the database for the quiz result including the session id
                     }
                     //Ideally we should send the data of the radioButton selected to a DB along with the session id and the question id
@@ -119,6 +168,52 @@ public class QuizActivity extends AppCompatActivity {
 
         });
     }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Question> readCSV() throws IOException {
+        List<Question> questionList = new ArrayList<>();
+
+
+        InputStreamReader is = new InputStreamReader(getAssets()
+                .open("Questions.csv"));
+
+        BufferedReader reader = new BufferedReader(is);
+        reader.readLine();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            int i = 1;
+            String[] qAttrs = line.split(",");
+            Log.d("hello", line);
+            Question q = new Question(i, Integer.parseInt(qAttrs[0]), qAttrs[1],
+                    qAttrs[2], qAttrs[3], qAttrs[4], qAttrs[5], qAttrs[6], qAttrs[7],
+                    qAttrs[8], qAttrs[9]);
+            Log.d("hello", q.toString());
+            questionList.add(q);
+
+
+        }
+
+        return questionList;
+
+        /*CsvToBean<Question> csvToBean = new CsvToBeanBuilder(reader)
+                .withType(Question.class)
+                .withIgnoreLeadingWhiteSpace(true)
+                .build();
+
+        Iterator<Question> csvUserIterator = csvToBean.iterator();
+
+        while (csvUserIterator.hasNext()) {
+            Question csvUser = csvUserIterator.next();
+            Log.d("readcsv","Name : " + csvUser.getContent_title());
+            Log.d("readcsv","Question : " + csvUser.getInfo()); */
+
+        }
+
+
+
+
 
     private void generateQ(List<Question> list){
         Question Quiz = list.get(counter);
@@ -158,8 +253,10 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public List<Question> getQuizList(){
-        //List<Question> questionList = db.questionDAO().getSelectedQuiz("Week 5");
+        //List<Question> questionList = db.questionDAO().getSelectedQuiz(1);
         //return questionList;
+
+
         List<Question> questionlist = new ArrayList<>();
         questionlist.add(new Question(3333, 3, "What is a chart?",
                 "Chart", "Dog", "Fish", "Moo", "option_1", "mc",
@@ -185,6 +282,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void checkAnswer(List<Question> list){
         int radioID = radioGroup.getCheckedRadioButtonId();
         View radioButton = radioGroup.findViewById(radioID);
@@ -216,7 +314,7 @@ public class QuizActivity extends AppCompatActivity {
         Log.d("Correct id", "crt id: " + correctRadioId);
 
         if(idx == correctIndex){
-            reivewTV.setText("You have choosen the correct answer");
+            reivewTV.setText("Correct. Nice work!");
             reivewTV.setTextColor(getColor(R.color.Green));
             radioButton = findViewById(radioID);
             radioButton.setBackgroundColor(getColor(R.color.Green));
@@ -226,7 +324,7 @@ public class QuizActivity extends AppCompatActivity {
 
         }
         else if(idx != correctIndex){
-            reivewTV.setText("You have choosen the wrong answer");
+            reivewTV.setText("You have chosen the wrong answer.");
             reivewTV.setTextColor(getColor(R.color.Red));
             radioButton = findViewById(radioID);
             radioButton.setBackgroundColor(getColor(R.color.Red));
