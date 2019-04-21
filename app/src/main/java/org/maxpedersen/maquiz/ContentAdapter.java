@@ -20,6 +20,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
+
     // Establishing an OnItemClickListener on the recycler view
     public void setOnItemClickListener(OnItemClickListener listener){
         mListener = listener;

@@ -87,11 +87,11 @@
             android:layout_weight="1"
             android:background="@drawable/radio_flat_selector"
             android:button="@android:color/transparent"
-            android:checked="true"
+            android:checked="false"
             android:gravity="center"
+            android:onClick="checkButton"
             android:text="@string/option1"
-            android:textColor="@color/radio_flat_text_selector"
-            android:onClick="checkButton"/>
+            android:textColor="@color/radio_flat_text_selector" />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -101,11 +101,11 @@
             android:layout_weight="1"
             android:background="@drawable/radio_flat_selector"
             android:button="@android:color/transparent"
-            android:checked="true"
+            android:checked="false"
             android:gravity="center"
+            android:onClick="checkButton"
             android:text="@string/option2"
-            android:textColor="@color/radio_flat_text_selector"
-            android:onClick="checkButton"/>
+            android:textColor="@color/radio_flat_text_selector" />
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -117,9 +117,9 @@
             android:button="@android:color/transparent"
             android:checked="false"
             android:gravity="center"
+            android:onClick="checkButton"
             android:text="@string/option3"
-            android:textColor="@color/radio_flat_text_selector"
-            android:onClick="checkButton"/>
+            android:textColor="@color/radio_flat_text_selector" />
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -131,9 +131,9 @@
             android:button="@android:color/transparent"
             android:checked="false"
             android:gravity="center"
+            android:onClick="checkButton"
             android:text="@string/option4"
-            android:textColor="@color/radio_flat_text_selector"
-            android:onClick="checkButton"/>
+            android:textColor="@color/radio_flat_text_selector" />
     </RadioGroup>
 
     <Button
