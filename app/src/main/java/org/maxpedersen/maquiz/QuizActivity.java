@@ -95,8 +95,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (UserValueCapture.quizActivityState == 0) {
                     counter++;
-                    questionList = randomQuestionsFromWeek;
-                    checkAnswer(questionList);
+                    checkAnswer(randomQuestionsFromWeek);
                     String text = counter + "/10 finished";
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
@@ -116,8 +115,7 @@ public class QuizActivity extends AppCompatActivity {
                     //counter++;
                     if (counter == 10) {
                         buttonApply.setText("Finish Question");
-                        questionList = randomQuestionsFromWeek;
-                        generateQ(questionList);
+                        generateQ(randomQuestionsFromWeek);
                         reivewTV.setVisibility(View.GONE);
                         //Insert data into the database for the quiz result including the session id
                     }

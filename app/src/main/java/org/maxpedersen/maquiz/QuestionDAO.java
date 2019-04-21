@@ -22,12 +22,5 @@ public interface QuestionDAO {
     void insertQuestionBatch(List<Question> question);
 
 
-    /*@Query("INSERT INTO Question VALUES(1, '645789', 'tim@email.com', 'Understand and Create'," +
-            "'Refine', 'Present and Practice', 'Re-design', 'option_4', 'multiple_choice', 'https://www.youtube.com/watch?v=IGXVaVWD_3I'," +
-            "'Good Charts Ch1-4')")
-    void random();*/
-
-
-
 
 }

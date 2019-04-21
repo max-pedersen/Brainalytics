@@ -12,67 +12,58 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class YoutubeActivity extends YouTubeBaseActivity
-        implements YouTubePlayer.OnInitializedListener {
+public class YoutubeActivity extends YouTubeBaseActivity  {
     private static final String TAG = "YoutubeActivity";
     static final String API_KEY = "AIzaSyBka9Qp1HYeNOCMHcBV9Em3C_CIaMAh7rk";
     public String YT_VIDEO_ID = "5Zg-C8AAIGg";
-    //static final String YOUTUBE_PLAYLIST = "TODO";
+
+    private YouTubePlayerView myYoutubePlayerView;
+    private YouTubePlayer.OnInitializedListener initializedListener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_youtube);
+
         //setContentView(R.layout.activity_youtube);
         //ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.activity_youtube);
-        ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube, null);
-        setContentView(layout);
+        myYoutubePlayerView = findViewById(R.id.youtube_view);
 
-//        Button button1 = new Button(this);
-//        button1.setLayoutParams(new ConstraintLayout.LayoutParams(300,80));
-//        button1.setText("Button added");
-//        layout.addView(button1);
+        myYoutubePlayerView.initialize(API_KEY, initializedListener);
 
 
-        // inflates xml and assigns view created to constraintlayout, then parses content to overloaded method of setContentView
 
 
-        YouTubePlayerView player = new YouTubePlayerView(this);
-        player.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        layout.addView(player);
-        player.initialize(API_KEY, this);
+        initializedListener = new YouTubePlayer.OnInitializedListener() {
+
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+                Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
+                youTubePlayer.setPlaybackEventListener(playbackEventListener);
+                youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
+
+                if (!wasRestored) {
+                    youTubePlayer.cueVideo(YT_VIDEO_ID);
+
+                }
 
 
-    }
+            }
 
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-        Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
-        Toast.makeText(this, "Initialized Youtube Player successfully", Toast.LENGTH_LONG).show();
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                final int REQUEST_CODE = 1;
 
-        youTubePlayer.setPlaybackEventListener(playbackEventListener);
-        youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
+                if (youTubeInitializationResult.isUserRecoverableError()) {
+                    //TODO add error dialog
+                } else {
+                    String errorMessage = String.format("There was an error initializing the Youtube Player (%1$s)", youTubeInitializationResult.toString());
 
-        if (!wasRestored) {
-            youTubePlayer.cueVideo(YT_VIDEO_ID);
+                }
 
-        }
-
-
-    }
-
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        final int REQUEST_CODE = 1;
-
-        if (youTubeInitializationResult.isUserRecoverableError()) {
-            youTubeInitializationResult.getErrorDialog(this, REQUEST_CODE).show();
-        } else {
-            String errorMessage = String.format("There was an error initializing the YoutubePlayer (%1$s)", youTubeInitializationResult.toString());
-            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
-
-        }
-
+            }
+        };
     }
 
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
