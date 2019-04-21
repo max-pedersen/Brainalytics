@@ -21,19 +21,11 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     private YouTubePlayer.OnInitializedListener initializedListener;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
-
-        //setContentView(R.layout.activity_youtube);
-        //ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.activity_youtube);
-        myYoutubePlayerView = findViewById(R.id.youtube_view);
-
-        myYoutubePlayerView.initialize(API_KEY, initializedListener);
-
-
-
 
         initializedListener = new YouTubePlayer.OnInitializedListener() {
 
@@ -64,6 +56,15 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
 
             }
         };
+
+        //setContentView(R.layout.activity_youtube);
+        //ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.activity_youtube);
+        myYoutubePlayerView = findViewById(R.id.youtube_view);
+
+        myYoutubePlayerView.initialize(API_KEY, initializedListener);
+
+
+
     }
 
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
@@ -106,20 +107,21 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
 
         @Override
         public void onAdStarted() {
-            Toast.makeText(YoutubeActivity.this, "Ads showing", Toast.LENGTH_LONG).show();
-
 
         }
+
 
         @Override
         public void onVideoStarted() {
             Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_LONG).show();
+            //TODO increment the amount of XP that the user has access to
 
         }
 
         @Override
         public void onVideoEnded() {
             Toast.makeText(YoutubeActivity.this, "Video has ended", Toast.LENGTH_LONG).show();
+            //TODO increment and increase the amount of XP that the user has
 
 
         }

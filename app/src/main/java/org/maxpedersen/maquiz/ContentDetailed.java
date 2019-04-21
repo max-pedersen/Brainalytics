@@ -54,8 +54,8 @@ public class ContentDetailed extends AppCompatActivity {
         Object test = content.get(index);
         //Establishes String varaible for certain data within the object
         String contentParagraph = ((Content) test).getContent();
-        String topicTitle = ((Content) test).getTopicTitle();
-        //for YouTube API implementaion later
+        String topicTitle = ((Content) test).getTopic();
+        //for YouTube API implementation later
         String youtubeURL = ((Content) test).getYoutubeLink();
         //Sets the strings extracts from the object to the Activity
 
