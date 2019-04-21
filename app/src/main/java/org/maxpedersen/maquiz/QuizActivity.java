@@ -46,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
     List<Question> questionList;
     static int counter=0;
     static int score=0;
-    List<Question> randomQuestionsFromWeek;
+    static List<Question> randomQuestionsFromWeek;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -76,14 +76,11 @@ public class QuizActivity extends AppCompatActivity {
 
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
                 "Overall Database").allowMainThreadQueries().build();
-
         db.questionDAO().insertQuestionBatch(questionsFromCSV);
 
-        List<Question> randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(1);
+        randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(1);
 
         generateQ(randomQuestionsFromWeek);
-
-
     }
 
 
@@ -95,17 +92,20 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (UserValueCapture.quizActivityState == 0) {
                     counter++;
-                    checkAnswer(randomQuestionsFromWeek);
+                    String counterString = Integer.toString(counter);
+                    Log.d("Click counter increment", counterString);
+                    questionList = randomQuestionsFromWeek;
+                    checkAnswer(questionList);
                     String text = counter + "/10 finished";
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
                     buttonApply.setText("Next Question > ");
-                        //Insert data into the database for the quiz result including the session id
-                    }
-                    //Ideally we should send the data of the radioButton selected to a DB along with the session id and the question id
-                    //This button clicked should also active generate() to go to the next question, however an if statement must be used to check if an option has selected then we increment counter
-                    //there should be also an if statement checking if the counter is > 10. If that is the case we need to diver to a method which will have an intent to go the quiz
-                    //finished activity
+                    //Insert data into the database for the quiz result including the session id
+                }
+                //Ideally we should send the data of the radioButton selected to a DB along with the session id and the question id
+                //This button clicked should also active generate() to go to the next question, however an if statement must be used to check if an option has selected then we increment counter
+                //there should be also an if statement checking if the counter is > 10. If that is the case we need to diver to a method which will have an intent to go the quiz
+                //finished activity
                 else if(UserValueCapture.quizActivityState == 1){
                     int radioID = radioGroup.getCheckedRadioButtonId();
                     radioButton = findViewById(radioID);
@@ -115,7 +115,8 @@ public class QuizActivity extends AppCompatActivity {
                     //counter++;
                     if (counter == 10) {
                         buttonApply.setText("Finish Question");
-                        generateQ(randomQuestionsFromWeek);
+                        questionList = randomQuestionsFromWeek;
+                        generateQ(questionList);
                         reivewTV.setVisibility(View.GONE);
                         //Insert data into the database for the quiz result including the session id
                     }
@@ -132,13 +133,13 @@ public class QuizActivity extends AppCompatActivity {
                     UserValueCapture.setQuizActivityState(0);
                     Log.d("State 1", "The state at the end is "+ UserValueCapture.quizActivityState);
                 }
-                }
+            }
 
         });
     }
 
 
-// Null pointer exception stems from here, questionList being returned is apparently blank
+    // Null pointer exception stems from here, questionList being returned is apparently blank
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Question> readCSV() throws IOException {
         List<Question> questionList = new ArrayList<>();
@@ -212,24 +213,10 @@ public class QuizActivity extends AppCompatActivity {
         View radioButton = radioGroup.findViewById(radioID);
         int idx = radioGroup.indexOfChild(radioButton);
         reivewTV.setVisibility(View.VISIBLE);
-        int correctIndex = 5;
         Question Quiz = list.get(counter);
-        if(Quiz.getCorrect_option()== "option_1"){
-            correctIndex = 0;
-        }
-
-        if(Quiz.getCorrect_option()== "option_2"){
-            correctIndex = 1;
-        }
-
-        if(Quiz.getCorrect_option()== "option_3"){
-            correctIndex = 2;
-        }
-
-        else if(Quiz.getCorrect_option()== "option_4"){
-            correctIndex = 3;
-        }
-
+        String correctOption = Quiz.getCorrect_option();
+        int correctIndex = correctConverter(correctOption);
+        Log.d("Correct Option", Quiz.getCorrect_option());
         View test = radioGroup.getChildAt(correctIndex);
         int correctRadioId = test.getId();
 
@@ -264,6 +251,36 @@ public class QuizActivity extends AppCompatActivity {
         radioButton2.setBackgroundResource(R.drawable.radio_flat_selector);
         radioButton3.setBackgroundResource(R.drawable.radio_flat_selector);
         radioButton4.setBackgroundResource(R.drawable.radio_flat_selector);
+    }
+
+    public int correctConverter(String correctOption){
+        Log.d("Correct Converter", correctOption);
+        String option1 = "option_1";
+        String option2 = "option_2";
+        String option3 = "option_3";
+        String option4 = "option_4";
+
+        if(correctOption.equalsIgnoreCase(option1)){
+            int index = 0;
+            Log.d("Correct If Statement", option1);
+            return index;
+        }
+        if(correctOption.equalsIgnoreCase(option2)){
+            int index = 1;
+            Log.d("Correct If Statement", option2);
+            return index;
+        }
+        if(correctOption.equalsIgnoreCase(option3)){
+            int index = 2;
+            Log.d("Correct If Statement", option3);
+            return index;
+        }
+        else {
+            int index = 3;
+            Log.d("Correct If Statement", option4);
+            return index;
+        }
+
     }
 
 }
