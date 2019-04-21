@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String namePS = "Test Name";
+        String namePS = UserValueCapture.nameGlobal;
         int zIDPS = UserValueCapture.zIDGlobal;
         String zIDString = Integer.toString(zIDPS);
         Log.d("Home Fragment", zIDString);
