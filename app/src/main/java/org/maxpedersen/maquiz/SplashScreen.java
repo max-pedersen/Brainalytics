@@ -20,16 +20,18 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         logo = findViewById(R.id.logo);
+        animateView(logo);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                animateView(logo);
                 Intent homeIntent = new Intent(SplashScreen.this, UserDetail.class);
                 startActivity(homeIntent);
                 finish();
             }
         },SPLASH_TIME_OUT);
     }
+
+
 
     public void animateView(ImageView layout){
         ObjectAnimator fadeInText = ObjectAnimator.ofFloat(layout, View.ALPHA,0.0f, 1.0f).setDuration(500);

@@ -6,57 +6,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/fuckyouJulian"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
-            android:id="@+id/headerRow"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:background="@color/cardview_dark_background"
-            android:weightSum="3">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/profilePictureTV"
-                android:layout_width="0dp"
+                android:id="@+id/leaderboardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_horizontal"
+                android:text="@string/Leaderboard"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="30sp" />
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:text="Profile Picture!"
-                android:textColor="@color/secondaryColor"
-                android:textSize="14sp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32999998">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/FirstName"
-                android:textColor="@color/secondaryColor" />
+                <TableRow
+                    android:id="@+id/headerRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/cardview_dark_background"
+                    android:gravity="center"
+                    android:weightSum="3">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/XP"
-                android:textColor="@color/secondaryColor" />
+                    <TextView
+                        android:id="@+id/profilePictureTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Profile Picture!"
+                        android:textColor="@color/secondaryColor"
+                        android:textSize="14sp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="40dp"/>
 
-        </TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/FirstName"
+                        android:textColor="@color/secondaryColor"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="40dp"/>
 
-    </TableLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/XP"
+                        android:textColor="@color/secondaryColor"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="40dp"/>
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

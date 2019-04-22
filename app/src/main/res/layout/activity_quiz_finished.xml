@@ -18,10 +18,10 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
+        app:layout_constraintVertical_bias="0.949" />
 
     <TextView
         android:id="@+id/xpGain"
@@ -51,43 +51,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <TextView
         android:id="@+id/userMSG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="8dp"
         android:text="@string/finishedMsg"
         android:textColor="@color/primaryLightColor"
-        android:textSize="28dp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/scoreTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintVertical_bias="0.032" />
 
     <Button
         android:id="@+id/homeButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/primaryLightColor"
         android:text="@string/goHome"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xpGain"
-        app:layout_constraintVertical_bias="0.762" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.569" />
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+        android:id="@+id/pieCharts"
         android:layout_width="140dp"
         android:layout_height="130dp"
         android:layout_marginStart="8dp"
@@ -96,10 +96,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/scoreTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userMSG"
-        app:layout_constraintVertical_bias="0.964"></com.github.mikephil.charting.charts.PieChart>
+        app:layout_constraintVertical_bias="0.979"></com.github.mikephil.charting.charts.PieChart>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -111,14 +111,14 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/xpGain"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toEndOf="@+id/pieChart"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/pieCharts"
         app:layout_constraintTop_toBottomOf="@+id/userMSG"
-        app:layout_constraintVertical_bias="0.872"
+        app:layout_constraintVertical_bias="0.93"
         app:srcCompat="@drawable/goldenstar" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/reaction"
         android:layout_width="108dp"
         android:layout_height="89dp"
         android:layout_marginStart="8dp"
@@ -130,7 +130,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userMSG"
-        app:layout_constraintVertical_bias="0.111"
         app:srcCompat="@drawable/emoji" />
 
 </android.support.constraint.ConstraintLayout>

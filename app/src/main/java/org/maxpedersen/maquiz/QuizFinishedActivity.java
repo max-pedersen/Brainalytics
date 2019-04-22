@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.maquiz.R;
@@ -26,7 +27,8 @@ public class QuizFinishedActivity extends AppCompatActivity {
     TextView XPTV;
     PieChart pieChart;
     Button homeBtn;
-
+    String userMessage;
+    ImageView reaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +71,16 @@ public class QuizFinishedActivity extends AppCompatActivity {
         userMsg = findViewById(R.id.userMSG);
         scoreTV = findViewById(R.id.scoreTV);
         XPTV = findViewById(R.id.xpGain);
+        reaction = findViewById(R.id.reaction);
 
-        String userMessage = "Great Work " + user;
+        if(score > 5) {
+            userMessage = "Great Work " + user + ".";
+            reaction.setImageResource(R.drawable.emoji);
+        }
+        else{
+            userMessage = "Practice more to improve, " + user + ".";
+            reaction.setImageResource(R.drawable.emojistudy);
+        }
         String scoreTotal = "Score: " + score + "/10";
         String xpGained = "XP Gained: " + xp;
 
@@ -93,9 +103,9 @@ public class QuizFinishedActivity extends AppCompatActivity {
     }
 
     public void inflatePieChart(int right){
-        int correct = right-1;
-        int wrong = 10-right;
-        pieChart = (PieChart) findViewById(R.id.pieChart);
+        int correct = right;
+        int wrong = 10-correct;
+        pieChart = (PieChart) findViewById(R.id.pieCharts);
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5,10,5,5);
@@ -107,8 +117,8 @@ public class QuizFinishedActivity extends AppCompatActivity {
         pieChart.setTransparentCircleRadius(61f);
         ArrayList<PieEntry> yValues = new ArrayList<>();
         yValues.add(new PieEntry(correct, "Corect"));
-        yValues.add(new PieEntry(right, "Wrong"));
-        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic);
+        yValues.add(new PieEntry(wrong, "Wrong"));
+        pieChart.animateY(4000, Easing.EaseInOutCubic);
         PieDataSet dataSet = new PieDataSet(yValues, "Question");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);

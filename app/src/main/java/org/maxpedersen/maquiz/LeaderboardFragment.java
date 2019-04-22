@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,7 +17,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.maquiz.R;
-import com.google.common.collect.Table;
 
 import java.util.List;
 
@@ -46,7 +43,7 @@ public class LeaderboardFragment extends Fragment {
         Log.d(" from the method", useresults.get(3).first_name);
         Log.d(" from the method", useresults.get(4).first_name);
         Log.d(" from the method", useresults.get(5).first_name);
-        tl = (TableLayout) view.findViewById(R.id.fuckyouJulian);
+        tl = (TableLayout) view.findViewById(R.id.tableLayout);
         inflateTable(tl);
         return view;
     }
@@ -70,11 +67,11 @@ public class LeaderboardFragment extends Fragment {
             TableRow.LayoutParams lp = (TableRow.LayoutParams) row.getLayoutParams();
             lp.weight = 1;
             lp.width = 0;
-            lp.topMargin = 1;
-            lp.leftMargin = 1;
-            lp.rightMargin = 1;
-            lp.bottomMargin = 1;
-            tp.gravity = Gravity.CENTER;
+            lp.topMargin = 150;
+            lp.leftMargin = 50;
+            lp.rightMargin = 50;
+            lp.bottomMargin = 150;
+
 
 //            row.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //            tableLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -88,6 +85,9 @@ public class LeaderboardFragment extends Fragment {
             TextView nameTV =new TextView(context);
             TextView xpTV =new TextView(context);
 
+            iv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            nameTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            xpTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
             nameTV.setText(name);
             nameTV.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
