@@ -152,6 +152,10 @@ public class UserDetail extends AppCompatActivity
         // need to create an instance of User and pass it over
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+        int value = db.resultDAO().getSummedScore(8513213);
+        Log.d(" from the result dao", value + " " );
+
     }
 
 

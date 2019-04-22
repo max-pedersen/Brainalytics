@@ -11,5 +11,5 @@ public interface ResultDAO {
     void insertResult(Result ... results);
 
     @Query("SELECT SUM(score) FROM Result WHERE z_id LIKE :mZ_id")
-    String getSummedScore(int mZ_id);
+    int getSummedScore(int mZ_id);
 }
