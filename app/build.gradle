@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "org.maxpedersen.maquiz"
         multiDexEnabled true
-        minSdkVersion 18
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -24,7 +24,7 @@ android {
     }
 
 
-    }
+}
 
 
 dependencies {
@@ -45,19 +45,18 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:1.0.0-alpha3"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha3"
     implementation 'com.google.code.gson:gson:2.6.2'
-    compile 'com.google.api-client:google-api-client:1.23.0'
-    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
-    compile 'com.google.apis:google-api-services-sheets:v4-rev516-1.23.0'
-    compile 'com.google.android.gms:play-services-auth:16.0.1'
-    compile 'pub.devrel:easypermissions:0.3.0'
+    implementation 'com.google.api-client:google-api-client:1.23.0'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+    implementation 'com.google.apis:google-api-services-sheets:v4-rev516-1.23.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'pub.devrel:easypermissions:0.3.0'
     compile('com.google.api-client:google-api-client-android:1.23.0') {
         exclude group: 'org.apache.httpcomponents'
     }
     compile('com.google.apis:google-api-services-sheets:v4-rev506-1.23.0') {
         exclude group: 'org.apache.httpcomponents'
     }
-    compile 'com.opencsv:opencsv:4.5'
-
+    implementation 'com.opencsv:opencsv:4.5'
 
 
 }
