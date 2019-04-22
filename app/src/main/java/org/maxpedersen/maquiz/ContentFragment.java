@@ -1,5 +1,6 @@
 package org.maxpedersen.maquiz;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +21,11 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     private RecyclerView mRecyclerView;
     private ContentAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutMaanger;
+
+
+
+
+
 
     @Nullable
     @Override
