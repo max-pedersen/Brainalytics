@@ -75,13 +75,13 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-        int i = intent.getIntExtra("arrayIdx", 1);
+        int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
 
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
                 "Overall Database").allowMainThreadQueries().build();
         db.questionDAO().insertQuestionBatch(questionsFromCSV);
         //The following request would then show the variable i instead of week
-        randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(1);
+        randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(weekSpecified);
 
         generateQ(randomQuestionsFromWeek);
     }

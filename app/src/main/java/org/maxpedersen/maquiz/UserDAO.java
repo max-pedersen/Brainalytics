@@ -13,6 +13,9 @@ public interface UserDAO {
     @Insert
     void insertUser(User user);
 
+    @Insert
+    void insertBatchUsers(List<User> users);
+
     @Query("SELECT first_name FROM User WHERE z_id LIKE :mZ_id")
     String getUserName(int mZ_id);
 
@@ -28,6 +31,7 @@ public interface UserDAO {
 
     @Query("UPDATE User SET score = score + :passedScore WHERE z_id = :mZ_id")
     int setUpdatedScore(int passedScore, int mZ_id);
+
 
 
 

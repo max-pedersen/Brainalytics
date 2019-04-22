@@ -18,6 +18,7 @@ import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDetail extends AppCompatActivity
         //implements IPickResult
@@ -39,6 +40,15 @@ public class UserDetail extends AppCompatActivity
         textInputName = findViewById(R.id.text_input_name);
         textInputzID = findViewById(R.id.text_input_zID);
         //imageView=findViewById(R.id.te)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -153,8 +163,7 @@ public class UserDetail extends AppCompatActivity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
-        int value = db.resultDAO().getSummedScore(8513213);
-        Log.d(" from the result dao", value + " " );
+
 
     }
 
