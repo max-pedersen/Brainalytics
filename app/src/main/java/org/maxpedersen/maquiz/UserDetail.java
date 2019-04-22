@@ -125,8 +125,6 @@ public class UserDetail extends AppCompatActivity
                 "Overall Database").allowMainThreadQueries().build();
 
 
-
-
         int evaluator = db.userDAO().checkExists(zID);
 
         if (evaluator > 0) {
@@ -140,7 +138,9 @@ public class UserDetail extends AppCompatActivity
         else if (evaluator == 0) {
             User signedInUser = new User(zID, firstNameInput);
             db.userDAO().insertUser(signedInUser);
+            //
             String input = "Welcome " + firstNameInput;
+            Log.d(" from welcome", " " + db.userDAO().getUserName(zID));
             Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
         }
 
