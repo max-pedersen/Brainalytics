@@ -1,5 +1,7 @@
 package org.maxpedersen.maquiz;
 
+import android.arch.persistence.room.Room;
+
 public class UserValueCapture {
     public static int zIDGlobal;
     public static String nameGlobal;
@@ -15,5 +17,7 @@ public class UserValueCapture {
 
     public static void setNameGlobal(String nameGlobal) {
         UserValueCapture.nameGlobal = nameGlobal;
+
+
     }
 }
