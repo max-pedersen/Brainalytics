@@ -1,8 +1,10 @@
 package org.maxpedersen.maquiz;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +30,27 @@ public class QuizFinishedActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int score = intent.getIntExtra("Score", 0);
         updateResults(score);
+
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
+                "Overall Database").allowMainThreadQueries().build();
+
+        Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal);
+        db.resultDAO().insertResult(resultFromQuiz);
+        Log.d(" from result methods", " " + resultFromQuiz.toString() + " updated to " + score);
+
+
+
+
+        /* Approach #1- relying on Score being put into the User Table
+        int existingScore = db.userDAO().getExistingScore((UserValueCapture.zIDGlobal));
+
+
+        db.userDAO().setUpdatedScore(score, UserValueCapture.zIDGlobal);
+
+        int verifyUpdate = db.userDAO().getExistingScore((UserValueCapture.zIDGlobal));
+
+        Log.d(" from setUpdatedScore", " " + score + " updated to " + verifyUpdate); */
+
     }
 
     public void updateResults(int score){
