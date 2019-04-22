@@ -164,7 +164,6 @@ public class UserDetail extends AppCompatActivity
         startActivity(intent);
 
 
-
     }
 
 
