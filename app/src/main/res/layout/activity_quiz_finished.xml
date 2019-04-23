@@ -38,7 +38,7 @@
         app:layout_constraintStart_toEndOf="@+id/scoreTV" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/resultsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toTopOf="@+id/scoreTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/resultsTitle"
         app:layout_constraintVertical_bias="0.032" />
 
     <Button
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.979"></com.github.mikephil.charting.charts.PieChart>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/xpGraphic"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
@@ -116,7 +116,7 @@
         app:layout_constraintStart_toEndOf="@+id/pieCharts"
         app:layout_constraintTop_toBottomOf="@+id/userMSG"
         app:layout_constraintVertical_bias="0.93"
-        app:srcCompat="@drawable/goldenstar" />
+        app:srcCompat="@drawable/ic_star_border_black_24dp" />
 
     <ImageView
         android:id="@+id/reaction"

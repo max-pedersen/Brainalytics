@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="org.maxpedersen.maquiz.SplashScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,8 @@
         <activity android:name="org.maxpedersen.maquiz.YoutubeActivity" />
         <activity
             android:name="org.maxpedersen.maquiz.UserDetail"
-            android:label="@string/GetSarted">
+            android:label="@string/GetSarted"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="org.maxpedersen.maquiz.ContentDetailed"

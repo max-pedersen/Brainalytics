@@ -1,5 +1,8 @@
 package org.maxpedersen.maquiz;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 
 public class QuizFinishedActivity extends AppCompatActivity {
 
+    TextView title;
     TextView userMsg;
     TextView scoreTV;
     TextView XPTV;
@@ -29,6 +33,8 @@ public class QuizFinishedActivity extends AppCompatActivity {
     Button homeBtn;
     String userMessage;
     ImageView reaction;
+    ImageView xpGraphic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +54,8 @@ public class QuizFinishedActivity extends AppCompatActivity {
         db.resultDAO().insertResult(resultFromQuiz);
         Log.d(" from result methods", " " + resultFromQuiz.toString() + " updated to " + score);
 
-
-
         inflatePieChart(score);
+        animationOfElements();
         /* Approach #1- relying on Score being put into the User Table
         int existingScore = db.userDAO().getExistingScore((UserValueCapture.zIDGlobal));
 
@@ -68,10 +73,12 @@ public class QuizFinishedActivity extends AppCompatActivity {
         int xp = score*10;
         String user = UserValueCapture.nameGlobal;
 
+        title = findViewById(R.id.resultsTitle);
         userMsg = findViewById(R.id.userMSG);
         scoreTV = findViewById(R.id.scoreTV);
         XPTV = findViewById(R.id.xpGain);
         reaction = findViewById(R.id.reaction);
+        xpGraphic = findViewById(R.id.xpGraphic);
 
         if(score > 5) {
             userMessage = "Great Work " + user + ".";
@@ -118,7 +125,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         ArrayList<PieEntry> yValues = new ArrayList<>();
         yValues.add(new PieEntry(correct, "Corect"));
         yValues.add(new PieEntry(wrong, "Wrong"));
-        pieChart.animateY(4000, Easing.EaseInOutCubic);
+        pieChart.animateY(5000, Easing.EaseInOutCubic);
         PieDataSet dataSet = new PieDataSet(yValues, "Question");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
@@ -129,5 +136,39 @@ public class QuizFinishedActivity extends AppCompatActivity {
         dataSet.setDrawValues(false);
         PieData data = new PieData((dataSet));
         pieChart.setData(data);
+
+    }
+
+    public void animationOfElements (){
+
+        float transparency = 0.0f;
+
+        title.setAlpha(transparency);
+        userMsg.setAlpha(transparency);
+        reaction.setAlpha(transparency);
+        homeBtn.setAlpha(transparency);
+        scoreTV.setAlpha(transparency);
+        XPTV.setAlpha(transparency);
+        pieChart.setAlpha(transparency);
+        xpGraphic.setAlpha(transparency);
+
+        ObjectAnimator animateResult = ObjectAnimator.ofFloat(title, View.ALPHA, 0.0f,1.0f).setDuration(1000);
+        ObjectAnimator animateUserMsg = ObjectAnimator.ofFloat(userMsg, View.ALPHA, 0.0f,1.0f).setDuration(500);
+        ObjectAnimator animateEmoji = ObjectAnimator.ofFloat(reaction, View.ALPHA, 0.0f,1.0f).setDuration(500);
+        ObjectAnimator animateButton = ObjectAnimator.ofFloat(homeBtn, View.ALPHA, 0.0f,1.0f).setDuration(500);
+        ObjectAnimator animateScoreTV = ObjectAnimator.ofFloat(scoreTV, View.ALPHA, 0.0f,1.0f).setDuration(400);
+        ObjectAnimator animateXPTV = ObjectAnimator.ofFloat(XPTV, View.ALPHA, 0.0f,1.0f).setDuration(400);
+        ObjectAnimator animateGraph = ObjectAnimator.ofFloat(pieChart, View.ALPHA, 0.0f,1.0f).setDuration(400);
+        ObjectAnimator animateXPGraphic = ObjectAnimator.ofFloat(xpGraphic, View.ALPHA, 0.0f,1.0f).setDuration(400);
+
+        AnimatorSet setFinal = new AnimatorSet();
+        AnimatorSet subSetFirst = new AnimatorSet();
+        AnimatorSet subSetSecond = new AnimatorSet();
+
+        subSetFirst.playTogether(animateUserMsg, animateEmoji, animateButton);
+        subSetSecond.playTogether(animateScoreTV, animateXPTV, animateGraph, animateXPGraphic);
+        setFinal.playSequentially(animateResult, subSetFirst, subSetSecond);
+
+        setFinal.start();
     }
 }

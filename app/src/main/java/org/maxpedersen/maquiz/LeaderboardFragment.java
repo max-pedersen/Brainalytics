@@ -44,7 +44,7 @@ public class LeaderboardFragment extends Fragment {
         Log.d(" from the method", useresults.get(3).first_name);
         Log.d(" from the method", useresults.get(4).first_name);
         Log.d(" from the method", useresults.get(5).first_name);
-        tl = (TableLayout) view.findViewById(R.id.tableLayout);
+        tl = view.findViewById(R.id.tableLayout);
         inflateTable(tl);
         return view;
     }
