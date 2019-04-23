@@ -25,6 +25,9 @@
         android:background="@color/secondaryColor"
         app:itemBackground="@color/Transparent"
         app:itemTextColor="@color/primaryColor"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottom_navigation"
+        app:labelVisibilityMode="labeled"
+        app:itemTextAppearanceInactive="@color/secondaryDarkColor"
+        app:itemTextAppearanceActive="@color/primaryColor" />
 
 </RelativeLayout>
