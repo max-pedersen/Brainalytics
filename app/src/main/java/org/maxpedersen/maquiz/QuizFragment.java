@@ -24,7 +24,7 @@ public class QuizFragment extends Fragment implements QuizAdapter.OnNoteListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
-        ArrayList<Content> list = Content.getTestContent();
+        ArrayList<Content> list = Content.getContent();
         buildRecyclerAdapter(rootView, list);
         int zID = UserValueCapture.zIDGlobal;
         String zIDString = Integer.toString(zID);

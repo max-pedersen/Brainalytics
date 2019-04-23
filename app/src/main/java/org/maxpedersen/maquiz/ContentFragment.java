@@ -31,7 +31,7 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_content,container, false);
-        ArrayList<Content> list = Content.getTestContent();
+        ArrayList<Content> list = Content.getContent();
         buildRecyclerAdapter(rootView, list);
         return rootView;
     }

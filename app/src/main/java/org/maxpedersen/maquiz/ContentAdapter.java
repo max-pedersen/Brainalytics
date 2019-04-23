@@ -62,7 +62,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     //This assigns the value of the the cardView Holders dynamically, in our cases based on what is in the ArrayList for Content
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         Content contentItem = mList.get(i);
-        String cardText = contentItem.getTopic() + ": " + contentItem.getTopicTitle();
+        String cardText = contentItem.getTopic();
         holder.mTextView.setText(cardText);
     }
 
