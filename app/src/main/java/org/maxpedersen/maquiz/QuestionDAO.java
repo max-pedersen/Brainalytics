@@ -11,7 +11,7 @@ public interface QuestionDAO {
     @Query("SELECT * FROM Question")
     List<Question> getAllQuiz();
 
-    @Query("SELECT * FROM Question " + " WHERE week LIKE :week ORDER BY RANDOM() LIMIT 10")
+    @Query("SELECT * FROM Question " + " WHERE week LIKE :week ORDER BY RANDOM() LIMIT 11")
     List<Question> getSelectedQuiz(int week);
 
 

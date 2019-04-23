@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
-        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textColor">@color/primaryTextColor</item>
 
 
@@ -19,7 +19,7 @@
         <item name="colorAccent">@color/secondaryColor</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textColor">@color/primaryTextColor</item>
 
     </style>
