@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradientbg2">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,8 +23,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
+                android:padding="15dp"
                 android:text="@string/Leaderboard"
-                android:textColor="@color/primaryLightColor"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="30sp" />
 
             <TableLayout
@@ -47,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/cardview_dark_background"
+                    android:background="#D0424242"
                     android:gravity="center"
                     android:weightSum="3">
 
@@ -55,33 +56,33 @@
                         android:id="@+id/profilePictureTV"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Profile Picture!"
                         android:textColor="@color/secondaryColor"
-                        android:textSize="14sp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginBottom="40dp"/>
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/FirstName"
-                        android:textColor="@color/secondaryColor"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginBottom="40dp"/>
+                        android:textColor="@color/secondaryColor" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/XP"
-                        android:textColor="@color/secondaryColor"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginBottom="40dp"/>
+                        android:textColor="@color/secondaryColor" />
 
                 </TableRow>
 

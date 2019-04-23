@@ -1,8 +1,13 @@
 package org.maxpedersen.maquiz;
 
+import android.annotation.TargetApi;
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +35,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -47,6 +54,9 @@ public class QuizActivity extends AppCompatActivity {
     int counter=0;
     int score=0;
     List<Question> randomQuestionsFromWeek;
+    List<Question> questionsFromCSV;
+    AppDatabase db;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -67,26 +77,28 @@ public class QuizActivity extends AppCompatActivity {
         onClick(buttonApply);
 
 
-        List<Question> questionsFromCSV = null;
+        Intent intent = getIntent();
+        int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
+
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
+                "Overall Database")
+                .allowMainThreadQueries()
+                .build();
+
+        questionsFromCSV = null;
         try {
             questionsFromCSV = readCSV();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Intent intent = getIntent();
-        int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
-
-        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
-                "Overall Database").allowMainThreadQueries().build();
         db.questionDAO().insertQuestionBatch(questionsFromCSV);
+
         //The following request would then show the variable i instead of week
         randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(weekSpecified);
 
         generateQ(randomQuestionsFromWeek);
     }
-
-
 
 
 

@@ -137,5 +137,7 @@
     <string name="finishedTitle">Results</string>
     <string name="finishedMsg">Great Work User!</string>
     <string name="goHome">Go Home</string>
+    <string name="Brainify">Branify</string>
+    <string name="msg">Time to get brainergised!</string>
 
 </resources>

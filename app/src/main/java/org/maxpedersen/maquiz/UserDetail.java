@@ -26,7 +26,7 @@ public class UserDetail extends AppCompatActivity
     private TextInputLayout textInputName;
     private TextInputLayout textInputzID;
     private ImageView imageView;
-
+    private String input;
 
     public ImageView getImageView() {
         return imageView;
@@ -139,19 +139,21 @@ public class UserDetail extends AppCompatActivity
 
         if (evaluator > 0) {
             // User thus exists in the database
-            String input = "Welcome back " + firstNameInput;
+            input = "Welcome back " + firstNameInput;
             Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
             // show toast
             // then store the zID so that you can query across other things
+            UserValueCapture.setUserMsg(input);
         }
 
         else if (evaluator == 0) {
             User signedInUser = new User(zID, firstNameInput);
             db.userDAO().insertUser(signedInUser);
             //
-            String input = "Welcome " + firstNameInput;
+            input = "Welcome " + firstNameInput;
             Log.d(" from welcome", " " + db.userDAO().getUserName(zID));
             Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+            UserValueCapture.setUserMsg(input);
         }
 
 
@@ -174,15 +176,15 @@ public class UserDetail extends AppCompatActivity
 //        db.userDAO().insertBatchUsers(batches);
 //
 //        List<Result> resultbatch = new ArrayList<Result>();
-//        resultbatch.add(new Result(200, 100,5178336 ));
-//        resultbatch.add(new Result(202, 400,5134298 ));
-//        resultbatch.add(new Result(204, 1000,5267737 ));
-//        resultbatch.add(new Result(206, 780,5162322 ));
-//        resultbatch.add(new Result(208, 200,5263324 ));
-//        resultbatch.add(new Result(210, 2000,5133231 ));
-//        resultbatch.add(new Result(212, 750,4911132 ));
-//        resultbatch.add(new Result(214, 300,5003211 ));
-//        resultbatch.add(new Result(216, 50,5243663 ));
+//        resultbatch.add(new Result(200, 10,5178336 ));
+//        resultbatch.add(new Result(202, 40,5134298 ));
+//        resultbatch.add(new Result(204, 100,5267737 ));
+//        resultbatch.add(new Result(206, 78,5162322 ));
+//        resultbatch.add(new Result(208, 20,5263324 ));
+//        resultbatch.add(new Result(210, 20,5133231 ));
+//        resultbatch.add(new Result(212, 75,4911132 ));
+//        resultbatch.add(new Result(214, 30,5003211 ));
+//        resultbatch.add(new Result(216, 5,5243663 ));
 //        db.resultDAO().insertBatchResults(resultbatch);
 
         // need to create an instance of User and pass it over

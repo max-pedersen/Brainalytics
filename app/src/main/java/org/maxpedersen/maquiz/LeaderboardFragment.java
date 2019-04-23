@@ -2,6 +2,7 @@ package org.maxpedersen.maquiz;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -58,26 +59,26 @@ public class LeaderboardFragment extends Fragment {
 
             TableLayout.LayoutParams tp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
             tp.weight = 1;
-            tp.topMargin = 1;
+            tp.topMargin = 10;
             tp.leftMargin = 1;
             tp.rightMargin = 1;
-            tp.bottomMargin = 1;
+            tp.bottomMargin = 10;
             tp.gravity = Gravity.CENTER;
 
             TableRow.LayoutParams lp = (TableRow.LayoutParams) row.getLayoutParams();
             lp.weight = 1;
             lp.width = 0;
-            lp.topMargin = 150;
+            lp.topMargin = 75;
             lp.leftMargin = 50;
             lp.rightMargin = 50;
-            lp.bottomMargin = 150;
+            lp.bottomMargin = 75;
 
 
 //            row.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //            tableLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             String name = useresults.get(i).first_name;
             Log.d("Name Leaderboard", name);
-            int xpInt = useresults.get(i).total_score;
+            int xpInt = (useresults.get(i).total_score)*10;
             String xp = Integer.toString(xpInt);
             Log.d("XP Leaderboard", xp);
 
@@ -90,17 +91,18 @@ public class LeaderboardFragment extends Fragment {
             xpTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
             nameTV.setText(name);
-            nameTV.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             xpTV.setText(xp);
-            xpTV.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            nameTV.setTextAppearance(R.style.AppTheme);
+            xpTV.setTextAppearance(R.style.AppTheme);
+
 
             iv.setLayoutParams(lp);
             nameTV.setLayoutParams(lp);
             xpTV.setLayoutParams(lp);
 
-            iv.setForegroundGravity(11);
-            nameTV.setForegroundGravity(11);
-            xpTV.setForegroundGravity(11);
+//            iv.setForegroundGravity(11);
+//            nameTV.setForegroundGravity(11);
+//            xpTV.setForegroundGravity(11);
 
 //            iv.setBackgroundColor(getResources().getColor(R.color.Red));
 //            nameTV.setBackgroundColor(getResources().getColor(R.color.Red));
@@ -112,6 +114,7 @@ public class LeaderboardFragment extends Fragment {
 
             tableLayout.addView(row);
             row.setLayoutParams(tp);
+            row.setBackgroundColor(Color.parseColor("#D0C0C0C0"));
         }
     }
 }
