@@ -68,6 +68,7 @@ public class ContentDetailed extends AppCompatActivity {
         };
         String topicTitle =  weeksContentAtIndex.getTopic();
 
+
         tvTopicTitle.setText(topicTitle);
     }
 
