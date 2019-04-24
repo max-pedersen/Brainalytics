@@ -36,10 +36,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        btnNews = (Button) getView().findViewById(R.id.youtubeBtn);
-
-
-
+        /*btnNews = (Button) getView().findViewById(R.id.youtubeBtn);
 
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +47,8 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getContext(),NewsActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
+
 
 
         super.onViewCreated(view, savedInstanceState);
