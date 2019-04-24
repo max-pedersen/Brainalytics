@@ -15,8 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.maxpedersen.maquiz.R;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
@@ -30,8 +34,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home,container, false);
-        return rootView;
 
+        return rootView;
     }
 
     @Override
