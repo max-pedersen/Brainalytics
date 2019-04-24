@@ -39,6 +39,7 @@ public class NewsArticle {
         private String content;
 
 
+
     public NewsArticle(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
         this.source = source;
         this.author = author;
@@ -48,6 +49,7 @@ public class NewsArticle {
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
         this.content = content;
+
     }
 
     public Source getSource() {

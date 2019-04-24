@@ -69,6 +69,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
         };
     }
 
+
     public String getTitles(){
         List<Content> list = Content.getContent();
         String title = list.get(i).getTopic();
