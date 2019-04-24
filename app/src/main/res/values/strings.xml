@@ -139,5 +139,13 @@
     <string name="goHome">Go Home</string>
     <string name="Brainify">Branify</string>
     <string name="msg">Time to get brainergised!</string>
+    <string name="title_activity_content_detailed_slide">ContentDetailedSlide</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="section_1">Section 1</string>
+    <string name="section_2">Section 2</string>
+    <string name="section_3">Section 3</string>
+    <string name="section_4">Section 4</string>
+    <string name="section_5">Section 5</string>
 
 </resources>

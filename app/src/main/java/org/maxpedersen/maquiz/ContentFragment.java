@@ -46,7 +46,7 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     }
 
     public void extract(int index){
-        Intent intent = new Intent(getContext(), ContentDetailed.class);
+        Intent intent = new Intent(getContext(), ContentDetailedSlide.class);
         intent.putExtra("arrayIdx", index);
         startActivity(intent);
     }
