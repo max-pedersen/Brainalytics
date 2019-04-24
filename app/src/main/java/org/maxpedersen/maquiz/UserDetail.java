@@ -110,7 +110,7 @@ public class UserDetail extends AppCompatActivity
 
 
 
-            public void confirmInput(View v){
+    public void confirmInput(View v){
                 String zIDInput = textInputzID.getEditText().getText().toString().trim();
                 String firstNameInput = textInputName.getEditText().getText().toString().trim();
                 int zID = Integer.parseInt(textInputzID.getEditText().getText().toString().trim());
