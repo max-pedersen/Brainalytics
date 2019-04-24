@@ -27,7 +27,7 @@
         app:itemTextColor="@color/primaryColor"
         app:menu="@menu/bottom_navigation"
         app:labelVisibilityMode="labeled"
-        app:itemTextAppearanceInactive="@color/secondaryDarkColor"
-        app:itemTextAppearanceActive="@color/primaryColor" />
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active" />
 
 </RelativeLayout>
