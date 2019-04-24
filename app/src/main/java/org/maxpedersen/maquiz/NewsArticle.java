@@ -13,7 +13,6 @@ public class NewsArticle {
     //https://newsapi.org/v2/everything?q=artificial+intelligence&language=en&from=2019-04-01&sources=abc-news-au,australian-financial-review, the-telegraph, the-new-york-times, &sortBy=relevancy&apiKey=c06da6e3036740838a0730ef5899cbb0
 
 
-
         @SerializedName("source")
         @Expose
         private Source source;
@@ -39,8 +38,7 @@ public class NewsArticle {
         @Expose
         private String content;
 
-        private List<NewsArticle> articles = null;
-        //delete line 42
+
 
     public NewsArticle(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
         this.source = source;
@@ -51,8 +49,7 @@ public class NewsArticle {
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
         this.content = content;
-        this.articles = articles;
-        //delete line 53
+
     }
 
     public Source getSource() {
@@ -118,12 +115,4 @@ public class NewsArticle {
         public void setContent(String content) {
             this.content = content;
         }
-
-    public List<NewsArticle> getArticles() {
-        return articles;
-    }
-    public void setArticles(List<NewsArticle> articles) {
-        this.articles = articles;
-    }
-
     }

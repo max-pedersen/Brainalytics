@@ -1,5 +1,5 @@
-package org.maxpedersen.maquiz;
 
+package org.maxpedersen.maquiz;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
