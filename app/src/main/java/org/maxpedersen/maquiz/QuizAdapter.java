@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import java.util.ArrayList;
 //Need to change this to quiz adapter once we have the database

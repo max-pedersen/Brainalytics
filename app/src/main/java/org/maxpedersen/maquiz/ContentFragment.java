@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import java.util.ArrayList;
 

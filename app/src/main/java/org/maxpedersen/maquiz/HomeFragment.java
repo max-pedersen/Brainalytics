@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import java.util.ArrayList;
 
@@ -41,18 +41,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void getUserDetails(int zIDPS, String show){
-
-        //TODO get info from the UserDetail fragment that has been passed
-
-        /*Bundle bundle = getInt
-        if(bundle != null) {
-            String name = bundle.getString("name");
-            int zID = bundle.getInt("zID");
-            int XPi = bundle.getInt("XPdetail");
-            Home.testDetails().add(new Home(name, zID, XPi));
-        }else{
-            Log.d("HomeFragment", "Failed passed into HF");
-        }*/
 
         int zID = zIDPS;
         //Int is still a constant

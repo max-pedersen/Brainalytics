@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import org.maxpedersen.maquiz.ui.main.SectionsPagerAdapter;
 
