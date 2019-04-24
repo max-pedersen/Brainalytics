@@ -37,12 +37,6 @@ public class LeaderboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_leaderboard,container, false);
         useresults = DatabaseService.getDbInstance(context).getAppDatabase().userResultJoinDAO().getTopUsers();
 
-        Log.d(" from the method", useresults.get(0).first_name);
-        Log.d(" from the method", useresults.get(1).first_name);
-        Log.d(" from the method", useresults.get(2).first_name);
-        Log.d(" from the method", useresults.get(3).first_name);
-        Log.d(" from the method", useresults.get(4).first_name);
-        Log.d(" from the method", useresults.get(5).first_name);
         tl = view.findViewById(R.id.tableLayout);
         inflateTable(tl);
         return view;
@@ -73,10 +67,8 @@ public class LeaderboardFragment extends Fragment {
             lp.bottomMargin = 75;
 
             String name = useresults.get(i).first_name;
-            Log.d("Name Leaderboard", name);
             int xpInt = (useresults.get(i).total_score)*10;
             String xp = Integer.toString(xpInt);
-            Log.d("XP Leaderboard", xp);
 
             ImageView iv = new ImageView(context);
             TextView nameTV =new TextView(context);

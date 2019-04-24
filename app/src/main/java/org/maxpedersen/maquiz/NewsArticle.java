@@ -40,6 +40,7 @@ public class NewsArticle {
         private String content;
 
         private List<NewsArticle> articles = null;
+        //delete line 42
 
     public NewsArticle(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
         this.source = source;
@@ -51,6 +52,7 @@ public class NewsArticle {
         this.publishedAt = publishedAt;
         this.content = content;
         this.articles = articles;
+        //delete line 53
     }
 
     public Source getSource() {

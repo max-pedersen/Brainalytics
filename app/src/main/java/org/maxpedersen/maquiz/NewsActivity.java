@@ -16,7 +16,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewsActivity extends AppCompatActivity {
-    //private CustomAdapter adapter;
     private RecyclerView recyclerView;
     ProgressDialog progressDialog;
 

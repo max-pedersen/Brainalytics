@@ -42,16 +42,6 @@
             android:name="org.maxpedersen.maquiz.UserDetail"
             android:label="@string/GetSarted"
             android:theme="@style/AppTheme"></activity>
-        <activity
-            android:name="org.maxpedersen.maquiz.ContentDetailed"
-            android:label="Learn!"
-            android:parentActivityName="org.maxpedersen.maquiz.MainActivity">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.maxpedersen.maquiz.MainActivity" />
-        </activity>
         <activity android:name="org.maxpedersen.maquiz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
