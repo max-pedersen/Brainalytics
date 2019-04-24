@@ -2,5 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/cinzel</item>
+        <item>@font/comfortaa</item>
+        <item>@font/quicksand</item>
     </array>
 </resources>

@@ -19,6 +19,9 @@ public class User {
     @ColumnInfo(name = "created_at")
     private Date created_at;
 
+    @ColumnInfo(name = "score")
+    private int score;
+
 
 
     public User(int z_id, String first_name
@@ -27,6 +30,7 @@ public class User {
         this.z_id = z_id;
         this.first_name = first_name;
         this.created_at = new Date();
+        this.score = score;
         //this.profile_image = profile_image;
         //TODO work out how on earth to construct with a Blob, don't think it's possible
     }
@@ -54,6 +58,14 @@ public class User {
 
     public void setCreated_at(Date created_at) {
         this.created_at = new Date();
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
 

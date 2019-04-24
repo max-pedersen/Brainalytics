@@ -16,7 +16,7 @@
 
     <item
         android:id="@+id/nav_leaderboard"
-        android:title="Leaderboard"
-        android:icon="@drawable/ic_trending_up_black_24dp"/>
+        android:icon="@drawable/ic_trending_up_black_24dp"
+        android:title="Leaderboard" />
 
 </menu>

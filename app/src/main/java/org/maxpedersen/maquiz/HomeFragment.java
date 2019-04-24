@@ -2,6 +2,7 @@ package org.maxpedersen.maquiz;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,13 +33,14 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String namePS = UserValueCapture.nameGlobal;
         int zIDPS = UserValueCapture.zIDGlobal;
+        String userMsg = UserValueCapture.userMsg;
         String zIDString = Integer.toString(zIDPS);
         Log.d("Home Fragment", zIDString);
-        getUserDetails(namePS, zIDPS);
+        getUserDetails(zIDPS, userMsg);
 
     }
 
-    public void getUserDetails(String namePS, int zIDPS){
+    public void getUserDetails(int zIDPS, String show){
 
         //TODO get info from the UserDetail fragment that has been passed
 
@@ -52,13 +54,17 @@ public class HomeFragment extends Fragment {
             Log.d("HomeFragment", "Failed passed into HF");
         }*/
 
-
-        String name = namePS;
         int zID = zIDPS;
         //Int is still a constant
-        int i = 1200;
-        String xp = String.valueOf(i);
-        String show = "Welcome Back " + name + " !";
+        //Query the database
+        final AppDatabase db = Room.databaseBuilder(this.getContext(), AppDatabase.class,
+                "Overall Database").allowMainThreadQueries().build();
+
+        int scoreFromDB = db.resultDAO().getSummedScore(zID);
+
+        int score = scoreFromDB;
+        int xpData = score*10;
+        String xp = String.valueOf(xpData);
         changingTextView(show, zID, xp);
     }
 

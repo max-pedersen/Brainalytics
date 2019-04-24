@@ -56,7 +56,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull QuizAdapter.ViewHolder holder, int i) {
         Content contentItem = mList.get(i);
-        String cardText = contentItem.getTopic() + ": " + contentItem.getTopicTitle();
+        String cardText = contentItem.getTopic();
         holder.mTextView.setText(cardText);
     }
 

@@ -3,32 +3,24 @@ package org.maxpedersen.maquiz;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.maquiz.R;
-import com.opencsv.CSVReader;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
@@ -41,12 +33,15 @@ public class QuizActivity extends AppCompatActivity {
     RadioButton radioButton4;
     TextView questionTV;
     TextView counterTV;
-    TextView reivewTV;
+    TextView reviewTV;
     TextView scoreTV;
     List<Question> questionList;
-    static int counter=0;
-    static int score=0;
-    static List<Question> randomQuestionsFromWeek;
+    int counter=0;
+    int score=0;
+    List<Question> randomQuestionsFromWeek;
+    List<Question> questionsFromCSV;
+    AppDatabase db;
+    ProgressBar mProgressBar;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -57,30 +52,34 @@ public class QuizActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         questionTV = findViewById(R.id.question);
         counterTV = findViewById(R.id.counter);
-        reivewTV = findViewById(R.id.reviewTV);
+        reviewTV = findViewById(R.id.reviewTV);
         scoreTV = findViewById(R.id.scoreTV);
-        reivewTV.setVisibility(View.GONE);
+        reviewTV.setVisibility(View.INVISIBLE);
+        mProgressBar =findViewById(R.id.progressBar);
         Button buttonApply = findViewById(R.id.nextQ);
         buttonApply.setVisibility(View.GONE);
         buttonApply.setText("Review Question");
         UserValueCapture.setQuizActivityState(0);
         onClick(buttonApply);
-
-
-        List<Question> questionsFromCSV = null;
+        final Handler mHandler = new Handler();
+        Intent intent = getIntent();
+        int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
+                "Overall Database")
+                .allowMainThreadQueries()
+                .build();
+        questionsFromCSV = null;
         try {
             questionsFromCSV = readCSV();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
-                "Overall Database").allowMainThreadQueries().build();
         db.questionDAO().insertQuestionBatch(questionsFromCSV);
-
-        randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(1);
-
+        //The following request would then show the variable i instead of week
+        randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(weekSpecified);
         generateQ(randomQuestionsFromWeek);
+        progressBarThread(mHandler);
+
     }
 
 
@@ -96,10 +95,15 @@ public class QuizActivity extends AppCompatActivity {
                     Log.d("Click counter increment", counterString);
                     questionList = randomQuestionsFromWeek;
                     checkAnswer(questionList);
-                    String text = counter + "/10 finished";
+                    String text = counter + "/10 Answered";
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
-                    buttonApply.setText("Next Question > ");
+                    if(counter == 10){
+                        buttonApply.setText("Finish Quiz");
+                    }
+                    else{
+                        buttonApply.setText("Next Question > ");
+                    }
                     //Insert data into the database for the quiz result including the session id
                 }
                 //Ideally we should send the data of the radioButton selected to a DB along with the session id and the question id
@@ -112,21 +116,13 @@ public class QuizActivity extends AppCompatActivity {
                     //questionTV.setText("Your choice : " + radioButton.getText());
                     Button buttonApply = findViewById(R.id.nextQ);
                     buttonApply.setVisibility(View.GONE);
-                    //counter++;
-                    if (counter == 10) {
-                        buttonApply.setText("Finish Question");
-                        questionList = randomQuestionsFromWeek;
-                        generateQ(questionList);
-                        reivewTV.setVisibility(View.GONE);
-                        //Insert data into the database for the quiz result including the session id
-                    }
-                    if (counter > 10) {
+                    if (counter > 9) {
                         goToFinished();
                     } else {
                         buttonApply.setText("Review Question");
                         questionList = randomQuestionsFromWeek;
                         generateQ(questionList);
-                        reivewTV.setVisibility(View.GONE);
+                        reviewTV.setVisibility(View.INVISIBLE);
                         //Insert data into the database for the quiz result including the session id
 
                     }
@@ -175,20 +171,19 @@ public class QuizActivity extends AppCompatActivity {
         String optionB = ((Question) Quiz).getOption_2();
         String optionC = ((Question) Quiz).getOption_3();
         String optionD = ((Question) Quiz).getOption_4();
-        String counterTV = counter + "/10 Answered";
 
         radioButton1 = findViewById(R.id.radioButton1);
         radioButton2 = findViewById(R.id.radioButton2);
         radioButton3 = findViewById(R.id.radioButton3);
         radioButton4 = findViewById(R.id.radioButton4);
 
-        clearColourRadioGroup(radioButton1, radioButton2, radioButton3, radioButton4);
-
         questionTV.setText(question);
         radioButton1.setText(optionA);
         radioButton2.setText(optionB);
         radioButton3.setText(optionC);
         radioButton4.setText(optionD);
+
+        clearColourRadioGroup(radioButton1, radioButton2, radioButton3, radioButton4);
 
     }
 
@@ -197,12 +192,14 @@ public class QuizActivity extends AppCompatActivity {
         radioButton = findViewById(radioID);
         Button buttonApply = findViewById(R.id.nextQ);
         buttonApply.setVisibility(View.VISIBLE);
-        Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void goToFinished(){
         Intent intent = new Intent(this,QuizFinishedActivity.class);
+        intent.putExtra("Score", score);
         startActivity(intent);
+        QuizActivity.this.finish();
     }
 
 
@@ -212,21 +209,20 @@ public class QuizActivity extends AppCompatActivity {
         int radioID = radioGroup.getCheckedRadioButtonId();
         View radioButton = radioGroup.findViewById(radioID);
         int idx = radioGroup.indexOfChild(radioButton);
-        reivewTV.setVisibility(View.VISIBLE);
+        reviewTV.setVisibility(View.VISIBLE);
         Question Quiz = list.get(counter);
         String correctOption = Quiz.getCorrect_option();
         int correctIndex = correctConverter(correctOption);
         Log.d("Correct Option", Quiz.getCorrect_option());
         View test = radioGroup.getChildAt(correctIndex);
         int correctRadioId = test.getId();
-
         Log.d("index", "radio idx: " + idx);
         Log.d("Correct index", "crt idx: " + correctIndex);
         Log.d("Correct id", "crt id: " + correctRadioId);
 
         if(idx == correctIndex){
-            reivewTV.setText("Correct. Nice work!");
-            reivewTV.setTextColor(getColor(R.color.Green));
+            reviewTV.setText("Correct. Nice work!");
+            reviewTV.setTextColor(getColor(R.color.Green));
             radioButton = findViewById(radioID);
             radioButton.setBackgroundColor(getColor(R.color.Green));
             score++;
@@ -235,22 +231,32 @@ public class QuizActivity extends AppCompatActivity {
 
         }
         else if(idx != correctIndex){
-            reivewTV.setText("You have chosen the wrong answer.");
-            reivewTV.setTextColor(getColor(R.color.Red));
+            reviewTV.setText("You have chosen the wrong answer.");
+            reviewTV.setTextColor(getColor(R.color.Red));
             radioButton = findViewById(radioID);
             radioButton.setBackgroundColor(getColor(R.color.Red));
-            radioButton2 = findViewById(correctRadioId);
-            radioButton2.setBackgroundColor(getColor(R.color.Green));
+            RadioButton radioButtontemp = findViewById(correctRadioId);
+            radioButtontemp.setBackgroundColor(getColor(R.color.Green));
+            radioButtontemp.setTextColor(getResources().getColor(R.color.secondaryColor));
         }
         UserValueCapture.setQuizActivityState(1);
         Log.d("Answer Checker", "State of button is " + UserValueCapture.quizActivityState);
     }
 
     public void clearColourRadioGroup(RadioButton radioButton1, RadioButton radioButton2, RadioButton radioButton3, RadioButton radioButton4){
+
+        radioGroup.clearCheck();
+
         radioButton1.setBackgroundResource(R.drawable.radio_flat_selector);
         radioButton2.setBackgroundResource(R.drawable.radio_flat_selector);
         radioButton3.setBackgroundResource(R.drawable.radio_flat_selector);
         radioButton4.setBackgroundResource(R.drawable.radio_flat_selector);
+
+        radioButton1.setTextColor(getColorStateList(R.color.radio_flat_text_selector));
+        radioButton2.setTextColor(getColorStateList(R.color.radio_flat_text_selector));
+        radioButton3.setTextColor(getColorStateList(R.color.radio_flat_text_selector));
+        radioButton4.setTextColor(getColorStateList(R.color.radio_flat_text_selector));
+
     }
 
     public int correctConverter(String correctOption){
@@ -281,6 +287,28 @@ public class QuizActivity extends AppCompatActivity {
             return index;
         }
 
+    }
+
+    public void progressBarThread(final Handler mHandler){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(counter*10 < 100){
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mProgressBar.setProgress(counter*10);
+                        }
+                    });
+                }
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+            }
+        }).start();
     }
 
 }

@@ -1,5 +1,6 @@
 package org.maxpedersen.maquiz;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,11 +22,16 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     private ContentAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutMaanger;
 
+
+
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_content,container, false);
-        ArrayList<Content> list = Content.getTestContent();
+        ArrayList<Content> list = Content.getContent();
         buildRecyclerAdapter(rootView, list);
         return rootView;
     }
@@ -40,7 +46,7 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     }
 
     public void extract(int index){
-        Intent intent = new Intent(getContext(), ContentDetailed.class);
+        Intent intent = new Intent(getContext(), ContentDetailedSlide.class);
         intent.putExtra("arrayIdx", index);
         startActivity(intent);
     }

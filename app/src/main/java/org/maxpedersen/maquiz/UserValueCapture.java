@@ -1,9 +1,16 @@
 package org.maxpedersen.maquiz;
 
+import android.arch.persistence.room.Room;
+
 public class UserValueCapture {
     public static int zIDGlobal;
     public static String nameGlobal;
     public static int quizActivityState;
+    public static String userMsg;
+
+    public static void setUserMsg(String userMsg) {
+        UserValueCapture.userMsg = userMsg;
+    }
 
     public static void setQuizActivityState(int quizActivityState) {
         UserValueCapture.quizActivityState = quizActivityState;
@@ -15,5 +22,7 @@ public class UserValueCapture {
 
     public static void setNameGlobal(String nameGlobal) {
         UserValueCapture.nameGlobal = nameGlobal;
+
+
     }
 }

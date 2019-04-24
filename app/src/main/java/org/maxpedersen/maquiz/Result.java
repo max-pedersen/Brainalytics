@@ -26,13 +26,16 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 
         private Date time_taken;
 
+        private String source_origin;
+        // this will denote whether the XP has come from a Quiz activity or from a Content activity
+
         private int z_id;
 
-    public Result(int id, int score, Date metadata_created_at, Date time_taken, int z_id) {
+    public Result(int id, int score, int z_id) {
         this.id = id;
         this.score = score;
-        this.metadata_created_at = metadata_created_at;
-        this.time_taken = time_taken;
+        this.metadata_created_at = new Date();
+        this.time_taken = new Date();
         this.z_id = z_id;
     }
 
@@ -74,6 +77,14 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 
     public void setZ_id(int z_id) {
         this.z_id = z_id;
+    }
+
+    public String getSource_origin() {
+        return source_origin;
+    }
+
+    public void setSource_origin(String source_origin) {
+        this.source_origin = source_origin;
     }
 }
 

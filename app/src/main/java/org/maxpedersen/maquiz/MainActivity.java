@@ -55,10 +55,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-    public void extract5(View v){
-        Intent intent = new Intent(this, QuizActivity.class);
-        //intent.putExtra("arrayIdx", index);
-        startActivity(intent);
-    }
 
 }
