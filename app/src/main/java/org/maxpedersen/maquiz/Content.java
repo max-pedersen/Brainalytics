@@ -9,7 +9,9 @@ public class Content {
     private String content_page2;
     private String content_page3;
     private String content_page4;
+
     private String youtubeLink;
+
 //The constructor to initiate the class
 
 
@@ -20,6 +22,7 @@ public class Content {
         this.content_page2 = content_page2;
         this.content_page3 = content_page3;
         this.content_page4 = content_page4;
+
         this.youtubeLink = youtubeLink;
     }
 
@@ -65,6 +68,7 @@ public class Content {
 
     public String getContent_page4() {
         return content_page4;
+
     }
 
     public void setContent_page4(String content_page4) {
@@ -110,5 +114,6 @@ public class Content {
 
 
         return weeklyContent;
+
     }
 }
