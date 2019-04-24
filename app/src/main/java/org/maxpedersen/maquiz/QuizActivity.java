@@ -15,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;

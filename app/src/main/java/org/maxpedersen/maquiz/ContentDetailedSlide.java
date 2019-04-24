@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import org.maxpedersen.maquiz.ui.main.PlaceholderFragment;
 import org.maxpedersen.maquiz.ui.main.SectionsPagerAdapter;

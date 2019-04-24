@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 public class MainActivity extends AppCompatActivity {
 

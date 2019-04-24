@@ -17,7 +17,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import java.util.List;
 
@@ -72,9 +72,6 @@ public class LeaderboardFragment extends Fragment {
             lp.rightMargin = 50;
             lp.bottomMargin = 75;
 
-
-//            row.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-//            tableLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             String name = useresults.get(i).first_name;
             Log.d("Name Leaderboard", name);
             int xpInt = (useresults.get(i).total_score)*10;

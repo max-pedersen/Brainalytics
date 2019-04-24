@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 4000;

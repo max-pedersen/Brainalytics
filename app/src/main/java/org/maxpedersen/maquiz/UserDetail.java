@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
@@ -39,18 +39,6 @@ public class UserDetail extends AppCompatActivity
 
         textInputName = findViewById(R.id.text_input_name);
         textInputzID = findViewById(R.id.text_input_zID);
-        //imageView=findViewById(R.id.te)
-
-
-
-
-
-
-
-
-
-
-
 
 /*        PickImageDialog.build(new PickSetup()).show(this);
     }
@@ -127,7 +115,7 @@ public class UserDetail extends AppCompatActivity
 
                 if(!validatezID() | !validateName()){
             return;
-            //TODO add String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            //TODO fix empty return from if
         }
 
         int evaluator = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().userDAO().checkExists(zID);
