@@ -47,24 +47,15 @@ public class QuizFinishedActivity extends AppCompatActivity {
         int score = intent.getIntExtra("Score", 0);
         updateResults(score);
 
-        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
-                "Overall Database").allowMainThreadQueries().build();
+
 
         Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal);
-        db.resultDAO().insertResult(resultFromQuiz);
+        DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(resultFromQuiz);
         Log.d(" from result methods", " " + resultFromQuiz.toString() + " updated to " + score);
 
         inflatePieChart(score);
         animationOfElements();
-        /* Approach #1- relying on Score being put into the User Table
-        int existingScore = db.userDAO().getExistingScore((UserValueCapture.zIDGlobal));
 
-
-        db.userDAO().setUpdatedScore(score, UserValueCapture.zIDGlobal);
-
-        int verifyUpdate = db.userDAO().getExistingScore((UserValueCapture.zIDGlobal));
-
-        Log.d(" from setUpdatedScore", " " + score + " updated to " + verifyUpdate); */
 
     }
 
@@ -81,7 +72,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         xpGraphic = findViewById(R.id.xpGraphic);
 
         if(score > 5) {
-            userMessage = "Great Work " + user + ".";
+            userMessage = "Great work " + user + "!";
             reaction.setImageResource(R.drawable.emoji);
         }
         else{

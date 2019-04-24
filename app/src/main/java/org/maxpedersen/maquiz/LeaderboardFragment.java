@@ -32,11 +32,10 @@ public class LeaderboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         context = getContext();
-        final AppDatabase db = Room.databaseBuilder(context, AppDatabase.class,
-                "Overall Database").allowMainThreadQueries().build();
+
 
         View view = inflater.inflate(R.layout.fragment_leaderboard,container, false);
-        useresults = db.userResultJoinDAO().getTopUsers();
+        useresults = DatabaseService.getDbInstance(context).getAppDatabase().userResultJoinDAO().getTopUsers();
 
         Log.d(" from the method", useresults.get(0).first_name);
         Log.d(" from the method", useresults.get(1).first_name);
@@ -99,14 +98,6 @@ public class LeaderboardFragment extends Fragment {
             iv.setLayoutParams(lp);
             nameTV.setLayoutParams(lp);
             xpTV.setLayoutParams(lp);
-
-//            iv.setForegroundGravity(11);
-//            nameTV.setForegroundGravity(11);
-//            xpTV.setForegroundGravity(11);
-
-//            iv.setBackgroundColor(getResources().getColor(R.color.Red));
-//            nameTV.setBackgroundColor(getResources().getColor(R.color.Red));
-//            xpTV.setBackgroundColor(getResources().getColor(R.color.Red));
 
             row.addView(iv);
             row.addView(nameTV);

@@ -118,8 +118,6 @@ public class UserDetail extends AppCompatActivity
     }
 
 
-
-
     public void confirmInput(View v){
                 String zIDInput = textInputzID.getEditText().getText().toString().trim();
                 String firstNameInput = textInputName.getEditText().getText().toString().trim();
@@ -131,11 +129,8 @@ public class UserDetail extends AppCompatActivity
             return;
             //TODO add String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         }
-        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
-                "Overall Database").allowMainThreadQueries().build();
 
-
-        int evaluator = db.userDAO().checkExists(zID);
+        int evaluator = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().userDAO().checkExists(zID);
 
         if (evaluator > 0) {
             // User thus exists in the database
@@ -148,10 +143,12 @@ public class UserDetail extends AppCompatActivity
 
         else if (evaluator == 0) {
             User signedInUser = new User(zID, firstNameInput);
-            db.userDAO().insertUser(signedInUser);
+            DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+                    .userDAO().insertUser(signedInUser);
             //
             input = "Welcome " + firstNameInput;
-            Log.d(" from welcome", " " + db.userDAO().getUserName(zID));
+            Log.d(" from welcome", " " + DatabaseService.getDbInstance(getApplicationContext())
+                    .getAppDatabase().userDAO().getUserName(zID));
             Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
             UserValueCapture.setUserMsg(input);
         }

@@ -40,7 +40,6 @@ public class QuizActivity extends AppCompatActivity {
     int score=0;
     List<Question> randomQuestionsFromWeek;
     List<Question> questionsFromCSV;
-    AppDatabase db;
     ProgressBar mProgressBar;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -64,19 +63,17 @@ public class QuizActivity extends AppCompatActivity {
         final Handler mHandler = new Handler();
         Intent intent = getIntent();
         int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,
-                "Overall Database")
-                .allowMainThreadQueries()
-                .build();
+
         questionsFromCSV = null;
         try {
             questionsFromCSV = readCSV();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        db.questionDAO().insertQuestionBatch(questionsFromCSV);
+        DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().questionDAO().insertQuestionBatch(questionsFromCSV);
         //The following request would then show the variable i instead of week
-        randomQuestionsFromWeek = db.questionDAO().getSelectedQuiz(weekSpecified);
+        randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+                .questionDAO().getSelectedQuiz(weekSpecified);
         generateQ(randomQuestionsFromWeek);
         progressBarThread(mHandler);
 
