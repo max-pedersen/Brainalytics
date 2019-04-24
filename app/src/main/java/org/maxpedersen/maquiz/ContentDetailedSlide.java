@@ -11,15 +11,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.maquiz.R;
 
+import org.maxpedersen.maquiz.ui.main.PlaceholderFragment;
 import org.maxpedersen.maquiz.ui.main.SectionsPagerAdapter;
+
+import java.util.List;
 
 public class ContentDetailedSlide extends AppCompatActivity {
 
-    FloatingActionButton fab;
-    static int i;
+    private FloatingActionButton fab;
+    private static int i;
+    private String contentTitle;
+    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +41,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
 
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
-        Log.d("ContentDetailedSlide", Integer.toString(i));
         sectionsPagerAdapter.notifyDataSetChanged();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,18 +49,28 @@ public class ContentDetailedSlide extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        contentTitle = getTitles();
+        youtubeFAB(fab);
     }
+
 
     static public int getI(){
         return i;
     }
 
-    /*public void youtubeFAB(){
-        if(tvTopicTitle.toString() != ("Knowledge sharing articles & videos")) {
-            fab.setVisibility(View.GONE);
+    public void youtubeFAB(FloatingActionButton fab){
+        if(contentTitle.equals("Knowledge sharing articles & videos")) {
+            fab.show();
         }
         else {
-            fab.setVisibility(View.VISIBLE);
+            fab.hide();
         };
-    }*/
+    }
+
+    public String getTitles(){
+        List<Content> list = Content.getContent();
+        String title = list.get(i).getTopic();
+        return title;
+    }
 }

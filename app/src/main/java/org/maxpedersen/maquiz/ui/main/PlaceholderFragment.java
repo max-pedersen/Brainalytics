@@ -13,6 +13,11 @@ import android.arch.lifecycle.ViewModelProviders;
 
 import com.example.maquiz.R;
 
+import org.maxpedersen.maquiz.Content;
+import org.maxpedersen.maquiz.ContentDetailedSlide;
+
+import java.util.List;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -47,6 +52,9 @@ public class PlaceholderFragment extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_content_detailed_slide, container, false);
         final TextView textView = root.findViewById(R.id.section_label);
+        final TextView textViewTitle = root.findViewById(R.id.contentTitle);
+        String title = getTitle();
+        textViewTitle.setText(title);
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -54,5 +62,12 @@ public class PlaceholderFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    public String getTitle(){
+        int i = ContentDetailedSlide.getI();
+        List<Content> list = Content.getContent();
+        String title = list.get(i).getTopic();
+        return title;
     }
 }

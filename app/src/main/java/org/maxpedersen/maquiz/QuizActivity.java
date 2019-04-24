@@ -87,11 +87,11 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (UserValueCapture.quizActivityState == 0) {
-                    counter++;
                     String counterString = Integer.toString(counter);
                     Log.d("Click counter increment", counterString);
                     questionList = randomQuestionsFromWeek;
                     checkAnswer(questionList);
+                    counter++;
                     String text = counter + "/10 Answered";
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
