@@ -57,10 +57,9 @@ public class HomeFragment extends Fragment {
         int zID = zIDPS;
         //Int is still a constant
         //Query the database
-        final AppDatabase db = Room.databaseBuilder(this.getContext(), AppDatabase.class,
-                "Overall Database").allowMainThreadQueries().build();
 
-        int scoreFromDB = db.resultDAO().getSummedScore(zID);
+        int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().resultDAO().getSummedScore(zID);
+
 
         int score = scoreFromDB;
         int xpData = score*10;
