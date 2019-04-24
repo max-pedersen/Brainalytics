@@ -135,10 +135,10 @@
     <string name="Score">Score: 5/10</string>
     <string name="XPgain">XP Gained: 50</string>
     <string name="finishedTitle">Results</string>
-    <string name="finishedMsg">Great Work User!</string>
+    <string name="finishedMsg">Great work User!</string>
     <string name="goHome">Go Home</string>
     <string name="Brainify">Branify</string>
-    <string name="msg">Time to get brainergised!</string>
+    <string name="msg">Ready for some Brainalytics?</string>
     <string name="title_activity_content_detailed_slide">ContentDetailedSlide</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
