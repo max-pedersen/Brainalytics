@@ -4,6 +4,8 @@ package org.maxpedersen.maquiz;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class NewsArticle {
 
     public static final String NEWS_API_KEY = "c06da6e3036740838a0730ef5899cbb0";
@@ -37,7 +39,21 @@ public class NewsArticle {
         @Expose
         private String content;
 
-        public Source getSource() {
+        private List<NewsArticle> articles = null;
+
+    public NewsArticle(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
+        this.source = source;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
+        this.content = content;
+        this.articles = articles;
+    }
+
+    public Source getSource() {
             return source;
         }
 
@@ -100,5 +116,12 @@ public class NewsArticle {
         public void setContent(String content) {
             this.content = content;
         }
+
+    public List<NewsArticle> getArticles() {
+        return articles;
+    }
+    public void setArticles(List<NewsArticle> articles) {
+        this.articles = articles;
+    }
 
     }

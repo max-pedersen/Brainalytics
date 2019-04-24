@@ -36,6 +36,7 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<NewsArticle>> call, Response<List<NewsArticle>> response) {
                 progressDialog.dismiss();
+
                 response.body();
                 Log.d(" from response: ", response.body() + (response.body() != null ? response.body().toString() : null));
 
