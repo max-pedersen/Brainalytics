@@ -21,6 +21,11 @@
             android:name="org.maxpedersen.maquiz.ContentDetailedSlide"
             android:label="@string/title_activity_content_detailed_slide"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name="org.maxpedersen.maquiz.NewsActivity"
+            android:label="NewsActivity"
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name="org.maxpedersen.maquiz.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">

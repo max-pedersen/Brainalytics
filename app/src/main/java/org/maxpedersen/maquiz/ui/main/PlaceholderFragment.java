@@ -11,7 +11,7 @@ import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 
 import org.maxpedersen.maquiz.Content;
 import org.maxpedersen.maquiz.ContentDetailedSlide;

@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 
-import com.example.maquiz.R;
+import org.maxpedersen.maquiz.R;
 import org.maxpedersen.maquiz.Content;
 import org.maxpedersen.maquiz.ContentDetailedSlide;
 

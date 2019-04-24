@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.maxpedersen.maquiz.R;
@@ -19,7 +20,12 @@ import org.maxpedersen.maquiz.R;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+    Button btnNews;
 
+
+
+
+// TODO revise having both onCreateView and onViewCreated in same class and fix access to button
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,6 +36,23 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        btnNews = (Button) getView().findViewById(R.id.youtubeBtn);
+
+
+
+
+        btnNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                //News results page is navigated to
+                Intent intent = new Intent(getContext(),NewsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         super.onViewCreated(view, savedInstanceState);
         String namePS = UserValueCapture.nameGlobal;
         int zIDPS = UserValueCapture.zIDGlobal;
@@ -37,6 +60,8 @@ public class HomeFragment extends Fragment {
         String zIDString = Integer.toString(zIDPS);
         Log.d("Home Fragment", zIDString);
         getUserDetails(zIDPS, userMsg);
+
+
 
     }
 

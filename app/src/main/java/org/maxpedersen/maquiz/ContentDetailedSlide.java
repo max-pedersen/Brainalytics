@@ -41,6 +41,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
 
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
+        // brief note on notifyDataSet
         sectionsPagerAdapter.notifyDataSetChanged();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

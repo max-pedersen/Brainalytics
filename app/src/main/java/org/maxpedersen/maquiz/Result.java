@@ -34,6 +34,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
     public Result(int id, int score, int z_id) {
         this.id = id;
         this.score = score;
+        // new Date() to pull exact time of creation
         this.metadata_created_at = new Date();
         this.time_taken = new Date();
         this.z_id = z_id;
