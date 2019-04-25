@@ -19,6 +19,7 @@ The mobile application created enables student to test their knowledge of on Bus
   * Question order is randomised
   * Instant feedback after question is answered
   * ProgressBar used as a visual indicator of progress
+  * XP Gained depending on questions correct
 * News API
   * Fetches the latest news on Business Intelligence (or technology)
   * Uses different type scale to identify the different data in the CardView
@@ -32,10 +33,10 @@ The mobile application created enables student to test their knowledge of on Bus
   * Use of dynamic slider view to display large amounts of text
   * Dynamic YouTube FAB to only show when needed
   * YouTube API an extended activity of Content so you don't have to leave the app
-  * Gain XP whiel watching YouTube videos through the API
+  * Gain XP while watching YouTube videos through the API
 * Leaderboard Component
-  * Live updates the top 10 scores
+  * Live updates the top 10 XP accumulated
   * Uses a clean colour pallete 
   * Provides a layer of compatitiveness to the Brainalytics
   
-__Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (5164270) for information systems course INFS3634: Mobile App Development__
+_Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (5164270) for information systems course INFS3634: Mobile App Development_
