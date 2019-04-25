@@ -24,9 +24,6 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
 
 
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import org.maxpedersen.maquiz.R;
-
 import java.util.ArrayList;
 
 //Content Adapters purpose is to inflate the card views which inturn inflate the recyclerviews
@@ -32,7 +30,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView, OnNoteListener listener) {
             super(itemView);
-            mTextView = itemView.findViewById(R.id.textView);
+            mTextView = itemView.findViewById(R.id.topicTitle);
             itemView.setOnClickListener(this);
             this.OnNoteListener = listener;
         }
