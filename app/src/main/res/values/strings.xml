@@ -64,5 +64,6 @@
     <string name="youtubeTitle">Video Title</string>
     <string name="brainalytics">Brainalytics</string>
     <string name="back">Go back to content</string>
+    <string name="Profile">Profile</string>
 
 </resources>

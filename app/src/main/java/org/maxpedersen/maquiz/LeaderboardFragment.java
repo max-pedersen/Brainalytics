@@ -68,6 +68,7 @@ public class LeaderboardFragment extends Fragment {
             iv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             nameTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             xpTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            iv.setImageResource(R.drawable.ic_person_outline_white_24dp);
             nameTV.setText(name);
             xpTV.setText(xp);
             nameTV.setTextAppearance(R.style.AppTheme);
