@@ -2,10 +2,6 @@ package org.maxpedersen.maquiz;
 
 import retrofit2.http.GET;
 import retrofit2.Call;
-import org.maxpedersen.maquiz.NewsArticle;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public interface NewsArticleService {

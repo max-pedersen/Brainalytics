@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="@string/large_text"
+                android:text="@string/FirstName"
                 android:textColor="@color/primaryDarkColor" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

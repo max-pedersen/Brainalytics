@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.maxpedersen.maquiz.R;
-
 import java.util.ArrayList;
 //Need to change this to quiz adapter once we have the database
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
@@ -29,7 +27,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView, QuizAdapter.OnNoteListener listener) {
             super(itemView);
-            mTextView = itemView.findViewById(R.id.textView);
+            mTextView = itemView.findViewById(R.id.newsTitleTV);
             itemView.setOnClickListener(this);
             this.OnNoteListener = listener;
         }
