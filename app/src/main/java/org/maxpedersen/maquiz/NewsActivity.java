@@ -46,7 +46,6 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
         call.enqueue(new Callback<NewsArticleResponse>() {
             @Override
             public void onResponse(Call<NewsArticleResponse> call, Response<NewsArticleResponse> response) {
-
                 NewsArticleResponse object = response.body();
                 int lengthOfArray = object.getTotalResults();
                 mList = new ArrayList<Article>();
@@ -65,7 +64,6 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
                 buildRecyclerView(mList);
                 progressDialog.dismiss();
             }
-
             @Override
             public void onFailure(Call<NewsArticleResponse> call, Throwable t) {
                 progressDialog.dismiss();
@@ -97,7 +95,6 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
         Log.d("main", "onNoteClicked: clicked" + position);
         extract(position);
     }
-
 }
 
 

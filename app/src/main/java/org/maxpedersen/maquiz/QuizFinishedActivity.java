@@ -47,16 +47,12 @@ public class QuizFinishedActivity extends AppCompatActivity {
         int score = intent.getIntExtra("Score", 0);
         updateResults(score);
 
-
-
         Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal);
         DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(resultFromQuiz);
         Log.d(" from result methods", " " + resultFromQuiz.toString() + " updated to " + score);
 
         inflatePieChart(score);
         animationOfElements();
-
-
     }
 
     public void updateResults(int score){
@@ -127,7 +123,6 @@ public class QuizFinishedActivity extends AppCompatActivity {
         dataSet.setDrawValues(false);
         PieData data = new PieData((dataSet));
         pieChart.setData(data);
-
     }
 
     public void animationOfElements (){

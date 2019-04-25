@@ -23,7 +23,6 @@ public class Session {
 
     private int z_id;
 
-
     public int getId() {
         return id;
     }

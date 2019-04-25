@@ -74,7 +74,6 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleAdapter.
         return mList.size();
     }
 
-
     public interface OnNoteListener{
         void onNoteClick(int position);
     }

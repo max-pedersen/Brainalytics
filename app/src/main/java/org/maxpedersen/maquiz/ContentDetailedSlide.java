@@ -56,7 +56,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
         youtubeFAB(fab);
     }
 
-
     static public int getI(){
         return i;
     }
@@ -69,7 +68,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
             fab.hide();
         };
     }
-
 
     public String getTitles(){
         List<Content> list = Content.getContent();

@@ -23,6 +23,4 @@ import android.provider.ContactsContract;
         }
 
         public AppDatabase getAppDatabase() {return appDatabase; }
-
-
     }

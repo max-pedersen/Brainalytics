@@ -26,9 +26,6 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     Button btnNews;
 
-
-
-
 // TODO revise having both onCreateView and onViewCreated in same class and fix access to button
     @Nullable
     @Override
@@ -53,8 +50,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
         super.onViewCreated(view, savedInstanceState);
         String namePS = UserValueCapture.nameGlobal;
         int zIDPS = UserValueCapture.zIDGlobal;
@@ -62,9 +57,6 @@ public class HomeFragment extends Fragment {
         String zIDString = Integer.toString(zIDPS);
         Log.d("Home Fragment", zIDString);
         getUserDetails(zIDPS, userMsg);
-
-
-
     }
 
     public void getUserDetails(int zIDPS, String show){
@@ -88,8 +80,4 @@ public class HomeFragment extends Fragment {
         nameTV.setText(name);
         xpTV.setText(xp);
     }
-
-
-
-
 }

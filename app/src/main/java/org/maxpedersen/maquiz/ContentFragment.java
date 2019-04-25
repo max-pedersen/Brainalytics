@@ -22,8 +22,6 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     private ContentAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutMaanger;
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
