@@ -48,10 +48,9 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
             public void onResponse(Call<NewsArticleResponse> call, Response<NewsArticleResponse> response) {
 
                 NewsArticleResponse object = response.body();
-                String data = object.getArticles().get(2).getAuthor();
-                Log.d("test", data);
+                int lengthOfArray = object.getTotalResults();
                 mList = new ArrayList<Article>();
-                for(int i=0; i < 9; i++) {
+                for(int i=0; i < lengthOfArray; i++) {
                     Source tempSource = object.getArticles().get(i).getSource();
                     String tempAuthor = object.getArticles().get(i).getAuthor();
                     String tempTitle = object.getArticles().get(i).getTitle();
