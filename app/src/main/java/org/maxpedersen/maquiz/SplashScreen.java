@@ -32,8 +32,6 @@ public class SplashScreen extends AppCompatActivity {
         },SPLASH_TIME_OUT);
     }
 
-
-
     public void animateView(ImageView layout){
         ObjectAnimator fadeInText = ObjectAnimator.ofFloat(layout, View.ALPHA,0.0f, 1.0f).setDuration(500);
         ObjectAnimator fadeOutText = ObjectAnimator.ofFloat(layout, View.ALPHA,1.0f, 0.0f).setDuration(1000);

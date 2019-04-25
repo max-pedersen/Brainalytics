@@ -27,6 +27,7 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleAdapter.
         public TextView title;
         public TextView description;
         public TextView published;
+        public TextView date;
         OnNoteListener OnNoteListener;
 
         public ViewHolder(@NonNull View itemView, OnNoteListener listener){
@@ -34,6 +35,7 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleAdapter.
             title = itemView.findViewById(R.id.newsTitleTV);
             description = itemView.findViewById(R.id.descriptionTV);
             published = itemView.findViewById(R.id.publisherTV);
+            date = itemView.findViewById(R.id.dateTV);
             itemView.setOnClickListener(this);
             this.OnNoteListener = listener;
         }
@@ -63,13 +65,14 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleAdapter.
         viewHolder.title.setText(currentItem.getTitle());
         viewHolder.description.setText(currentItem.getDescription());
         viewHolder.published.setText(currentItem.getSource().getName());
+        String dateManipulated = currentItem.getPublishedAt().substring(0, 10);
+        viewHolder.date.setText(dateManipulated);
     }
 
     @Override
     public int getItemCount() {
         return mList.size();
     }
-
 
     public interface OnNoteListener{
         void onNoteClick(int position);

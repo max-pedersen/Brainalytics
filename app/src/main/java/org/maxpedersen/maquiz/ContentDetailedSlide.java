@@ -47,6 +47,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ContentDetailedSlide.this,YoutubeActivity.class);
+                intent.putExtra("arrayIdx", i);
                 startActivity(intent);
             }
         });
@@ -54,7 +55,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
         contentTitle = getTitles();
         youtubeFAB(fab);
     }
-
 
     static public int getI(){
         return i;
@@ -68,7 +68,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
             fab.hide();
         };
     }
-
 
     public String getTitles(){
         List<Content> list = Content.getContent();

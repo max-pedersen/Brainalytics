@@ -26,6 +26,4 @@ impemented it */
         }
 
         public AppDatabase getAppDatabase() {return appDatabase; }
-
-
     }

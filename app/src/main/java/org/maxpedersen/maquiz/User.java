@@ -22,8 +22,6 @@ public class User {
     @ColumnInfo(name = "score")
     private int score;
 
-
-
     public User(int z_id, String first_name
                 //,Blob profile_image
                 ) {
@@ -34,7 +32,6 @@ public class User {
         //this.profile_image = profile_image;
         //TODO work out how on earth to construct with a Blob, don't think it's possible
     }
-
 
     public int getZ_id() {
         return z_id;

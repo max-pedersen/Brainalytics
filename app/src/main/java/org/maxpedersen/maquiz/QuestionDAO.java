@@ -14,13 +14,9 @@ public interface QuestionDAO {
     @Query("SELECT * FROM Question " + " WHERE week LIKE :week ORDER BY RANDOM() LIMIT 11")
     List<Question> getSelectedQuiz(int week);
 
-
     @Insert
     void insertQuestion(Question ... questions);
 
     @Insert
     void insertQuestionBatch(List<Question> question);
-
-
-
 }

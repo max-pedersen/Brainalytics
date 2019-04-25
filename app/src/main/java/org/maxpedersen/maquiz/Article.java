@@ -21,7 +21,6 @@ public class Article {
         else{
             this.author = author;
         }
-
         this.title = title;
         this.description = description;
         this.url = url;

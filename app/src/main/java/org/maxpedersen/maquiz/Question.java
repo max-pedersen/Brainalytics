@@ -163,8 +163,6 @@ public class Question {
     public void setContent_title(String content_title) {
         this.content_title = content_title;
     }
-
-
 }
 
 

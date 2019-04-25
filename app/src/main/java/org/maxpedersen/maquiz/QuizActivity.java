@@ -76,10 +76,7 @@ public class QuizActivity extends AppCompatActivity {
                 .questionDAO().getSelectedQuiz(weekSpecified);
         generateQ(randomQuestionsFromWeek);
         progressBarThread(mHandler);
-
     }
-
-
 
     private void onClick(Button buttonApply){
         buttonApply.setOnClickListener(new View.OnClickListener() {
@@ -130,8 +127,6 @@ public class QuizActivity extends AppCompatActivity {
 
         });
     }
-
-
     // Null pointer exception stems from here, questionList being returned is apparently blank
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Question> readCSV() throws IOException {
@@ -155,11 +150,8 @@ public class QuizActivity extends AppCompatActivity {
             i = i + 1;
             questionList.add(q);
         }
-
         return questionList;
     }
-
-
 
     private void generateQ(List<Question> list){
         Question Quiz = list.get(counter);
@@ -181,7 +173,6 @@ public class QuizActivity extends AppCompatActivity {
         radioButton4.setText(optionD);
 
         clearColourRadioGroup(radioButton1, radioButton2, radioButton3, radioButton4);
-
     }
 
     public void checkButton(View V){
@@ -307,5 +298,4 @@ public class QuizActivity extends AppCompatActivity {
             }
         }).start();
     }
-
 }

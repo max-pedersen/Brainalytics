@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class NewsArticleResponse {
-
     @SerializedName("status")
     @Expose
     private String status;
@@ -40,5 +39,4 @@ public class NewsArticleResponse {
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
-
 }
