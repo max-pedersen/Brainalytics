@@ -4,7 +4,7 @@ This contains the source code for our INFS3634 Android App as part of the group 
 
 **Our approach:**
 
-The mobile application created enables student to test their knowledge of on Business Intelligence. The structure of the content & quiz are based loosely on the course structure of INFS3603. Our core ethos for brainalytics was a one stop shop to learn, test and compete on Business Intelligence. We have achieved this through dedicated content sections in our app, having a live news feed about the latest in business intelligence, having a fully functional quiz function with instant feedback and a leaderboard so you can compete against your friends. 
+The mobile application created enables student to test their knowledge of on Business Intelligence. The structure of the content & quiz are based initially on the course structure of INFS3603. Our core ethos for Brainalytics was a one stop shop to learn, test and compete on Business Analytics. We have achieved this through dedicated content sections in our app, having a live news feed about the latest in business intelligence, having a fully functional quiz function with instant feedback and a leaderboard so you can compete against your friends. 
 
 **Compatibility:**
 
@@ -21,14 +21,14 @@ The mobile application created enables student to test their knowledge of on Bus
   * ProgressBar used as a visual indicator of progress
   * XP Gained depending on questions correct
 * News API
-  * Fetches the latest news on Business Intelligence (or technology)
+  * Fetches the latest news on specific topics of relevance (Artificial Intelligence & Data Visualization)
   * Uses different type scale to identify the different data in the CardView
   * You can click on the card to go the URL that has the whole news article
 * Results Component
   * Uses a MPAndroid Library to generate a visual representation of how well you performed
-  * Updates from the Quiz Acxtivity to give you a quick summary
+  * Updates from the Quiz Activity to give you a quick summary
   * Use of aethetically pleasing icons to gratify the user
-  * Provides a clear path back home
+  * Providesa clear path back home
 * Content Component
   * Use of dynamic slider view to display large amounts of text
   * Dynamic YouTube FAB to only show when needed
@@ -39,4 +39,4 @@ The mobile application created enables student to test their knowledge of on Bus
   * Uses a clean colour pallete 
   * Provides a layer of compatitiveness to the Brainalytics
   
-_Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (5164270) for information systems course INFS3634: Mobile App Development_
+_Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (5164270) for Information Systems course INFS3634: Mobile App Development_
