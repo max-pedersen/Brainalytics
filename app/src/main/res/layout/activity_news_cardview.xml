@@ -17,7 +17,7 @@
         android:layout_margin="8dp">
 
         <TextView
-            android:id="@+id/titleTV"
+            android:id="@+id/newsTitleTV"
             android:layout_width="278dp"
             android:layout_height="66dp"
             android:layout_alignParentStart="true"
@@ -41,7 +41,7 @@
             android:id="@+id/descriptionTV"
             android:layout_width="274dp"
             android:layout_height="49dp"
-            android:layout_below="@id/titleTV"
+            android:layout_below="@id/newsTitleTV"
             android:layout_alignParentEnd="false"
             android:layout_alignParentBottom="false"
             android:layout_marginTop="16dp"

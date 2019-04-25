@@ -27,7 +27,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView, QuizAdapter.OnNoteListener listener) {
             super(itemView);
-            mTextView = itemView.findViewById(R.id.titleTV);
+            mTextView = itemView.findViewById(R.id.newsTitleTV);
             itemView.setOnClickListener(this);
             this.OnNoteListener = listener;
         }

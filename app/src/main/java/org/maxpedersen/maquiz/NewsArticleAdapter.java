@@ -12,13 +12,49 @@ import java.util.ArrayList;
 
 public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleAdapter.ViewHolder> {
     private ArrayList<Article> mList;
+    private OnItemClickListener mListener;
+    private OnNoteListener mOnNoteListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView title;
+        public TextView description;
+        public TextView published;
+        OnNoteListener OnNoteListener;
+
+        public ViewHolder(@NonNull View itemView, OnNoteListener listener){
+            super(itemView);
+            title = itemView.findViewById(R.id.newsTitleTV);
+            description = itemView.findViewById(R.id.descriptionTV);
+            published = itemView.findViewById(R.id.publisherTV);
+            itemView.setOnClickListener(this);
+            this.OnNoteListener = listener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            OnNoteListener.onNoteClick(getAdapterPosition());
+        }
+    }
+
+    public NewsArticleAdapter(ArrayList<Article> newsList, OnNoteListener OnNoteListener){
+        mList = newsList;
+        this.mOnNoteListener = OnNoteListener;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_news_cardview, parent, false);
-        ViewHolder evh = new ViewHolder(v);
-        return(evh);
+        ViewHolder evh = new ViewHolder(v, mOnNoteListener);
+        return evh;
     }
 
     @Override
@@ -34,22 +70,10 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleAdapter.
         return mList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public TextView description;
-        public TextView published;
-        public ViewHolder(@NonNull View itemView){
-            super(itemView);
-            title = itemView.findViewById(R.id.titleTV);
-            description = itemView.findViewById(R.id.descriptionTV);
-            published = itemView.findViewById(R.id.publisherTV);
-        }
-    }
 
-    public NewsArticleAdapter(ArrayList<Article> list){
-        mList = list;
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
-
 
 }
 

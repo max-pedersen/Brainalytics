@@ -1,6 +1,8 @@
 package org.maxpedersen.maquiz;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity implements NewsArticleAdapter.OnNoteListener{
 
     private ProgressDialog progressDialog;
     private ArrayList<Article> mList;
@@ -36,8 +38,6 @@ public class NewsActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(NewsActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
-        mRecyclerView = findViewById(R.id.newsRecyclerView);
-        mRecyclerView.setAdapter(mAdapter);
         /*Create handle for the RetrofitInstance interface*/
         NewsArticleService service = RetrofitClientInstance.getRetrofitInstance().create(NewsArticleService.class);
         Call<NewsArticleResponse> call = service.getRelevantArticles();
@@ -46,7 +46,7 @@ public class NewsActivity extends AppCompatActivity {
         call.enqueue(new Callback<NewsArticleResponse>() {
             @Override
             public void onResponse(Call<NewsArticleResponse> call, Response<NewsArticleResponse> response) {
-                progressDialog.dismiss();
+
                 NewsArticleResponse object = response.body();
                 String data = object.getArticles().get(2).getAuthor();
                 Log.d("test", data);
@@ -64,6 +64,7 @@ public class NewsActivity extends AppCompatActivity {
                     mList.add(tempObject);
                 }
                 buildRecyclerView(mList);
+                progressDialog.dismiss();
             }
 
             @Override
@@ -73,8 +74,6 @@ public class NewsActivity extends AppCompatActivity {
                 Toast.makeText(NewsActivity.this, "Sorry, something has gone wrong. Please" +
                         "try again shortly", Toast.LENGTH_SHORT).show();
             }
-
-
         });
     }
 
@@ -82,9 +81,22 @@ public class NewsActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.newsRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new NewsArticleAdapter(list);
+        mAdapter = new NewsArticleAdapter(list, this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void extract(int index){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String link = mList.get(index).getUrl();
+        intent.setData(Uri.parse(link));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        Log.d("main", "onNoteClicked: clicked" + position);
+        extract(position);
     }
 
 }
