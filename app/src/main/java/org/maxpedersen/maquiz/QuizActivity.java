@@ -70,7 +70,7 @@ public class QuizActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().questionDAO().insertQuestionBatch(questionsFromCSV);
+        //DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().questionDAO().insertQuestionBatch(questionsFromCSV);
         //The following request would then show the variable i instead of week
         randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
                 .questionDAO().getSelectedQuiz(weekSpecified);

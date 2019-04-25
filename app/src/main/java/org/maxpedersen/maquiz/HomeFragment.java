@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         //Int is still a constant
         //Query the database
 
-        int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().resultDAO().getSummedScore(zID);
+        int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().userResultJoinDAO().getUserSummedScore(zID);
 
 
         int score = scoreFromDB;
