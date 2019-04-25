@@ -4,7 +4,7 @@ This contains the source code for our INFS3634 Android App as part of the group 
 
 **Our approach:**
 
-The mobile application created enables student to test their knowledge of on Business Intelligence. The structure of the content & quiz are based loosely on the course structure of INFS3603. Our core ethos for brainfy was a one stop shop to learn, test and compete on Business Intelligence. We have achieved this through dedicated content sections in our app, having a live news feed about the latest in business intelligence, having a fully functional quiz function with instant feedback and a leaderboard so you can beat your friends. 
+The mobile application created enables student to test their knowledge of on Business Intelligence. The structure of the content & quiz are based loosely on the course structure of INFS3603. Our core ethos for brainalytics was a one stop shop to learn, test and compete on Business Intelligence. We have achieved this through dedicated content sections in our app, having a live news feed about the latest in business intelligence, having a fully functional quiz function with instant feedback and a leaderboard so you can compete against your friends. 
 
 **Compatibility:**
 
