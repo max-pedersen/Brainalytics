@@ -23,7 +23,7 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     static final String API_KEY = "AIzaSyBka9Qp1HYeNOCMHcBV9Em3C_CIaMAh7rk";
     public String YT_VIDEO_ID = "5Zg-C8AAIGg";
     private int i;
-
+    //Set up varaibles for youtube player API
     private YouTubePlayerView myYoutubePlayerView;
     private YouTubePlayer.OnInitializedListener initializedListener;
     private Button goBackBtn;
@@ -35,10 +35,8 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
         goBackBtn = findViewById(R.id.buttonYoutubeView);
 
         initializedListener = new YouTubePlayer.OnInitializedListener() {
-
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-                Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
                 youTubePlayer.setPlaybackEventListener(playbackEventListener);
                 youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
                 if (!wasRestored) {
@@ -50,7 +48,6 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
                 final int REQUEST_CODE = 1;
                 if (youTubeInitializationResult.isUserRecoverableError()) {
-                    //TODO add error dialog
                 } else {
                     String errorMessage = String.format("There was an error initializing the Youtube Player (%1$s)", youTubeInitializationResult.toString());
                 }
@@ -106,16 +103,16 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
 
         @Override
         public void onVideoStarted() {
+            //Add XP when a user watches a video
             Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_LONG).show();
-            //TODO increment the amount of XP that the user has access to
             Result tempObj = new Result(0, 1, UserValueCapture.zIDGlobal);
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 
         @Override
         public void onVideoEnded() {
+            //Add XP when a user finishes a video
             Toast.makeText(YoutubeActivity.this, "Video has ended", Toast.LENGTH_LONG).show();
-            //TODO increment and increase the amount of XP that the user has
             Result tempObj = new Result(0, 3, UserValueCapture.zIDGlobal);
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
@@ -124,6 +121,7 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
         public void onError(YouTubePlayer.ErrorReason errorReason) {
         }
     };
+    //Inflates the title for the youtube activity class
     private void inflateTitle(){
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
