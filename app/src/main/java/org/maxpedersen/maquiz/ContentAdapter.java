@@ -30,7 +30,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView, OnNoteListener listener) {
             super(itemView);
-            mTextView = itemView.findViewById(R.id.contentTitle);
+            mTextView = itemView.findViewById(R.id.topicTitle);
             itemView.setOnClickListener(this);
             this.OnNoteListener = listener;
         }
