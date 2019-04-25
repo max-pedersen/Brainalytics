@@ -42,7 +42,10 @@ public class LeaderboardFragment extends Fragment {
         return view;
     }
 
+
+    //This method sets out the table layout dynamically based on the UserResultJoin list returned by the getTopUsers method
     private void inflateTable(TableLayout tableLayout){
+
 
         for(int i = 0; i < 9; i++){
             TableRow row = new TableRow(context);

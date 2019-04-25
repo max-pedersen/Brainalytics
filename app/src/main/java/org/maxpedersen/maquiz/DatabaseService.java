@@ -4,6 +4,9 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.provider.ContactsContract;
 
+
+/* This class is based off the DatabaseService used in Oscar's Week 10 tutorial, as we had not previously
+impemented it */
     public class DatabaseService {
         private static DatabaseService instance = null;
         private static AppDatabase appDatabase;

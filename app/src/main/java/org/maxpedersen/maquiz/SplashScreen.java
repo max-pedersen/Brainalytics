@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import org.maxpedersen.maquiz.R;
 
+// This class sets up the Splash Screen when the user first runs the application
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 4000;
     ImageView logo;

@@ -1,7 +1,8 @@
 package org.maxpedersen.maquiz;
 
-import android.arch.persistence.room.Room;
 
+
+// This class enables easier access for activities and fragments to key attributes of the active user*/
 public class UserValueCapture {
     public static int zIDGlobal;
     public static String nameGlobal;
