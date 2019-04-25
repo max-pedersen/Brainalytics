@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
-
+    //Establish UI elements to be used in the class
     RadioGroup radioGroup;
     RadioButton radioButton;
     RadioButton radioButton1;
@@ -45,7 +45,7 @@ public class QuizActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //Allocates the variables to actual UI resources/assets
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         radioGroup = findViewById(R.id.radioGroup);
@@ -56,14 +56,16 @@ public class QuizActivity extends AppCompatActivity {
         reviewTV.setVisibility(View.INVISIBLE);
         mProgressBar =findViewById(R.id.progressBar);
         Button buttonApply = findViewById(R.id.nextQ);
+        //Manipulating the state of the submit button after every question
         buttonApply.setVisibility(View.GONE);
         buttonApply.setText("Review Question");
+        //Sets the state of the button, there are two states
         UserValueCapture.setQuizActivityState(0);
         onClick(buttonApply);
         final Handler mHandler = new Handler();
         Intent intent = getIntent();
         int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
-
+        //TODO remove once pre fill database works
         questionsFromCSV = null;
         try {
             questionsFromCSV = readCSV();
@@ -71,7 +73,8 @@ public class QuizActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().questionDAO().insertQuestionBatch(questionsFromCSV);
-        //The following request would then show the variable i instead of week
+        //The statement belows queries the database for 10 question using the parameter weekSpecified, which is the index of the Array List + 1. i.e.
+        // If someone presses Week 3 it's index would be 2 and then + 1. That would be 3. 3 would be used as a parameter when getting the questions
         randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
                 .questionDAO().getSelectedQuiz(weekSpecified);
         generateQ(randomQuestionsFromWeek);
@@ -83,51 +86,54 @@ public class QuizActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
+                //If state = 0 do the following
                 if (UserValueCapture.quizActivityState == 0) {
-                    String counterString = Integer.toString(counter);
-                    Log.d("Click counter increment", counterString);
                     questionList = randomQuestionsFromWeek;
+                    //passes the questionList to the method checkAnswer to see if the answer is correct
                     checkAnswer(questionList);
+                    //Increments the counter
                     counter++;
                     String text = counter + "/10 Answered";
+                    //Updates counter on the Quiz Activity
                     counterTV.setText(text);
                     Button buttonApply = findViewById(R.id.nextQ);
+                    //If it's the last question the text on the button will change to Finish Quiz
                     if(counter == 10){
                         buttonApply.setText("Finish Quiz");
                     }
+                    //Else the text on the button will change to Next Question
                     else{
                         buttonApply.setText("Next Question > ");
                     }
-                    //Insert data into the database for the quiz result including the session id
+                    //if the state is = 1 do the following.
+                    // Main purpose of state = 1 is to restart the quizactivity for the next question
                 }
-                //Ideally we should send the data of the radioButton selected to a DB along with the session id and the question id
-                //This button clicked should also active generate() to go to the next question, however an if statement must be used to check if an option has selected then we increment counter
-                //there should be also an if statement checking if the counter is > 10. If that is the case we need to diver to a method which will have an intent to go the quiz
-                //finished activity
                 else if(UserValueCapture.quizActivityState == 1){
+                    //Gets the id of the radio button clicked
                     int radioID = radioGroup.getCheckedRadioButtonId();
+                    //Allocates that id to the class variable radioButton
                     radioButton = findViewById(radioID);
-                    //questionTV.setText("Your choice : " + radioButton.getText());
                     Button buttonApply = findViewById(R.id.nextQ);
+                    //ButtonApply disappears
                     buttonApply.setVisibility(View.GONE);
+                    //If counter is > 9 or 10 (since we limited it to 10 questions) it will call a method which will start the quiz finished activity
                     if (counter > 9) {
                         goToFinished();
+                        //Else it generates the next question
                     } else {
                         buttonApply.setText("Review Question");
                         questionList = randomQuestionsFromWeek;
                         generateQ(questionList);
                         reviewTV.setVisibility(View.INVISIBLE);
-                        //Insert data into the database for the quiz result including the session id
-
                     }
+                    //Resets the state to equal to 0 which is for checking answers
                     UserValueCapture.setQuizActivityState(0);
-                    Log.d("State 1", "The state at the end is "+ UserValueCapture.quizActivityState);
                 }
             }
 
         });
     }
-    // Null pointer exception stems from here, questionList being returned is apparently blank
+//Extracts the questions from a csv
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Question> readCSV() throws IOException {
         List<Question> questionList = new ArrayList<>();
@@ -152,7 +158,7 @@ public class QuizActivity extends AppCompatActivity {
         }
         return questionList;
     }
-
+//The list of questions is passed here and based on the counter this method will generate a new question each time
     private void generateQ(List<Question> list){
         Question Quiz = list.get(counter);
         String question = ((Question) Quiz).getInfo();
@@ -174,15 +180,14 @@ public class QuizActivity extends AppCompatActivity {
 
         clearColourRadioGroup(radioButton1, radioButton2, radioButton3, radioButton4);
     }
-
+//Method to identify the radioButton selected
     public void checkButton(View V){
         int radioID = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioID);
         Button buttonApply = findViewById(R.id.nextQ);
         buttonApply.setVisibility(View.VISIBLE);
-        //Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(), Toast.LENGTH_SHORT).show();
     }
-
+//Method to go to QuizActivity Finished and to finish this activity
     public void goToFinished(){
         Intent intent = new Intent(this,QuizFinishedActivity.class);
         intent.putExtra("Score", score);
@@ -191,23 +196,23 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-
+//This methods checks to see if the answers selected are correct
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void checkAnswer(List<Question> list){
         int radioID = radioGroup.getCheckedRadioButtonId();
         View radioButton = radioGroup.findViewById(radioID);
+        //Gets the int of the index of the radio button selected
         int idx = radioGroup.indexOfChild(radioButton);
+        //Message saying whether you're right or wrong is set to be visible
         reviewTV.setVisibility(View.VISIBLE);
         Question Quiz = list.get(counter);
+        //Extract what is the correct option for that Question
         String correctOption = Quiz.getCorrect_option();
+        //Converts the correct option string into a int which is used to compare against the idx
         int correctIndex = correctConverter(correctOption);
-        Log.d("Correct Option", Quiz.getCorrect_option());
         View test = radioGroup.getChildAt(correctIndex);
         int correctRadioId = test.getId();
-        Log.d("index", "radio idx: " + idx);
-        Log.d("Correct index", "crt idx: " + correctIndex);
-        Log.d("Correct id", "crt id: " + correctRadioId);
-
+        //Test to see if option selected is correct. Will visual elements if correct
         if(idx == correctIndex){
             reviewTV.setText("Correct. Nice work!");
             reviewTV.setTextColor(getColor(R.color.Green));
@@ -218,6 +223,7 @@ public class QuizActivity extends AppCompatActivity {
             scoreTV.setText(text);
 
         }
+        //Test to see if option selected is correct. Will change visual elements if incorrect
         else if(idx != correctIndex){
             reviewTV.setText("You have chosen the wrong answer.");
             reviewTV.setTextColor(getColor(R.color.Red));
@@ -227,10 +233,10 @@ public class QuizActivity extends AppCompatActivity {
             radioButtontemp.setBackgroundColor(getColor(R.color.Green));
             radioButtontemp.setTextColor(getResources().getColor(R.color.secondaryColor));
         }
+        //Changes the state to 1 to allow the user to proceeds to the next question and geneate Q if they are under 10
         UserValueCapture.setQuizActivityState(1);
-        Log.d("Answer Checker", "State of button is " + UserValueCapture.quizActivityState);
     }
-
+    //When called it resets the visual state of the radio buttons
     public void clearColourRadioGroup(RadioButton radioButton1, RadioButton radioButton2, RadioButton radioButton3, RadioButton radioButton4){
 
         radioGroup.clearCheck();
@@ -246,7 +252,7 @@ public class QuizActivity extends AppCompatActivity {
         radioButton4.setTextColor(getColorStateList(R.color.radio_flat_text_selector));
 
     }
-
+    //Coverts the string formate of the correct option into an int value we can work with
     public int correctConverter(String correctOption){
         Log.d("Correct Converter", correctOption);
         String option1 = "option_1";
@@ -276,7 +282,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
     }
-
+    //Method for the progressbar, which increments everytime a question is answered. This is a discriminate progress bar.
     public void progressBarThread(final Handler mHandler){
         new Thread(new Runnable() {
             @Override

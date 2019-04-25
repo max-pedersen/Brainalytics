@@ -21,12 +21,12 @@ import org.maxpedersen.maquiz.ui.main.SectionsPagerAdapter;
 import java.util.List;
 
 public class ContentDetailedSlide extends AppCompatActivity {
-
+    //Declaring attributes that is needed for this class
     private FloatingActionButton fab;
     private static int i;
     private String contentTitle;
     private String title;
-
+    //On creation we determine the Adapter classes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +34,16 @@ public class ContentDetailedSlide extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-
+        //We also declare the tabs at the top of the content slider adapter
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         fab = findViewById(R.id.fab);
-
+        //We get
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
-        // brief note on notifyDataSet
+        // Because the content slider view is determined dynamically, the pager need to know when the data has changed in order to change the layout to suire the data
         sectionsPagerAdapter.notifyDataSetChanged();
+        //Sets an onclick listener for the YouTube FAB
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,15 +52,15 @@ public class ContentDetailedSlide extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //Retrives the title of the content for using the getTitles method for the youtubeFAB method
         contentTitle = getTitles();
         youtubeFAB(fab);
     }
-
+    //Global variable to allow the ui.main classes to access which index was clicked so they can access the properties of the object
     static public int getI(){
         return i;
     }
-
+    //Determines the scenario as to wether or not to show the YouTube FAB
     public void youtubeFAB(FloatingActionButton fab){
         if(contentTitle.equals("Knowledge sharing articles & videos")) {
             fab.show();

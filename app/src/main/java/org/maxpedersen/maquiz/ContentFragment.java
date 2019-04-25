@@ -21,7 +21,7 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     private RecyclerView mRecyclerView;
     private ContentAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutMaanger;
-
+    //Content Fragment with recycler view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
         buildRecyclerAdapter(rootView, list);
         return rootView;
     }
-
+    //Building the recyclerview
     public void buildRecyclerAdapter(View rootView, ArrayList<Content> list){
         mRecyclerView = rootView.findViewById(R.id.contentRecyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -39,13 +39,14 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
         mRecyclerView.setLayoutManager(mLayoutMaanger);
         mRecyclerView.setAdapter(mAdapter);
     }
-
+    //When clicked this method is called to start an intent
     public void extract(int index){
         Intent intent = new Intent(getContext(), ContentDetailedSlide.class);
+        //RecyclerView index clicked passed onto the next activity
         intent.putExtra("arrayIdx", index);
         startActivity(intent);
     }
-
+    //Implements the interface onNoteClick
     @Override
     public void onNoteClick(int position) {
         Log.d("main", "onNoteClicked: clicked" + position);

@@ -9,7 +9,7 @@ import java.util.Date;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-
+//Results class to instantiate result objects
 @Entity(foreignKeys = @ForeignKey(entity=User.class,
         parentColumns="z_id",
         childColumns ="z_id",

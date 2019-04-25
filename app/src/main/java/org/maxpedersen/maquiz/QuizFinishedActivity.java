@@ -24,7 +24,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 
 public class QuizFinishedActivity extends AppCompatActivity {
-
+    //Sets out the variable for this class
     TextView title;
     TextView userMsg;
     TextView scoreTV;
@@ -39,22 +39,23 @@ public class QuizFinishedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_finished);
-
+        //Attaches homeBtn to a UI element
         homeBtn = findViewById(R.id.homeButton);
         onClick(homeBtn);
-
+        //Gets the Extra value that was passed through the intent
         Intent intent = getIntent();
         int score = intent.getIntExtra("Score", 0);
         updateResults(score);
-
+        //Creates a result object to add a record into the results DAO to the DB
         Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal);
         DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(resultFromQuiz);
-        Log.d(" from result methods", " " + resultFromQuiz.toString() + " updated to " + score);
-
+        //This will provide the data needed to create the piechart in the activity
         inflatePieChart(score);
+        //This will animate the elements in the activity
         animationOfElements();
     }
-
+    //This inflates the quiz activity to have dynamic text to suit the name of the user and their
+    // score along with variable path depending on their performance (inspect the if & else statements)
     public void updateResults(int score){
 
         int xp = score*10;
@@ -82,7 +83,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         scoreTV.setText(scoreTotal);
         XPTV.setText(xpGained);
     }
-
+    //On click method for the goHome button
     private void onClick(Button button){
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -90,12 +91,12 @@ public class QuizFinishedActivity extends AppCompatActivity {
             }
         });
     }
-
+    //Method to go home
     public void goHome(){
         Intent newIntent = new Intent(this, MainActivity.class);
         startActivity(newIntent);
     }
-
+    //Creates a pie chart. This is from a library called MPAndroid from github
     public void inflatePieChart(int right){
         int correct = right;
         int wrong = 10-correct;
@@ -124,11 +125,11 @@ public class QuizFinishedActivity extends AppCompatActivity {
         PieData data = new PieData((dataSet));
         pieChart.setData(data);
     }
-
+    //This animates the elements
     public void animationOfElements (){
 
         float transparency = 0.0f;
-
+        //Sets all elements to be invisible
         title.setAlpha(transparency);
         userMsg.setAlpha(transparency);
         reaction.setAlpha(transparency);
@@ -137,7 +138,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         XPTV.setAlpha(transparency);
         pieChart.setAlpha(transparency);
         xpGraphic.setAlpha(transparency);
-
+        //Gives Specific instructions to animate each elements
         ObjectAnimator animateResult = ObjectAnimator.ofFloat(title, View.ALPHA, 0.0f,1.0f).setDuration(1000);
         ObjectAnimator animateUserMsg = ObjectAnimator.ofFloat(userMsg, View.ALPHA, 0.0f,1.0f).setDuration(500);
         ObjectAnimator animateEmoji = ObjectAnimator.ofFloat(reaction, View.ALPHA, 0.0f,1.0f).setDuration(500);
@@ -146,15 +147,15 @@ public class QuizFinishedActivity extends AppCompatActivity {
         ObjectAnimator animateXPTV = ObjectAnimator.ofFloat(XPTV, View.ALPHA, 0.0f,1.0f).setDuration(400);
         ObjectAnimator animateGraph = ObjectAnimator.ofFloat(pieChart, View.ALPHA, 0.0f,1.0f).setDuration(400);
         ObjectAnimator animateXPGraphic = ObjectAnimator.ofFloat(xpGraphic, View.ALPHA, 0.0f,1.0f).setDuration(400);
-
+        //Grouping the elements to be animatec
         AnimatorSet setFinal = new AnimatorSet();
         AnimatorSet subSetFirst = new AnimatorSet();
         AnimatorSet subSetSecond = new AnimatorSet();
-
+        //Setting order of animation
         subSetFirst.playTogether(animateUserMsg, animateEmoji, animateButton);
         subSetSecond.playTogether(animateScoreTV, animateXPTV, animateGraph, animateXPGraphic);
         setFinal.playSequentially(animateResult, subSetFirst, subSetSecond);
-
+        //Start the animation
         setFinal.start();
     }
 }

@@ -20,7 +20,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     public void setOnItemClickListener(QuizAdapter.OnItemClickListener listener){
         mListener = listener;
     }
-
+    //Creates the viewholders
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView mTextView;
         QuizAdapter.OnNoteListener OnNoteListener;
@@ -37,12 +37,13 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         }
     }
 
-
+    //Constructor for the adpater to allow the class to pass in a list and an OnNoteListener to
+    // allow for the recyclerview to be filled and cliked
     public QuizAdapter(ArrayList<Content> contentList, QuizAdapter.OnNoteListener OnNoteListener){
         mList = contentList;
         this.mOnNoteListener = OnNoteListener;
     }
-
+    //ViewHolder is created. The primary purpose of this is to link the cardview to the adapter
     @NonNull
     @Override
     public QuizAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -50,19 +51,19 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         QuizAdapter.ViewHolder vh = new ViewHolder(v, mOnNoteListener);
         return vh;
     }
-
+    //When the ViewHolder has been established, the values within the cardview will be assigned
     @Override
     public void onBindViewHolder(@NonNull QuizAdapter.ViewHolder holder, int i) {
         Content contentItem = mList.get(i);
         String cardText = contentItem.getTopic();
         holder.mTextView.setText(cardText);
     }
-
+    //gets the size of the recycler view
     @Override
     public int getItemCount() {
         return mList.size();
     }
-
+    //Interface of OnNoteListener
     public interface OnNoteListener{
         void onNoteClick(int position);
     }

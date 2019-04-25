@@ -31,7 +31,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home,container, false);
-
         return rootView;
     }
 
@@ -42,8 +41,6 @@ public class HomeFragment extends Fragment {
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 //News results page is navigated to
                 Intent intent = new Intent(getContext(),NewsActivity.class);
                 startActivity(intent);
@@ -58,22 +55,16 @@ public class HomeFragment extends Fragment {
         Log.d("Home Fragment", zIDString);
         getUserDetails(zIDPS, userMsg);
     }
-
+    //Retrieves the details needed to update the home fragment
     public void getUserDetails(int zIDPS, String show){
-
         int zID = zIDPS;
-        //Int is still a constant
-        //Query the database
-
         int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().resultDAO().getSummedScore(zID);
-
-
         int score = scoreFromDB;
         int xpData = score*10;
         String xp = String.valueOf(xpData);
         changingTextView(show, zID, xp);
     }
-
+    //Updates the home fragement
     public void changingTextView(String name, int zID, String xp){
         TextView nameTV = (TextView) getView().findViewById(R.id.welcomeUserTV);
         TextView xpTV = (TextView) getView().findViewById(R.id.xpNumber);

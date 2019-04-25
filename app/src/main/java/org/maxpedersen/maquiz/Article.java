@@ -7,7 +7,8 @@ import com.google.gson.annotations.SerializedName;
 public class Article {
 
     private String defaultString = "no Source Available";
-
+    //This is the class used to map the JSON objects to a Java Object from the news API. Some noteable features is the use of an if statement in the constructor to deal with
+    //dirty/missing data
     public Article(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
         if(source == null) {
             this.source = new Source(defaultString, defaultString);

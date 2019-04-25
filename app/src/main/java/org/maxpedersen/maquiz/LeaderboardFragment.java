@@ -42,8 +42,8 @@ public class LeaderboardFragment extends Fragment {
 
     //This method sets out the table layout dynamically based on the UserResultJoin list returned by the getTopUsers method
     private void inflateTable(TableLayout tableLayout){
-
-        for(int i = 0; i < 9; i++){
+        //For loop to go through the list and populate the database, i=10 because we only want to limite the leaderboard to top 10
+        for(int i = 0; i < 10; i++){
             TableRow row = new TableRow(context);
             row.setGravity(Gravity.CENTER);
             row.setWeightSum(3);
