@@ -114,7 +114,6 @@ public class UserDetail extends AppCompatActivity
         if (evaluator > 0) {
             // User thus exists in the database
             input = "Welcome back " + firstNameInput;
-            Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
             // show toast
             // then store the zID so that you can query across other things
             UserValueCapture.setUserMsg(input);
@@ -125,7 +124,6 @@ public class UserDetail extends AppCompatActivity
                     .userDAO().insertUser(signedInUser);
             //Welcomes the user based on name inputt
             input = "Welcome " + firstNameInput;
-            Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
             UserValueCapture.setUserMsg(input);
         }
         UserValueCapture.setzIDGlobal(zID);
