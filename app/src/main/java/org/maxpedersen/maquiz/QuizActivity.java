@@ -145,7 +145,7 @@ public class QuizActivity extends AppCompatActivity {
             Log.d("hello", line);
             Question q = new Question(0, Integer.parseInt(qAttrs[0]), qAttrs[1],
                     qAttrs[2], qAttrs[3], qAttrs[4], qAttrs[5], qAttrs[6], qAttrs[7],
-                    qAttrs[8], qAttrs[9]);
+                    qAttrs[8]);
             Log.d("hello", q.toString());
             i = i + 1;
             questionList.add(q);

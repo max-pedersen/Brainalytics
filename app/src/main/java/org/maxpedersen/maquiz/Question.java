@@ -41,8 +41,6 @@ public class Question {
     /*@ColumnInfo(name = "visual_cue")
     private Blob visual_cue; */
 
-    @ColumnInfo(name = "youtube_info")
-    private String youtube_info;
 
     @ColumnInfo(name = "content_title")
     private String content_title;
@@ -50,7 +48,7 @@ public class Question {
     public Question(int id, int week, String info, String option_1, String option_2, String option_3, String option_4,
                     String correct_option, String question_type,
             // Blob visual_cue, TODO resolve BLOB issue
-                    String youtube_info, String content_title) {
+                   String content_title) {
         this.id = id;
         this.week = week;
         this.info = info;
@@ -61,7 +59,6 @@ public class Question {
         this.correct_option = correct_option;
         this.question_type = question_type;
         /*this.visual_cue = visual_cue; */
-        this.youtube_info = youtube_info;
         this.content_title = content_title;
     }
 
@@ -147,14 +144,6 @@ public class Question {
         this.visual_cue = visual_cue;
     }
     */
-
-    public String getYoutube_info() {
-        return youtube_info;
-    }
-
-    public void setYoutube_info(String youtube_info) {
-        this.youtube_info = youtube_info;
-    }
 
     public String getContent_title() {
         return content_title;
