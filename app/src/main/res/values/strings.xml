@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">M&amp;AQuiz</string>
+    <string name="app_name">brainalytics</string>
     <string name="Name">Generic Quiz Application</string>
     <string name="GetSarted">Get Started!</string>
     <string name="title_activity_first_time_useage">FirstTimeUseage</string>
@@ -61,5 +61,8 @@
     <string name="description">description</string>
     <string name="Title">Title</string>
     <string name="publisher">publisher</string>
+    <string name="youtubeTitle">Video Title</string>
+    <string name="brainalytics">Brainalytics</string>
+    <string name="back">Go back to content</string>
 
 </resources>

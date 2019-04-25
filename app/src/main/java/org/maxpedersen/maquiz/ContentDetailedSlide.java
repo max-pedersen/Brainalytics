@@ -47,6 +47,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ContentDetailedSlide.this,YoutubeActivity.class);
+                intent.putExtra("arrayIdx", i);
                 startActivity(intent);
             }
         });
