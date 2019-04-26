@@ -39,4 +39,4 @@ The mobile application created enables student to test their knowledge of on Bus
   * Uses a clean colour pallete 
   * Provides a layer of compatitiveness to the Brainalytics
   
-_Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (5164270) for Information Systems course INFS3634: Mobile App Development_
+_Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (z5164270) for Information Systems course INFS3634: Mobile App Development_
