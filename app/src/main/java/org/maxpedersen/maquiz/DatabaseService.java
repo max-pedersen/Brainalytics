@@ -20,6 +20,7 @@ impemented it */
                     appDatabase = RoomAsset.databaseBuilder(context, AppDatabase.class, "prpeopulated.db")
                             .allowMainThreadQueries().build();
                     Log.d( " from databaseservice", appDatabase.toString());
+
         }
 
         public static DatabaseService getDbInstance(Context context) {
