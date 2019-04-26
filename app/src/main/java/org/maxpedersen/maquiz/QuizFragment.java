@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import org.maxpedersen.maquiz.R;
 
 import java.util.ArrayList;
-
+//Fragement with a recycler view to display the different weeks of topics to be quizzed on
 public class QuizFragment extends Fragment implements QuizAdapter.OnNoteListener {
     private RecyclerView mRecyclerView;
     private QuizAdapter mAdapter;

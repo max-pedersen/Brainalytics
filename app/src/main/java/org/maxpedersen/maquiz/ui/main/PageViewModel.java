@@ -14,8 +14,11 @@ import java.util.List;
 
 public class PageViewModel extends ViewModel {
 
+    //This class determines what data should be inputted into the content slide fragments
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
+        //This method determines how many fragements are in the activity by getting the i value from Sections Pager Adapter. Based on this value the if
+        //statements return the content in relation to that page
         @Override
         public String apply(Integer input) {
             int i = ContentDetailedSlide.getI();

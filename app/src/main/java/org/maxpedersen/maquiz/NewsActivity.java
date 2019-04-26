@@ -49,6 +49,7 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
                 NewsArticleResponse object = response.body();
                 int lengthOfArray = object.getTotalResults();
                 mList = new ArrayList<Article>();
+                //Uses the length of the JSON Array to use a for loop to extract the array and instantiate the Java object and add it to the array list
                 for(int i=0; i < lengthOfArray; i++) {
                     Source tempSource = object.getArticles().get(i).getSource();
                     String tempAuthor = object.getArticles().get(i).getAuthor();
@@ -73,7 +74,7 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
             }
         });
     }
-
+    //Builds the recyclerview to display the summaries news articles in cards
     public void buildRecyclerView(ArrayList<Article> list) {
         mRecyclerView = findViewById(R.id.newsRecyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -82,14 +83,14 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
-
+    //When clicked this method will divert the user to the URL where the news article is stored
     public void extract(int index){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String link = mList.get(index).getUrl();
         intent.setData(Uri.parse(link));
         startActivity(intent);
     }
-
+    //Implements the onNoteClick and passes the RecyclerView index data to the extract method
     @Override
     public void onNoteClick(int position) {
         Log.d("main", "onNoteClicked: clicked" + position);

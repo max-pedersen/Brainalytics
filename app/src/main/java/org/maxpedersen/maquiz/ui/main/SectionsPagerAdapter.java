@@ -47,7 +47,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
+        // This method determines how many slides there should be. When it finds an attribute with "" it knows that there isn't any content will limit the slides respectively
         i = ContentDetailedSlide.getI();
         List<Content> list = new ArrayList<>();
         list = Content.getContent();

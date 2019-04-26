@@ -4,7 +4,7 @@ package org.maxpedersen.maquiz;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
+    //Java class for the JSON objects from the NewsAPI
 public class NewsArticleResponse {
     @SerializedName("status")
     @Expose
