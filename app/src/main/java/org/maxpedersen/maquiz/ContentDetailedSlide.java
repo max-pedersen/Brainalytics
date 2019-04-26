@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.barteksc.pdfviewer.PDFView;
+
 import org.maxpedersen.maquiz.R;
 
 import org.maxpedersen.maquiz.ui.main.PlaceholderFragment;
@@ -33,6 +35,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
         setContentView(R.layout.activity_content_detailed_slide);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
+
         viewPager.setAdapter(sectionsPagerAdapter);
         //We also declare the tabs at the top of the content slider adapter
         TabLayout tabs = findViewById(R.id.tabs);
@@ -40,9 +43,9 @@ public class ContentDetailedSlide extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
-        // Because the content slider view is determined dynamically, the pager need to know when the data has changed in order to change the layout to suire the data
+        // Because the content slider view is determined dynamically, the pager needs to know when the data has changed in order to change the layout to suire the data
         sectionsPagerAdapter.notifyDataSetChanged();
-        //Sets an onclick listener for the YouTube FAB
+        //Sets an onclick listener for the YouTube button
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,14 +62,14 @@ public class ContentDetailedSlide extends AppCompatActivity {
     static public int getI(){
         return i;
     }
-    //Determines the scenario as to wether or not to show the YouTube FAB
+    //Determines the scenario as to whether or not to show the YouTube FAB
     public void youtubeFAB(FloatingActionButton fab){
         if(contentTitle.equals("Knowledge sharing articles & videos")) {
             fab.show();
         }
         else {
             fab.hide();
-        };
+        }
     }
 
     public String getTitles(){

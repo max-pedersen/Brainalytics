@@ -105,15 +105,16 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
         public void onVideoStarted() {
             //Add XP when a user watches a video
             Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_LONG).show();
-            Result tempObj = new Result(0, 1, UserValueCapture.zIDGlobal);
+            Result tempObj = new Result(0, 1, UserValueCapture.zIDGlobal, "video content");
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 
         @Override
         public void onVideoEnded() {
             //Add XP when a user finishes a video
-            Toast.makeText(YoutubeActivity.this, "Video has ended", Toast.LENGTH_LONG).show();
-            Result tempObj = new Result(0, 3, UserValueCapture.zIDGlobal);
+            Toast.makeText(YoutubeActivity.this, "Great work " +
+                    UserValueCapture.nameGlobal + " , you've earned 3 XP!", Toast.LENGTH_LONG).show();
+            Result tempObj = new Result(0, 3, UserValueCapture.zIDGlobal, "video content");
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 

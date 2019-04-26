@@ -11,8 +11,16 @@ import java.util.List;
         @Insert
         void insert(UserResultJoin userResultJoin);
 
-        @Query("SELECT u.first_name, u.z_id, SUM(r.score) as total_score FROM Result r INNER JOIN User u on u.z_id = r.z_id GROUP BY u.z_id ORDER BY SUM(r.score) DESC LIMIT 10")
+        @Query("SELECT u.first_name, u.z_id, SUM(r.score) as total_score FROM Result r INNER JOIN " +
+                "User u on u.z_id = r.z_id GROUP BY u.z_id ORDER BY SUM(r.score) DESC LIMIT 10")
                 List<UserResultJoin> getTopUsers();
+
+
+        /*@Query("SELECT (SELECT SUM(score) FROM Result r WHERE z_id LIKE :mZ_id)  " +
+                " - " +
+                "(SELECT SUM(score) FROM Result r WHERE z_id IN " +
+                "(SELECT u.z_id FROM Result r INNER JOIN User u on u.z_id = r.z_id GROUP BY u.z_id ORDER BY SUM(r.score) DESC LIMIT 10))")
+                 int checkIfUserInTop10(int mZ_id);  */
 
 
 

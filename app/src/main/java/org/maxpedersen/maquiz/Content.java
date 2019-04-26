@@ -120,3 +120,118 @@ public class Content {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+/* package org.maxpedersen.maquiz;
+
+import java.util.ArrayList;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+
+//Class for contents. To be used in conjuction with DAO
+
+
+@Entity
+public class Content {
+
+    @PrimaryKey
+    private int id;
+
+    private String week;
+    private String topic;
+    private String content_page1;
+    private String content_page2;
+    private String content_page3;
+    private String content_page4;
+
+    private ArrayList<String> videos;
+
+//The constructor to initiate the class
+
+
+    public Content(int id, String week, String topic,
+                   String content_page1, String content_page2, String content_page3, String content_page4, ArrayList<String> videos) {
+        this.id = id;
+        this.week = week;
+        this.topic = topic;
+        this.content_page1 = content_page1;
+        this.content_page2 = content_page2;
+        this.content_page3 = content_page3;
+        this.content_page4 = content_page4;
+        this.videos = videos;
+    }
+
+    public String getWeek() {
+        return week;
+    }
+
+    public void setWeek(String course) {
+        this.week = course;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getContent_page1() {
+        return content_page1;
+    }
+
+    public void setContent_page1(String content_page1) {
+        this.content_page1 = content_page1;
+    }
+
+    public String getContent_page2() {
+        return content_page2;
+    }
+
+    public void setContent_page2(String content_page2) {
+        this.content_page2 = content_page2;
+    }
+
+    public String getContent_page3() {
+        return content_page3;
+    }
+
+    public void setContent_page3(String content_page3) {
+        this.content_page3 = content_page3;
+    }
+
+    public String getContent_page4() {
+        return content_page4;
+
+    }
+
+    public void setContent_page4(String content_page4) {
+        this.content_page4 = content_page4;
+    }
+
+    public ArrayList<String> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(ArrayList<String> videos) {
+        this.videos = videos;
+    }
+
+    //ArrayList which needs to be removed with the original content
+    public static ArrayList<Content> getContent() {
+        ArrayList<Content> weeklyContent = new ArrayList<>();
+
+        return weeklyContent;
+
+    }
+} */
