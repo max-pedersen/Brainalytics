@@ -23,7 +23,7 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     static final String API_KEY = "AIzaSyBka9Qp1HYeNOCMHcBV9Em3C_CIaMAh7rk";
     public String YT_VIDEO_ID = "5Zg-C8AAIGg";
     private int i;
-    //Set up varaibles for youtube player API
+    //Set up variables for youtube player API
     private YouTubePlayerView myYoutubePlayerView;
     private YouTubePlayer.OnInitializedListener initializedListener;
     private Button goBackBtn;
@@ -105,8 +105,6 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
         public void onVideoStarted() {
             //Add XP when a user watches a video
             Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_LONG).show();
-            Result tempObj = new Result(0, 1, UserValueCapture.zIDGlobal, "video content");
-            DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 
         @Override
