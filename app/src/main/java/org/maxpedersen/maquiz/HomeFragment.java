@@ -58,7 +58,14 @@ public class HomeFragment extends Fragment {
     //Retrieves the details needed to update the home fragment
     public void getUserDetails(int zIDPS, String show){
         int zID = zIDPS;
-        int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().resultDAO().getSummedScore(zID);
+
+        //Int is still a constant
+        //Query the database
+
+        int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().userResultJoinDAO().getUserSummedScore(zID);
+
+
+
         int score = scoreFromDB;
         int xpData = score*10;
         String xp = String.valueOf(xpData);

@@ -11,7 +11,8 @@ import java.util.Date;
 //Class for questions. To be use in conjunction with DAO.
 @Entity
 public class Question {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+            //(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "week")

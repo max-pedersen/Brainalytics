@@ -72,10 +72,11 @@ public class QuizActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().questionDAO().insertQuestionBatch(questionsFromCSV);
+
         //The statement belows queries the database for 10 question using the parameter weekSpecified, which is the index of the Array List + 1. i.e.
         // If someone presses Week 3 it's index would be 2 and then + 1. That would be 3. 3 would be used as a parameter when getting the questions
-        randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+
+      randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
                 .questionDAO().getSelectedQuiz(weekSpecified);
         generateQ(randomQuestionsFromWeek);
         progressBarThread(mHandler);

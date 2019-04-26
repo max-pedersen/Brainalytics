@@ -15,8 +15,9 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 //This class establishes the databases which are used in application
-    @Database(entities = {Question.class, User.class, Session.class, Result.class, UserResultJoin.class}
-    , version = 1, exportSchema = false)
+    @Database(entities = {Question.class, Result.class, Session.class, User.class, UserResultJoin.class}
+    , version = 2, exportSchema = false)
+    // need to use version 2 if using RoomAsset library, otherwise version 1
     @TypeConverters({Converters.class})
     public abstract class AppDatabase extends RoomDatabase{
 
@@ -66,6 +67,8 @@ import java.util.concurrent.Executors;
 //
 //        return questionsFromCSV;
 //    }
+
+
 }
 
 
