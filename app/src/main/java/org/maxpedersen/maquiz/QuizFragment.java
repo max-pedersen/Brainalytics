@@ -15,11 +15,11 @@ import android.view.ViewGroup;
 import org.maxpedersen.maquiz.R;
 
 import java.util.ArrayList;
-//Fragement with a recycler view to display the different weeks of topics to be quizzed on
+//Fragment with a RecyclerView to display the different weeks of topics to be quizzed on
 public class QuizFragment extends Fragment implements QuizAdapter.OnNoteListener {
     private RecyclerView mRecyclerView;
     private QuizAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutMaanger;
+    private RecyclerView.LayoutManager mLayoutManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,9 +35,9 @@ public class QuizFragment extends Fragment implements QuizAdapter.OnNoteListener
     public void buildRecyclerAdapter(View rootView, ArrayList<Content> list){
         mRecyclerView = rootView.findViewById(R.id.contentRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutMaanger = new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new QuizAdapter(list,this);
-        mRecyclerView.setLayoutManager(mLayoutMaanger);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
 

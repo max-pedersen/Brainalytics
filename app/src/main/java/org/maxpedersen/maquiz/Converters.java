@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Converters {
-    //The Converters class is used to convert Date times to a format in which they can be stored in Room (Unix timestamp)
+    /*The Converters class is used to convert Date times to a format in which they can be stored in
+    Room (Unix timestamp (i.e. Epoch time) */
+
     @TypeConverter
     public static Date fromTimestamp(Long value) {
         return value == null ? null : new Date(value);

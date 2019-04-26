@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
-    //Switch statement are used to alternate between fragements using the bottom navigation menu bar
+    //A switch statement has been used to alternate between fragments using the bottom navigation menu bar
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override

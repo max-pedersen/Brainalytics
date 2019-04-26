@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-//Content Adapters purpose is to inflate the card views which inturn inflate the recyclerviews
+//Content Adapter's purpose is to inflate the card views which inturn inflate the RecyclerViews
+
 public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHolder>  {
     private ArrayList<Content> mList;
     private OnItemClickListener mListener;

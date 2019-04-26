@@ -64,7 +64,7 @@ public class QuizActivity extends AppCompatActivity {
         onClick(buttonApply);
         final Handler mHandler = new Handler();
         Intent intent = getIntent();
-        int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
+        int weekSpecified = intent.getIntExtra("arrayIdx", 1) + 2 ;
         //TODO remove once pre fill database works
         questionsFromCSV = null;
         try {
@@ -74,7 +74,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         //The statement belows queries the database for 10 question using the parameter weekSpecified, which is the index of the Array List + 1. i.e.
-        // If someone presses Week 3 it's index would be 2 and then + 1. That would be 3. 3 would be used as a parameter when getting the questions
+        // If someone presses Week 3 its index would be 2 and then + 1. That would be 3. 3 would be used as a parameter when getting the questions
 
       randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
                 .questionDAO().getSelectedQuiz(weekSpecified);
@@ -283,7 +283,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
     }
-    //Method for the progressbar, which increments everytime a question is answered. This is a discriminate progress bar.
+    //Method for the progressbar, which increments every time a question is answered. This is a discriminate progress bar.
     public void progressBarThread(final Handler mHandler){
         new Thread(new Runnable() {
             @Override

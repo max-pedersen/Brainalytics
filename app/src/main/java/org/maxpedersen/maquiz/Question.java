@@ -8,7 +8,7 @@ import com.opencsv.bean.CsvBindByName;
 import java.sql.Blob;
 import java.util.Date;
 
-//Class for questions. To be use in conjunction with DAO.
+//Class for questions. To be used in conjunction with DAO.
 @Entity
 public class Question {
     @PrimaryKey
@@ -38,10 +38,6 @@ public class Question {
 
     @ColumnInfo(name = "question_type")
     private String question_type;
-
-    /*@ColumnInfo(name = "visual_cue")
-    private Blob visual_cue; */
-
 
     @ColumnInfo(name = "content_title")
     private String content_title;

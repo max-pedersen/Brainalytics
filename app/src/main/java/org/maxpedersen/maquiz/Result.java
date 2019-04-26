@@ -40,6 +40,16 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         this.z_id = z_id;
     }
 
+    public Result(int id, int score, int z_id, String source_origin) {
+        this.id = id;
+        this.score = score;
+        // new Date() to pull exact time of creation
+        this.metadata_created_at = new Date();
+        this.time_taken = new Date();
+        this.z_id = z_id;
+        this.source_origin = source_origin;
+    }
+
     public int getId() {
         return id;
     }

@@ -38,6 +38,8 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
         progressDialog = new ProgressDialog(NewsActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
+
+
         /*Create handle for the RetrofitInstance interface*/
         NewsArticleService service = RetrofitClientInstance.getRetrofitInstance().create(NewsArticleService.class);
         Call<NewsArticleResponse> call = service.getRelevantArticles();

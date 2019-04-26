@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ContentFragment extends Fragment implements ContentAdapter.OnNoteListener {
     private RecyclerView mRecyclerView;
     private ContentAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutMaanger;
+    private RecyclerView.LayoutManager mLayoutManager;
     //Content Fragment with recycler view
     @Nullable
     @Override
@@ -34,9 +34,9 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     public void buildRecyclerAdapter(View rootView, ArrayList<Content> list){
         mRecyclerView = rootView.findViewById(R.id.contentRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutMaanger = new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new ContentAdapter(list,this);
-        mRecyclerView.setLayoutManager(mLayoutMaanger);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
     //When clicked this method is called to start an intent

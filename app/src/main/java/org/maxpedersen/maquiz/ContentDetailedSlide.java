@@ -38,7 +38,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         fab = findViewById(R.id.fab);
-        //We get
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
         // Because the content slider view is determined dynamically, the pager need to know when the data has changed in order to change the layout to suire the data
@@ -52,7 +51,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //Retrives the title of the content for using the getTitles method for the youtubeFAB method
+        //Retrieves the title of the content for using the getTitles method for the youtubeFAB method
         contentTitle = getTitles();
         youtubeFAB(fab);
     }

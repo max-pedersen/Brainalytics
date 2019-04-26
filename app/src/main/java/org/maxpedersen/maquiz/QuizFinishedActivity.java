@@ -47,7 +47,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         int score = intent.getIntExtra("Score", 0);
         updateResults(score);
         //Creates a result object to add a record into the results DAO to the DB
-        Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal);
+        Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal, "quiz");
         DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(resultFromQuiz);
         //This will provide the data needed to create the piechart in the activity
         inflatePieChart(score);
@@ -147,7 +147,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         ObjectAnimator animateXPTV = ObjectAnimator.ofFloat(XPTV, View.ALPHA, 0.0f,1.0f).setDuration(400);
         ObjectAnimator animateGraph = ObjectAnimator.ofFloat(pieChart, View.ALPHA, 0.0f,1.0f).setDuration(400);
         ObjectAnimator animateXPGraphic = ObjectAnimator.ofFloat(xpGraphic, View.ALPHA, 0.0f,1.0f).setDuration(400);
-        //Grouping the elements to be animatec
+        //Grouping the elements to be animated
         AnimatorSet setFinal = new AnimatorSet();
         AnimatorSet subSetFirst = new AnimatorSet();
         AnimatorSet subSetSecond = new AnimatorSet();
