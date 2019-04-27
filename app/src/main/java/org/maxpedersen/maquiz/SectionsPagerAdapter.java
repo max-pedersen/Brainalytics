@@ -48,14 +48,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         List<Content> list = new ArrayList<Content>();
         list = (ArrayList<Content>) DatabaseService.getDbInstance(mContext).getAppDatabase()
                 .contentDAO().getContents();
-        Log.d(" from list", list.get(i).toString() + list.get(0).toString() + " ok");
-        if(list.get(i).getContent_page2().equalsIgnoreCase("")){
+        if(list.get(i).getContent_page2().equalsIgnoreCase("empty")){
             return 1;
         }
-        if(list.get(i).getContent_page3().equalsIgnoreCase("")){
+        if(list.get(i).getContent_page3().equalsIgnoreCase("empty")){
             return 2;
         }
-        if(list.get(i).getContent_page4().equalsIgnoreCase("")){
+        if(list.get(i).getContent_page4().equalsIgnoreCase("empty")){
             return 3;
         }
         else{
