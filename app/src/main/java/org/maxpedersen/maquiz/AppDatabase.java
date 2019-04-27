@@ -9,7 +9,7 @@ import android.arch.persistence.room.TypeConverters;
 
 
 //This class establishes the databases which are used in application
-    @Database(entities = {Question.class, Result.class, Session.class, User.class, UserResultJoin.class}
+    @Database(entities = {Content.class, Question.class, Result.class, Session.class, User.class, UserResultJoin.class}
     , version = 2, exportSchema = false)
     // Since the RoomAsset library is used in DatabaseService, version = 2 has to be used here
     @TypeConverters({Converters.class})
@@ -21,6 +21,7 @@ import android.arch.persistence.room.TypeConverters;
         public abstract SessionDAO sessionDAO();
         public abstract ResultDAO resultDAO();
         public abstract UserResultJoinDAO userResultJoinDAO();
+        public abstract ContentDAO contentDAO();
 
 
 

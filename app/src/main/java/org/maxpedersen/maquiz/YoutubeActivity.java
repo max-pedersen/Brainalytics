@@ -16,6 +16,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class YoutubeActivity extends YouTubeBaseActivity  {
@@ -124,7 +125,8 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     private void inflateTitle(){
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
-        List<Content> list = Content.getContent();
+        List<Content> list = (ArrayList<Content>) DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+                .contentDAO().getContents();
         String youtubeTitle = list.get(i).getTopic();
         TextView youtubeTV = findViewById(R.id.youtubeTitleTV);
         youtubeTV.setText(youtubeTitle);

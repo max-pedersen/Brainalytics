@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">brainalytics</string>
+    <string name="app_name">Brainalytics</string>
     <string name="GetSarted">Get Started!</string>
     <string name="FirstName">Name</string>
     <string name="MainMenuWelcome">Welcome Back User</string>

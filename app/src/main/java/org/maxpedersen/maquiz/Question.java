@@ -3,10 +3,7 @@ package org.maxpedersen.maquiz;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import com.opencsv.bean.CsvBindByName;
 
-import java.sql.Blob;
-import java.util.Date;
 
 //Class for questions. To be used in conjunction with DAO.
 @Entity

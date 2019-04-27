@@ -3,10 +3,12 @@ package org.maxpedersen.maquiz;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,9 +34,11 @@ import org.maxpedersen.maquiz.R;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     Button btnNews;
+    LineChart historicalLc;
 
 // TODO revise having both onCreateView and onViewCreated in same class and fix access to button
     @Nullable
@@ -37,6 +51,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         btnNews = (Button) getView().findViewById(R.id.btnNews);
+
 
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +78,7 @@ public class HomeFragment extends Fragment {
         //Query the database
 
         int scoreFromDB =  DatabaseService.getDbInstance(this.getContext()).getAppDatabase().userResultJoinDAO().getUserSummedScore(zID);
+
 
 
 

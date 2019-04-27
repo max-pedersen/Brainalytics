@@ -29,10 +29,6 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary" />
 
-        <com.github.barteksc.pdfviewer.PDFView
-            android:id="@+id/pdfView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
@@ -51,6 +47,15 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#FFFFFF"
         app:srcCompat="@drawable/youtube" />
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_marginLeft="300px"
+        android:layout_marginTop="400px"
+        android:layout_marginEnd="300px"
+        android:layout_marginRight="300px" />
 
 
 </android.support.design.widget.CoordinatorLayout>

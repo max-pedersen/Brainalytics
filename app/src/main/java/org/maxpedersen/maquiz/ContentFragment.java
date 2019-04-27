@@ -26,7 +26,8 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_content,container, false);
-        ArrayList<Content> list = Content.getContent();
+        ArrayList<Content> list = (ArrayList<Content>) DatabaseService.getDbInstance(getContext()).getAppDatabase()
+                .contentDAO().getContents();
         buildRecyclerAdapter(rootView, list);
         return rootView;
     }
@@ -44,6 +45,7 @@ public class ContentFragment extends Fragment implements ContentAdapter.OnNoteLi
         Intent intent = new Intent(getContext(), ContentDetailedSlide.class);
         //RecyclerView index clicked passed onto the next activity
         intent.putExtra("arrayIdx", index);
+
         startActivity(intent);
     }
     //Implements the interface onNoteClick

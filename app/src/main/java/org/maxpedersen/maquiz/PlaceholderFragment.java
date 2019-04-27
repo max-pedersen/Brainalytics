@@ -1,4 +1,4 @@
-package org.maxpedersen.maquiz.ui.main;
+package org.maxpedersen.maquiz;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,7 @@ import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 
-import org.maxpedersen.maquiz.R;
-
-import org.maxpedersen.maquiz.Content;
-import org.maxpedersen.maquiz.ContentDetailedSlide;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,7 +62,8 @@ public class PlaceholderFragment extends Fragment {
 
     public String getTitle(){
         int i = ContentDetailedSlide.getI();
-        List<Content> list = Content.getContent();
+        List<Content> list = (ArrayList<Content>) DatabaseService.getDbInstance(getContext()).getAppDatabase()
+                .contentDAO().getContents();
         String title = list.get(i).getTopic();
         return title;
     }

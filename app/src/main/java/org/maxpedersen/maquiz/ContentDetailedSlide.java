@@ -3,22 +3,10 @@ package org.maxpedersen.maquiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-
-import com.github.barteksc.pdfviewer.PDFView;
-
-import org.maxpedersen.maquiz.R;
-
-import org.maxpedersen.maquiz.ui.main.PlaceholderFragment;
-import org.maxpedersen.maquiz.ui.main.SectionsPagerAdapter;
 
 import java.util.List;
 
@@ -36,6 +24,18 @@ public class ContentDetailedSlide extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
 
+
+        String variable = "Ch2.pdf";
+
+
+
+        /*PDFView pdfView = findViewById(R.id.pdfView);
+        pdfView.fromAsset(variable).
+                enableSwipe(true)
+                .swipeHorizontal(false).defaultPage(0).enableAnnotationRendering(false).password(null).scrollHandle(null).enableAntialiasing(true).spacing(0).load();
+       */
+
+
         viewPager.setAdapter(sectionsPagerAdapter);
         //We also declare the tabs at the top of the content slider adapter
         TabLayout tabs = findViewById(R.id.tabs);
@@ -43,9 +43,9 @@ public class ContentDetailedSlide extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
-        // Because the content slider view is determined dynamically, the pager needs to know when the data has changed in order to change the layout to suire the data
+        // Because the content slider view is determined dynamically, the pager needs to know when the data has changed in order to change the layout to show the data
         sectionsPagerAdapter.notifyDataSetChanged();
-        //Sets an onclick listener for the YouTube button
+        //Sets an onclick listener for the YouTube button */
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +73,8 @@ public class ContentDetailedSlide extends AppCompatActivity {
     }
 
     public String getTitles(){
-        List<Content> list = Content.getContent();
+        List<Content> list = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+                .contentDAO().getContents();
         String title = list.get(i).getTopic();
         return title;
     }
