@@ -38,6 +38,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     Button btnNews;
+    Button btnNews2;
     LineChart historicalLc;
 
 // TODO revise having both onCreateView and onViewCreated in same class and fix access to button
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         btnNews = (Button) getView().findViewById(R.id.btnNews);
+        btnNews2 = (Button) getView().findViewById(R.id.btnNews2);
 
 
         btnNews.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +60,18 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //News results page is navigated to
                 Intent intent = new Intent(getContext(),NewsActivity.class);
+                intent.putExtra("requestType", 1);
+
+                startActivity(intent);
+            }
+        });
+
+        btnNews2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //News results page is navigated to
+                Intent intent = new Intent(getContext(),NewsActivity.class);
+                intent.putExtra("requestType", 2);
                 startActivity(intent);
             }
         });

@@ -19,10 +19,14 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import java.util.ArrayList;
 import java.util.List;
 
+/* Class is based on Tim Buchalka's Introduction to Android Studio Programming Tutorial on a
+YouTube App
+ */
+
 public class YoutubeActivity extends YouTubeBaseActivity  {
     private static final String TAG = "YoutubeActivity";
     static final String API_KEY = "AIzaSyBka9Qp1HYeNOCMHcBV9Em3C_CIaMAh7rk";
-    public String YT_VIDEO_ID = "5Zg-C8AAIGg";
+    public String YT_VIDEO_ID;
     private int i;
     //Set up variables for youtube player API
     private YouTubePlayerView myYoutubePlayerView;
@@ -35,12 +39,16 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
         setContentView(R.layout.activity_youtube);
         goBackBtn = findViewById(R.id.buttonYoutubeView);
 
+        Intent intent = getIntent();
+        YT_VIDEO_ID = intent.getStringExtra("youtubeURI");
+
         initializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
                 youTubePlayer.setPlaybackEventListener(playbackEventListener);
                 youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
                 if (!wasRestored) {
+                    //youTubePlayer.cueVideo(UserValueCapture.uri_global);
                     youTubePlayer.cueVideo(YT_VIDEO_ID);
                 }
             }

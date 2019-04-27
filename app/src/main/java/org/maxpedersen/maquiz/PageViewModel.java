@@ -28,27 +28,26 @@ public class PageViewModel extends AndroidViewModel {
         public String apply(Integer input) {
             int i = ContentDetailedSlide.getI();
             List<Content> list = (ArrayList<Content>) DatabaseService.getDbInstance(getApplication().getApplicationContext()).getAppDatabase()
-                    .contentDAO().getContents();;
+                    .contentDAO().getContents();
             if(input == 1){
-                 String URI_TO_PASS = list.get(i).getContent_page1().split("URI:")[1];
-                 Log.d("from youtube method", URI_TO_PASS);
-                //return list.get(i).getContent_page1().split("URI:")[0]
-                return URI_TO_PASS;
+                //UserValueCapture.setSectionGlobal(list.get(i).getContent_page1().split("URI:")[1]);
+                return list.get(i).getContent_page1().split("URI:")[0];
 
             }
             if(input == 2){
-                String URI_TO_PASS = list.get(i).getContent_page2().split("URI:")[1];
-                Log.d("from youtube method", URI_TO_PASS);
+                //UserValueCapture.setSectionGlobal(list.get(i).getContent_page2().split("URI:")[1]);
                 return list.get(i).getContent_page2().split("URI:")[0];
             }
             if(input == 3){
+                //UserValueCapture.setSectionGlobal(list.get(i).getContent_page3().split("URI:")[1]);
                 return list.get(i).getContent_page3().split("URI:")[0];
             }
             if(input == 4){
+                //UserValueCapture.setSectionGlobal(list.get(i).getContent_page4().split("URI:")[1]);
                 return list.get(i).getContent_page4().split("URI:")[0];
             }
             else {
-                return "Hello world from section: " + input;
+                return "Sorry, there was an error retrieving the data. Please try again later";
             }
         }
     });

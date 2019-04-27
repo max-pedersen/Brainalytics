@@ -114,11 +114,12 @@ public class UserDetail extends AppCompatActivity
         if (evaluator > 0) {
             // User thus exists in the database
             input = "Welcome back " + firstNameInput;
-            // then store the zID so that you can query across other things
+            // zID stored as universal variable
             UserValueCapture.setUserMsg(input);
         }
         else if (evaluator == 0) {
             User signedInUser = new User(zID, firstNameInput);
+            //Insert new user into database
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
                     .userDAO().insertUser(signedInUser);
             //Welcomes the user based on name input
@@ -126,7 +127,8 @@ public class UserDetail extends AppCompatActivity
             UserValueCapture.setUserMsg(input);
         }
         UserValueCapture.setzIDGlobal(zID);
-        //DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().sessionDAO().insertUserSession(new Session(zID));
+        //Insert new session
+        DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().sessionDAO().insertUserSession(new Session(zID));
         UserValueCapture.setNameGlobal(firstNameInput);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

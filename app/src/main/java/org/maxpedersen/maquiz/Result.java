@@ -4,6 +4,7 @@ package org.maxpedersen.maquiz;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import java.util.Date;
 
@@ -13,7 +14,8 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(foreignKeys = @ForeignKey(entity=User.class,
         parentColumns="z_id",
         childColumns ="z_id",
-        onDelete = CASCADE))
+        onDelete = CASCADE
+))
 
     public class Result {
         @PrimaryKey(autoGenerate = true)
@@ -27,6 +29,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 
         private String source_origin;
         // this will denote whether the XP has come from a Quiz activity or from a Content activity
+
 
         private int z_id;
 

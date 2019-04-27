@@ -19,6 +19,8 @@
     <string name="option4">D. Answer</string>
     <string name="Next">Next ></string>
     <string name="title_activity_login">Sign in</string>
+    <string name="news_api_prompt">AI IN THE MEDIA</string>
+    <string name="news_api_prompt2">DATAVIZ IN THE MEDIA</string>
     <string name="score">0/10</string>
     <string name="Score">Score: 5/10</string>
     <string name="XPgain">XP Gained: 50</string>
