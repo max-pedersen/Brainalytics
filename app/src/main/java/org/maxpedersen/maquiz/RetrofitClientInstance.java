@@ -3,6 +3,12 @@ package org.maxpedersen.maquiz;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+
+/* Based on Prakash Pun's Retrofit tutorial -
+https://medium.com/@prakash_pun/retrofit-a-simple-android-tutorial-48437e4e5a23
+ */
+
 public class RetrofitClientInstance {
         //Set up of retrofit instance
         private static Retrofit retrofit;

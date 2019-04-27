@@ -37,8 +37,8 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         }
     }
 
-    //Constructor for the adpater to allow the class to pass in a list and an OnNoteListener to
-    // allow for the recyclerview to be filled and cliked
+    //Constructor for the adapter to allow the class to pass in a list and an OnNoteListener to
+    // allow for the RecyclerView to be filled and clicked
     public QuizAdapter(ArrayList<Content> contentList, QuizAdapter.OnNoteListener OnNoteListener){
         mList = contentList;
         this.mOnNoteListener = OnNoteListener;

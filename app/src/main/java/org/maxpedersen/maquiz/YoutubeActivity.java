@@ -16,14 +16,19 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+/* Class is based on Tim Buchalka's Introduction to Android Studio Programming Tutorial on a
+YouTube App
+ */
 
 public class YoutubeActivity extends YouTubeBaseActivity  {
     private static final String TAG = "YoutubeActivity";
     static final String API_KEY = "AIzaSyBka9Qp1HYeNOCMHcBV9Em3C_CIaMAh7rk";
-    public String YT_VIDEO_ID = "5Zg-C8AAIGg";
+    public String YT_VIDEO_ID;
     private int i;
-    //Set up varaibles for youtube player API
+    //Set up variables for youtube player API
     private YouTubePlayerView myYoutubePlayerView;
     private YouTubePlayer.OnInitializedListener initializedListener;
     private Button goBackBtn;
@@ -34,12 +39,16 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
         setContentView(R.layout.activity_youtube);
         goBackBtn = findViewById(R.id.buttonYoutubeView);
 
+        Intent intent = getIntent();
+        YT_VIDEO_ID = intent.getStringExtra("youtubeURI");
+
         initializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
                 youTubePlayer.setPlaybackEventListener(playbackEventListener);
                 youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
                 if (!wasRestored) {
+                    //youTubePlayer.cueVideo(UserValueCapture.uri_global);
                     youTubePlayer.cueVideo(YT_VIDEO_ID);
                 }
             }
@@ -67,7 +76,6 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
         @Override
         public void onPlaying() {
-            Toast.makeText(YoutubeActivity.this, "Good, video playing is OK", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -103,17 +111,14 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
 
         @Override
         public void onVideoStarted() {
-            //Add XP when a user watches a video
-            Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_LONG).show();
-            Result tempObj = new Result(0, 1, UserValueCapture.zIDGlobal);
-            DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 
         @Override
         public void onVideoEnded() {
             //Add XP when a user finishes a video
-            Toast.makeText(YoutubeActivity.this, "Video has ended", Toast.LENGTH_LONG).show();
-            Result tempObj = new Result(0, 3, UserValueCapture.zIDGlobal);
+            Toast.makeText(YoutubeActivity.this, "Great work " +
+                    UserValueCapture.nameGlobal + " , you've earned 3 XP!", Toast.LENGTH_LONG).show();
+            Result tempObj = new Result(3, UserValueCapture.zIDGlobal, "video content");
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 
@@ -125,7 +130,8 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     private void inflateTitle(){
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
-        List<Content> list = Content.getContent();
+        List<Content> list = (ArrayList<Content>) DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+                .contentDAO().getContents();
         String youtubeTitle = list.get(i).getTopic();
         TextView youtubeTV = findViewById(R.id.youtubeTitleTV);
         youtubeTV.setText(youtubeTitle);

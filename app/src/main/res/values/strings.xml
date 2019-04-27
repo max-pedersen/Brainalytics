@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">brainalytics</string>
+    <string name="app_name">Brainalytics</string>
     <string name="GetSarted">Get Started!</string>
     <string name="FirstName">Name</string>
-    <string name="MainMenuWelcome">Welcome Back User</string>
+    <string name="MainMenuWelcome">Welcome back User</string>
     <string name="number">1050</string>
     <string name="XP">XP</string>
     <string name="Learn">Learn</string>
     <string name="Leaderboard">How are you tracking?</string>
     <string name="Topic">Topic</string>
-    <string name="SelectTopic">Select Topic</string>
+    <string name="SelectTopic">Select a topic!</string>
     <string name="Date">28/02/2019</string>
     <string name="QuizTopic">Test your knowledge!</string>
     <string name="Counter">0/10 Answered</string>
@@ -19,12 +19,14 @@
     <string name="option4">D. Answer</string>
     <string name="Next">Next ></string>
     <string name="title_activity_login">Sign in</string>
+    <string name="news_api_prompt">AI IN THE MEDIA</string>
+    <string name="news_api_prompt2">DATAVIZ IN THE MEDIA</string>
     <string name="score">0/10</string>
     <string name="Score">Score: 5/10</string>
     <string name="XPgain">XP Gained: 50</string>
     <string name="finishedTitle">Results</string>
     <string name="finishedMsg">Great work User!</string>
-    <string name="goHome">Go Home</string>
+    <string name="goHome">Return to home</string>
     <string name="msg">Ready for some Brainalytics?</string>
     <string name="title_activity_content_detailed_slide">ContentDetailedSlide</string>
     <string name="section_1">Section 1</string>

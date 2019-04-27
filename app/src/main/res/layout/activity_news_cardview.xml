@@ -33,7 +33,7 @@
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:text="@string/Title"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:theme="@style/AppTheme" />
 

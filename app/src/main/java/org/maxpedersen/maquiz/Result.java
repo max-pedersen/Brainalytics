@@ -4,6 +4,7 @@ package org.maxpedersen.maquiz;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import java.util.Date;
 
@@ -13,7 +14,8 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(foreignKeys = @ForeignKey(entity=User.class,
         parentColumns="z_id",
         childColumns ="z_id",
-        onDelete = CASCADE))
+        onDelete = CASCADE
+))
 
     public class Result {
         @PrimaryKey(autoGenerate = true)
@@ -24,20 +26,19 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 
         private Date metadata_created_at;
 
-        private Date time_taken;
 
         private String source_origin;
         // this will denote whether the XP has come from a Quiz activity or from a Content activity
 
+
         private int z_id;
 
-    public Result(int id, int score, int z_id) {
-        this.id = id;
+    public Result(int score, int z_id, String source_origin) {
         this.score = score;
         // new Date() to pull exact time of creation
         this.metadata_created_at = new Date();
-        this.time_taken = new Date();
         this.z_id = z_id;
+        this.source_origin = source_origin;
     }
 
     public int getId() {
@@ -64,13 +65,6 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         this.metadata_created_at = metadata_created_at;
     }
 
-    public Date getTime_taken() {
-        return time_taken;
-    }
-
-    public void setTime_taken(Date time_taken) {
-        this.time_taken = time_taken;
-    }
 
     public int getZ_id() {
         return z_id;

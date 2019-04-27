@@ -64,17 +64,11 @@ public class QuizActivity extends AppCompatActivity {
         onClick(buttonApply);
         final Handler mHandler = new Handler();
         Intent intent = getIntent();
-        int weekSpecified = intent.getIntExtra("arrayIdx", 1) +1;
-        //TODO remove once pre fill database works
-        questionsFromCSV = null;
-        try {
-            questionsFromCSV = readCSV();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int weekSpecified = intent.getIntExtra("arrayIdx", 1) + 2 ;
+
 
         //The statement belows queries the database for 10 question using the parameter weekSpecified, which is the index of the Array List + 1. i.e.
-        // If someone presses Week 3 it's index would be 2 and then + 1. That would be 3. 3 would be used as a parameter when getting the questions
+        // If someone presses Week 3 its index would be 2 and then + 1. That would be 3. 3 would be used as a parameter when getting the questions
 
       randomQuestionsFromWeek = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
                 .questionDAO().getSelectedQuiz(weekSpecified);
@@ -134,31 +128,7 @@ public class QuizActivity extends AppCompatActivity {
 
         });
     }
-//Extracts the questions from a csv
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public List<Question> readCSV() throws IOException {
-        List<Question> questionList = new ArrayList<>();
 
-
-        InputStreamReader is = new InputStreamReader(getAssets()
-                .open("Questions.csv"));
-
-        BufferedReader reader = new BufferedReader(is);
-        reader.readLine();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            int i = 20;
-            String[] qAttrs = line.split(",");
-            Log.d("hello", line);
-            Question q = new Question(0, Integer.parseInt(qAttrs[0]), qAttrs[1],
-                    qAttrs[2], qAttrs[3], qAttrs[4], qAttrs[5], qAttrs[6], qAttrs[7],
-                    qAttrs[8]);
-            Log.d("hello", q.toString());
-            i = i + 1;
-            questionList.add(q);
-        }
-        return questionList;
-    }
 //The list of questions is passed here and based on the counter this method will generate a new question each time
     private void generateQ(List<Question> list){
         Question Quiz = list.get(counter);
@@ -283,7 +253,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
     }
-    //Method for the progressbar, which increments everytime a question is answered. This is a discriminate progress bar.
+    //Method for the progressbar, which increments every time a question is answered. This is a discriminate progress bar.
     public void progressBarThread(final Handler mHandler){
         new Thread(new Runnable() {
             @Override

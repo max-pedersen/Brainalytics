@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -23,6 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class NewsActivity extends AppCompatActivity implements NewsArticleAdapter.OnNoteListener{
 
     private ProgressDialog progressDialog;
@@ -30,6 +32,9 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
     private RecyclerView mRecyclerView;
     private NewsArticleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private static int i;
+    private TextView newsTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +43,28 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
         progressDialog = new ProgressDialog(NewsActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
+
+        newsTitle = findViewById(R.id.newsTitle);
+
+
         /*Create handle for the RetrofitInstance interface*/
+
         NewsArticleService service = RetrofitClientInstance.getRetrofitInstance().create(NewsArticleService.class);
-        Call<NewsArticleResponse> call = service.getRelevantArticles();
-        String diagnostics = call.toString();
-        Log.d("NewsActivity", diagnostics);
+        Intent intent = getIntent();
+        i = intent.getIntExtra("requestType", 0);
+        Call<NewsArticleResponse> call;
+
+        if (i == 2) {
+            call = service.getRelevantDataVizArticles();
+            newsTitle.setText("Dataviz in the Media");
+
+        }
+        else {
+            call = service.getRelevantArticles();
+            newsTitle.setText("AI in the Media");
+
+        }
+
         call.enqueue(new Callback<NewsArticleResponse>() {
             @Override
             public void onResponse(Call<NewsArticleResponse> call, Response<NewsArticleResponse> response) {
@@ -59,7 +81,8 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
                     String tempUrlToImage = object.getArticles().get(i).getUrlToImage();
                     String temppublishedAt = object.getArticles().get(i).getPublishedAt();
                     String tempContent = object.getArticles().get(i).getContent();
-                    Article tempObject = new Article(tempSource, tempAuthor, tempTitle, tempDescription, tempUrl, tempUrlToImage, temppublishedAt, tempContent);
+                    Article tempObject = new Article(tempSource, tempAuthor, tempTitle, tempDescription,
+                            tempUrl, tempUrlToImage, temppublishedAt, tempContent);
                     mList.add(tempObject);
                 }
                 buildRecyclerView(mList);
@@ -69,12 +92,12 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
             public void onFailure(Call<NewsArticleResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Log.d("NewsActivityThrowing", t.toString());
-                Toast.makeText(NewsActivity.this, "Sorry, something has gone wrong. Please" +
-                        "try again shortly", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsActivity.this, "Sorry, something has gone wrong. " +
+                        "Please check your Internet connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    //Builds the recyclerview to display the summaries news articles in cards
+    //Builds the RecyclerView to display the summaries news articles in cards
     public void buildRecyclerView(ArrayList<Article> list) {
         mRecyclerView = findViewById(R.id.newsRecyclerView);
         mRecyclerView.setHasFixedSize(true);

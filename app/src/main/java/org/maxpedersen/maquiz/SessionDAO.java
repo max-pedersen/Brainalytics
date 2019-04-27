@@ -14,6 +14,10 @@ public interface SessionDAO {
     @Query("SELECT MAX(metadata_start_time) FROM Session WHERE z_id LIKE :mZ_id")
     String getMostRecentSession(int mZ_id);
 
+    @Insert
+    void insertUserSession(Session ... sessions);
+
+
 
 
 

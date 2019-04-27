@@ -1,4 +1,4 @@
-package org.maxpedersen.maquiz.ui.main;
+package org.maxpedersen.maquiz;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,11 +6,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-
-import org.maxpedersen.maquiz.R;
-import org.maxpedersen.maquiz.Content;
-import org.maxpedersen.maquiz.ContentDetailedSlide;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,15 +45,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         // This method determines how many slides there should be. When it finds an attribute with "" it knows that there isn't any content will limit the slides respectively
         i = ContentDetailedSlide.getI();
-        List<Content> list = new ArrayList<>();
-        list = Content.getContent();
-        if(list.get(i).getContent_page2().equalsIgnoreCase("")){
+        List<Content> list = new ArrayList<Content>();
+        list = (ArrayList<Content>) DatabaseService.getDbInstance(mContext).getAppDatabase()
+                .contentDAO().getContents();
+        if(list.get(i).getContent_page2().equalsIgnoreCase("empty")){
             return 1;
         }
-        if(list.get(i).getContent_page3().equalsIgnoreCase("")){
+        if(list.get(i).getContent_page3().equalsIgnoreCase("empty")){
             return 2;
         }
-        if(list.get(i).getContent_page4().equalsIgnoreCase("")){
+        if(list.get(i).getContent_page4().equalsIgnoreCase("empty")){
             return 3;
         }
         else{

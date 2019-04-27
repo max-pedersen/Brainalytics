@@ -8,6 +8,7 @@ public class UserValueCapture {
     public static String nameGlobal;
     public static int quizActivityState;
     public static String userMsg;
+    public static String uri_global;
 
     public static void setUserMsg(String userMsg) {
         UserValueCapture.userMsg = userMsg;
@@ -23,7 +24,11 @@ public class UserValueCapture {
 
     public static void setNameGlobal(String nameGlobal) {
         UserValueCapture.nameGlobal = nameGlobal;
-
-
     }
+
+    public static void setSectionGlobal(String uri_global) {
+        UserValueCapture.uri_global = uri_global; }
+
+
+
 }
