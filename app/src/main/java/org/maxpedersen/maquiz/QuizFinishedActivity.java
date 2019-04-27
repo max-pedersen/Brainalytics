@@ -47,7 +47,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         int score = intent.getIntExtra("Score", 0);
         updateResults(score);
         //Creates a result object to add a record into the results DAO to the DB
-        Result resultFromQuiz = new Result(0, score, UserValueCapture.zIDGlobal, "quiz");
+        Result resultFromQuiz = new Result(score, UserValueCapture.zIDGlobal, "quiz");
         DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(resultFromQuiz);
         //This will provide the data needed to create the piechart in the activity
         inflatePieChart(score);
@@ -83,7 +83,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         scoreTV.setText(scoreTotal);
         XPTV.setText(xpGained);
     }
-    //On click method for the goHome button
+    //On click method for the checkLeaderboard button
     private void onClick(Button button){
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -111,7 +111,7 @@ public class QuizFinishedActivity extends AppCompatActivity {
         pieChart.setHoleColor(android.R.color.white);
         pieChart.setTransparentCircleRadius(61f);
         ArrayList<PieEntry> yValues = new ArrayList<>();
-        yValues.add(new PieEntry(correct, "Corect"));
+        yValues.add(new PieEntry(correct, "Correct"));
         yValues.add(new PieEntry(wrong, "Wrong"));
         pieChart.animateY(5000, Easing.EaseInOutCubic);
         PieDataSet dataSet = new PieDataSet(yValues, "Question");

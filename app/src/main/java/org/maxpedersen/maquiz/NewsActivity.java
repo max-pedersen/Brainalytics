@@ -41,8 +41,6 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
         /*Create handle for the RetrofitInstance interface*/
         NewsArticleService service = RetrofitClientInstance.getRetrofitInstance().create(NewsArticleService.class);
         Call<NewsArticleResponse> call = service.getRelevantArticles();
-        String diagnostics = call.toString();
-        Log.d("NewsActivity", diagnostics);
         call.enqueue(new Callback<NewsArticleResponse>() {
             @Override
             public void onResponse(Call<NewsArticleResponse> call, Response<NewsArticleResponse> response) {
@@ -69,12 +67,12 @@ public class NewsActivity extends AppCompatActivity implements NewsArticleAdapte
             public void onFailure(Call<NewsArticleResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Log.d("NewsActivityThrowing", t.toString());
-                Toast.makeText(NewsActivity.this, "Sorry, something has gone wrong. Please" +
-                        "try again shortly", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsActivity.this, "Sorry, something has gone wrong. " +
+                        "Please check your Internet connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    //Builds the recyclerview to display the summaries news articles in cards
+    //Builds the RecyclerView to display the summaries news articles in cards
     public void buildRecyclerView(ArrayList<Article> list) {
         mRecyclerView = findViewById(R.id.newsRecyclerView);
         mRecyclerView.setHasFixedSize(true);
