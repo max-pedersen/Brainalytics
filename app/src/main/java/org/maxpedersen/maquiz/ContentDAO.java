@@ -8,6 +8,6 @@ import java.util.List;
 
 @Dao
 public interface ContentDAO {
-    @Query("SELECT * FROM Content")
+    @Query("SELECT * FROM Content ORDER BY week ASC")
     List<Content> getContents();
 }

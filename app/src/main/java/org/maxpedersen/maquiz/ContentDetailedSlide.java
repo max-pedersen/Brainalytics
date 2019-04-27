@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContentDetailedSlide extends AppCompatActivity {
@@ -24,18 +25,6 @@ public class ContentDetailedSlide extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
 
-
-        String variable = "Ch2.pdf";
-
-
-
-        /*PDFView pdfView = findViewById(R.id.pdfView);
-        pdfView.fromAsset(variable).
-                enableSwipe(true)
-                .swipeHorizontal(false).defaultPage(0).enableAnnotationRendering(false).password(null).scrollHandle(null).enableAntialiasing(true).spacing(0).load();
-       */
-
-
         viewPager.setAdapter(sectionsPagerAdapter);
         //We also declare the tabs at the top of the content slider adapter
         TabLayout tabs = findViewById(R.id.tabs);
@@ -43,6 +32,10 @@ public class ContentDetailedSlide extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         Intent intent = getIntent();
         i = intent.getIntExtra("arrayIdx", 0);
+        final Content selectedContent = DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase()
+                .contentDAO().getContents().get(i);
+
+
         // Because the content slider view is determined dynamically, the pager needs to know when the data has changed in order to change the layout to show the data
         sectionsPagerAdapter.notifyDataSetChanged();
         //Sets an onclick listener for the YouTube button */
@@ -51,6 +44,11 @@ public class ContentDetailedSlide extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ContentDetailedSlide.this,YoutubeActivity.class);
                 intent.putExtra("arrayIdx", i);
+                intent.putExtra("youtubeValue", selectedContent.getContent_page1().split("URI:")[1]);
+
+
+
+
                 startActivity(intent);
             }
         });
