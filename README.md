@@ -11,7 +11,9 @@ The mobile application created enables student to test their knowledge of on Bus
 * Emulator: Pixel XL API 28
 * Emulator: Nexus 5X API 27
 
-* Requires Android Sutdio 3.4 or newer
+It is highly recommended to run with the Nexus 5X API 27 emulator 
+
+* Requires Android Studio 3.4 or newer
 
 **Key functionalities:**
 
