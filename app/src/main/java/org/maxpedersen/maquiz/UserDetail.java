@@ -126,6 +126,7 @@ public class UserDetail extends AppCompatActivity
             UserValueCapture.setUserMsg(input);
         }
         UserValueCapture.setzIDGlobal(zID);
+        //DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().sessionDAO().insertUserSession(new Session(zID));
         UserValueCapture.setNameGlobal(firstNameInput);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

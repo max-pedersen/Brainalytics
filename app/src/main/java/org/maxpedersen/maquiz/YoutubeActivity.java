@@ -68,7 +68,6 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
         @Override
         public void onPlaying() {
-            Toast.makeText(YoutubeActivity.this, "Good, video playing is OK", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -104,8 +103,6 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
 
         @Override
         public void onVideoStarted() {
-            //Add XP when a user watches a video
-            Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -113,7 +110,7 @@ public class YoutubeActivity extends YouTubeBaseActivity  {
             //Add XP when a user finishes a video
             Toast.makeText(YoutubeActivity.this, "Great work " +
                     UserValueCapture.nameGlobal + " , you've earned 3 XP!", Toast.LENGTH_LONG).show();
-            Result tempObj = new Result(0, 3, UserValueCapture.zIDGlobal, "video content");
+            Result tempObj = new Result(3, UserValueCapture.zIDGlobal, "video content");
             DatabaseService.getDbInstance(getApplicationContext()).getAppDatabase().resultDAO().insertResult(tempObj);
         }
 

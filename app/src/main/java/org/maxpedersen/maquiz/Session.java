@@ -46,6 +46,11 @@ public class Session {
     public void setZ_id(int z_id) {
         this.z_id = z_id;
     }
+
+    public Session(int z_id) {
+        this.z_id = z_id;
+        metadata_start_time = new Date();
+    }
 }
 
 
