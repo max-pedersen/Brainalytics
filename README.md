@@ -15,7 +15,7 @@ The mobile application created enables student to test their knowledge of on Bus
 
 * Quiz Component
   * Over 10 different topics to choose from to quiz
-  * Library of over 120 questions
+  * Library of 114 questions
   * Question order is randomised
   * Instant feedback after question is answered
   * ProgressBar used as a visual indicator of progress
@@ -27,16 +27,16 @@ The mobile application created enables student to test their knowledge of on Bus
 * Results Component
   * Uses a MPAndroid Library to generate a visual representation of how well you performed
   * Updates from the Quiz Activity to give you a quick summary
-  * Use of aethetically pleasing icons to gratify the user
-  * Providesa clear path back home
+  * Use of aesthetically pleasing icons to gratify the user
+  * Provides a clear path back home
 * Content Component
   * Use of dynamic slider view to display large amounts of text
-  * Dynamic YouTube FAB to only show when needed
-  * YouTube API an extended activity of Content so you don't have to leave the app
+  * Dynamic YouTube floating action button (FAB) to only show when needed
+  * YouTube API to extend activity of Content so you don't have to leave the app
   * Gain XP while watching YouTube videos through the API
+  
 * Leaderboard Component
-  * Live updates the top 10 XP accumulated
-  * Uses a clean colour pallete 
-  * Provides a layer of compatitiveness to the Brainalytics
+  * Live updates of the top 10 users by their total 10 XP accumulated
+  * Provides a layer of competitiveness to the Brainalytics
   
 _Created by The University of New South Wales undergraduate students Alexander Lam (z5164310) & Max Pedersen (z5164270) for Information Systems course INFS3634: Mobile App Development_
