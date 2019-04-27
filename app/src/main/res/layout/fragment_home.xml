@@ -4,24 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientbg">
-
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="311dp"
-        android:layout_height="326dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomeUserTV"
-        app:layout_constraintVertical_bias="0.293" />
-
+    android:background="@drawable/homebackground2" >
 
 
     <TextView
@@ -35,7 +18,7 @@
         android:gravity="center"
         android:text="@string/MainMenuWelcome"
         android:textAppearance="@style/AppTheme"
-        android:textColor="@color/secondaryLightColor"
+        android:textColor="@color/primaryDarkColor"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +38,7 @@
         android:text="@string/number"
         android:textColor="@color/primaryTextColor"
         android:textSize="42sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,12 +54,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:text="@string/XP"
-        android:textColor="@color/secondaryTextColor"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="88sp"
         app:fontFamily="@font/open_sans_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xpNumber"
         app:layout_constraintVertical_bias="0.0" />
@@ -88,22 +72,41 @@
         android:fontFamily="@font/quicksand"
         android:text="@string/msg"
         android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/welcomeUserTV"
         app:layout_constraintStart_toStartOf="@+id/welcomeUserTV"
         app:layout_constraintTop_toBottomOf="@+id/welcomeUserTV" />
 
     <Button
         android:id="@+id/btnNews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Hear from the outside world"
+        android:background="#38515E"
+        android:text="@string/news_api_prompt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/XP" />
+
+    <Button
+        android:id="@+id/btnNews2"
+        android:layout_width="270dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#38515E"
+        android:text="@string/news_api_prompt2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/XP"
+        app:layout_constraintVertical_bias="0.833" />
 
 </android.support.constraint.ConstraintLayout>

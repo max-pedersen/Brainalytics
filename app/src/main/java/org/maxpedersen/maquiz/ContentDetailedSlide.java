@@ -1,11 +1,15 @@
 package org.maxpedersen.maquiz;
 
+import android.arch.core.util.Function;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Transformations;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -44,11 +48,7 @@ public class ContentDetailedSlide extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ContentDetailedSlide.this,YoutubeActivity.class);
                 intent.putExtra("arrayIdx", i);
-                intent.putExtra("youtubeValue", selectedContent.getContent_page1().split("URI:")[1]);
-
-
-
-
+                intent.putExtra("youtubeURI", selectedContent.getContent_page1().split("URI:")[1]);
                 startActivity(intent);
             }
         });
@@ -56,6 +56,13 @@ public class ContentDetailedSlide extends AppCompatActivity {
         contentTitle = getTitles();
         youtubeFAB(fab);
     }
+
+
+
+
+
+
+
     //Global variable to allow the ui.main classes to access which index was clicked so they can access the properties of the object
     static public int getI(){
         return i;
